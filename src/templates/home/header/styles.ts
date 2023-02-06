@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { mediaMaxWidth } from '@/utils/media-query/media-query';
+import { mediaMaxWidth } from '@/utils/media-query';
 
 export const Header = styled.header`
   height: 100vh;

@@ -1,7 +1,7 @@
 import {
   aspectRatioBase, AspectRatioProps, ViewportBaseProps, viewportsBase,
-} from '@/utils/media-query/viewport-base';
-import interpolation from 'src/utils/media-query/media-query/interpolation';
+} from '@/styles/viewport-base';
+import interpolation from '@/utils/media-query/interpolation';
 
 export const viewPortOrPx = (value: ViewportBaseProps | number) => {
   if (typeof value === 'number') {
