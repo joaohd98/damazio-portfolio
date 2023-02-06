@@ -1,26 +1,20 @@
-import { useTranslation } from 'next-i18next';
 import * as S from './styles';
+import useConst from './const';
 
 export default function Header() {
-  const { t } = useTranslation('home-header');
+  const t = useConst();
 
   return (
     <S.Header>
-      <S.TextContainer>
-        <S.NameText>{t('name')}</S.NameText>
-        <S.JobText>{t('job')}</S.JobText>
-        <S.HightlightsRow>
-          <S.HightlightText>
-            🖥️ Creative
+      <S.NameText>{t.name}</S.NameText>
+      <S.JobText>{t.job}</S.JobText>
+      <S.HightlightsRow>
+        {t.highlights.map((highlight) => (
+          <S.HightlightText key={highlight}>
+            {highlight}
           </S.HightlightText>
-          <S.HightlightText>
-            📱 Mobile
-          </S.HightlightText>
-          <S.HightlightText>
-            📝 Leadership
-          </S.HightlightText>
-        </S.HightlightsRow>
-      </S.TextContainer>
+        ))}
+      </S.HightlightsRow>
     </S.Header>
   );
 }
