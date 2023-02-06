@@ -1,5 +1,9 @@
+'use client';
+
 import './globals.css';
 import { ReactNode } from 'react';
+import { ThemeProvider } from 'styled-components';
+import { theme } from '@/styles/theme';
 
 export default function RootLayout({
   children,
@@ -9,7 +13,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <ThemeProvider theme={theme}>
+        <body>{children}</body>
+      </ThemeProvider>
     </html>
   );
 }

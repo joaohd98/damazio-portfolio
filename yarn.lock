@@ -1423,8 +1423,7 @@ __metadata:
     prettier: 2.8.3
     react: 18.2.0
     react-dom: 18.2.0
-    styled-components: ^5.3.6
-    styled-media-query: ^2.1.2
+    styled-components: ^6.0.0-beta.11
     typescript: 4.9.5
   languageName: unknown
   linkType: soft
@@ -4388,15 +4387,6 @@ __metadata:
     babel-plugin-macros:
       optional: true
   checksum: 523a33b38603492547e861b98e29c873939b04e15fbe5ef16132c6f1e15958126647983c7d4675325038b428a5e91183d996e90141b18bdd1bbadf6e2c45b2fa
-  languageName: node
-  linkType: hard
-
-"styled-media-query@npm:^2.1.2":
-  version: 2.1.2
-  resolution: "styled-media-query@npm:2.1.2"
-  peerDependencies:
-    styled-components: ">= 1"
-  checksum: b8b20fc1667f98f0a7f55646486e936703f1a6530cd436c24038bf46c59eefe7a2988c850828a8d92615bc36515edcb2c5e3f9c0a9a28e206f14ab33ea95c364
   languageName: node
   linkType: hard
 
