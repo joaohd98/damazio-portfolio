@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export -o build",
     "start": "next start",
     "lint": "next lint --fix",
     "test": " cypress run",
@@ -18,8 +18,10 @@
     "@next/font": "13.1.6",
     "i18next": "^22.4.9",
     "next": "13.1.6",
+    "next-i18next": "^13.1.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-i18next": "^12.1.5",
     "styled-components": "^5.3.6",
     "typescript": "4.9.5"
   },

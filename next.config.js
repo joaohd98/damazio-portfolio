@@ -1,8 +1,12 @@
+const { i18n } = require('./next-i18next.config');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true,
+  i18n,
+  reactStrictMode: true,
+  compiler: {
+    styledComponents: true,
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
