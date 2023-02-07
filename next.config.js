@@ -3,10 +3,10 @@ const { i18n } = require('./next-i18next.config');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   i18n,
-  reactStrictMode: true,
+  reactStrictMode: false,
   compiler: {
-    styledComponents: true,
-  },
+    styledComponents: true
+  }
 };
 
 module.exports = nextConfig;

@@ -1,59 +1,50 @@
 import useRefElements from '@/hooks/useRefElements';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import gsap from 'gsap';
 
 export default function () {
-  const [nameLettersRef, setNameLettersRef] = useRefElements<HTMLSpanElement>();
-  const [jobLettersRef, setJobLettersRef] = useRefElements<HTMLSpanElement>();
+  const [textsRef, setTextsRef] = useRefElements<HTMLHeadingElement>();
+  const [cursorsRef, setCursorsRef] = useRefElements<HTMLHeadingElement>();
   const [highlightsRef, setHighlightsRef] = useRefElements<HTMLSpanElement>();
-  const cursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const tl = gsap.timeline();
-    const tlCursor = gsap.timeline({
-      repeat: -1,
-      repeatDelay: 1,
-      ease: 'none',
-      paused: true
+
+    textsRef.current.forEach((currentText, index) => {
+      const currentCursor = cursorsRef.current[index];
+      const previousCursor = cursorsRef.current[index - 1];
+
+      if (previousCursor) {
+        tl.set(previousCursor, { display: 'none' });
+      }
+
+      tl.set(currentCursor, { display: 'block', delay: 0.3 * index });
+
+      const letters = gsap.utils.selector(currentText)('span');
+      letters.forEach(current => {
+        tl.set(current, { display: 'inline-block', autoAlpha: 1, delay: 0.3 });
+        tl.set(currentCursor, { left: '102%' });
+      });
     });
 
-    setTimeout(() => {
-      const letters = [...nameLettersRef.current, ...jobLettersRef.current];
-      letters.forEach(current => {
-        if (!current) {
-          return;
-        }
+    tl.call(() => {
+      const currentCursor = cursorsRef.current.pop();
+      if (!currentCursor) {
+        return;
+      }
 
-        const { height, width } = current.getBoundingClientRect();
-        const y = current.offsetTop;
-        const x = current.offsetLeft + width + window.innerWidth * 0.02;
+      const tlCursor = gsap.timeline({ repeat: -1, duration: 1 });
 
-        tl.set(cursorRef.current, { height });
+      tlCursor.set(currentCursor, { display: 'none' }, 0);
+      tlCursor.set(currentCursor, { display: 'block' }, 0.5);
+    });
 
-        tl.set(cursorRef.current, { x, y, delay: 0.15 });
-
-        tl.set(current, { autoAlpha: 1 });
-      });
-
-      tl.to(highlightsRef.current, { autoAlpha: 1, y: 0, stagger: 0.3 });
-
-      tlCursor.set(cursorRef.current, {
-        opacity: 0
-      });
-
-      tlCursor.set(cursorRef.current, {
-        opacity: 1,
-        delay: 0.5
-      });
-
-      tl.add(tlCursor);
-    }, 100);
+    tl.to(highlightsRef.current, { autoAlpha: 1, y: 0, stagger: 0.3 });
   }, []);
 
   return {
-    setNameLettersRef,
-    setJobLettersRef,
-    setHighlightsRef,
-    cursorRef
+    setTextsRef,
+    setCursorsRef,
+    setHighlightsRef
   };
 }

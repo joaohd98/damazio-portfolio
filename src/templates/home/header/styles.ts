@@ -8,10 +8,6 @@ export const Header = styled.header`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-`;
-
-export const TextContainer = styled.div`
-  position: relative;
   text-align: center;
 `;
 
@@ -19,11 +15,12 @@ export const NameText = styled.h1`
   font-family: 'Gotham HTF';
   font-weight: 400;
   font-size: 15rem;
-  margin-bottom: -2.5rem;
+  margin-bottom: -1.5rem;
   color: ${({ theme }) => theme.primary};
+  position: relative;
 
   ${mediaMaxWidth('mobile')`
-    font-size: 4rem;
+    font-size: 5rem;
     margin-bottom: 0;
   `}
 `;
@@ -34,6 +31,7 @@ export const JobText = styled.h2`
   font-size: 12rem;
   margin-bottom: 4rem;
   color: ${({ theme }) => theme.primary};
+  position: relative;
 
   ${mediaMaxWidth('mobile')`
     font-size: 4rem;
@@ -42,17 +40,31 @@ export const JobText = styled.h2`
 `;
 
 export const LetterSpan = styled.span`
-  opacity: 0;
-  visibility: hidden;
+  display: none;
+  min-width: 5rem;
+
+  :first-of-type {
+    display: inline-block;
+    opacity: 0;
+  }
+
+  ${mediaMaxWidth('mobile')`
+    min-width: 1rem;
+  `}
 `;
 
 export const Cursor = styled.div`
   position: absolute;
-  height: 14rem;
+  height: 100%;
   width: 0.2rem;
   background-color: ${({ theme }) => theme.secondary};
-  left: -1rem;
+  left: -2.5rem;
   top: 1rem;
+  display: none;
+
+  ${mediaMaxWidth('mobile')`
+    top: 0.5rem;
+  `}
 `;
 
 export const HightlightsRow = styled.div`
