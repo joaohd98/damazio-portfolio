@@ -4,7 +4,7 @@ export default function () {
   const { t } = useTranslation('home-header');
 
   return {
-    name: t('name')
+    greetings: t('greetings')
       .split('')
       .map((value, id) => ({ id, value })),
     job: t('job')

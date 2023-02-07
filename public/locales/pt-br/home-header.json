@@ -1,9 +1,9 @@
 {
-  "job": "Lider técnico",
+  "greetings": "Hey, sou o João!",
+  "job": "Um Desevolvedor",
   "highlights": [
-    "🖥️ Criativo",
-    "📱 Móbile",
-    "📝 Liderança"
+    "Que ama criar UI agradáveis, acessíveis, performáticas",
+    "e atraentes que transforma ideias em realidade"
   ]
 }
 

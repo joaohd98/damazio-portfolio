@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { mediaMaxWidth } from '@/utils/media-query';
 
 export const Header = styled.header`
@@ -14,8 +14,8 @@ export const Header = styled.header`
 export const NameText = styled.h1`
   font-family: 'Gotham HTF';
   font-weight: 400;
-  font-size: 15rem;
-  margin-bottom: -1.5rem;
+  font-size: 12rem;
+  margin-bottom: -1rem;
   color: ${({ theme }) => theme.primary};
   position: relative;
 
@@ -28,7 +28,7 @@ export const NameText = styled.h1`
 export const JobText = styled.h2`
   font-family: 'Gotham HTF';
   font-weight: 300;
-  font-size: 12rem;
+  font-size: 10rem;
   margin-bottom: 4rem;
   color: ${({ theme }) => theme.primary};
   position: relative;
@@ -39,18 +39,23 @@ export const JobText = styled.h2`
   `}
 `;
 
-export const LetterSpan = styled.span`
+export const LetterSpan = styled.span<{ isEmpty: boolean }>`
   display: none;
-  min-width: 5rem;
 
   :first-of-type {
     display: inline-block;
     opacity: 0;
   }
 
-  ${mediaMaxWidth('mobile')`
-    min-width: 1rem;
-  `}
+  ${({ isEmpty }) =>
+    isEmpty &&
+    css`
+      min-width: 4rem;
+
+      ${mediaMaxWidth('mobile')`
+          min-width: 1rem;
+      `}
+    `}
 `;
 
 export const Cursor = styled.div`
@@ -69,10 +74,9 @@ export const Cursor = styled.div`
 
 export const HightlightsRow = styled.div`
   display: flex;
-  gap: 7rem;
+  flex-direction: column;
 
   ${mediaMaxWidth('mobile')`
-    gap: 4rem;
   `}
 `;
 

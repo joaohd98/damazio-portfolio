@@ -22,7 +22,7 @@ export default function () {
 
       const letters = gsap.utils.selector(currentText)('span');
       letters.forEach(current => {
-        tl.set(current, { display: 'inline-block', autoAlpha: 1, delay: 0.2 });
+        tl.set(current, { display: 'inline-block', autoAlpha: 1, delay: 0.15 });
         tl.set(currentCursor, { left: '102%' });
       });
     });

@@ -5,18 +5,20 @@ import useAnimation from './animation';
 
 export default function Header() {
   const { setTextsRef, setCursorsRef, setHighlightsRef } = useAnimation();
-  const { name, job, highlights } = useConst();
+  const { greetings, job, highlights } = useConst();
 
   const renderNameJob = useMemo(() => {
-    const texts: [typeof name, typeof S.NameText][] = [
-      [name, S.NameText],
+    const texts: [typeof greetings, typeof S.NameText][] = [
+      [greetings, S.NameText],
       [job, S.JobText]
     ];
 
     return texts.map(([text, Text], index) => (
       <Text ref={setTextsRef(index)}>
         {text.map(({ value, id }) => (
-          <S.LetterSpan key={id}>{value}</S.LetterSpan>
+          <S.LetterSpan key={id} isEmpty={value === ' '}>
+            {value}
+          </S.LetterSpan>
         ))}
         <S.Cursor ref={setCursorsRef(index)} />
       </Text>

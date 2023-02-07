@@ -1,10 +1,9 @@
 {
-  "name": "João Damazio",
-  "job": "Tech Leader",
+  "greetings": "Hey, I'm João!",
+  "job": "A Developer",
   "highlights": [
-    "🖥️ Creative",
-    "📱 Mobile",
-    "📝 Leadership"
+    "Who loves to create pleasent, accessible, performatic",
+    "and attractive UI that transform ideias into reality"
   ]
 }
 
