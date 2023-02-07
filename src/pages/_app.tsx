@@ -15,7 +15,6 @@ function App({ Component, pageProps }: AppProps) {
         <title>João Damazio</title>
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta name="description" content="Portfolio João Damazio" />
-
       </Head>
       <ThemeProvider theme={theme}>
         <GlobalStyles />

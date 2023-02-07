@@ -5,7 +5,7 @@ import {
   FlattenSimpleInterpolation,
   DefaultTheme,
   css,
-  SimpleInterpolation,
+  SimpleInterpolation
 } from 'styled-components';
 import { StaticImageData } from 'next/image';
 
@@ -23,7 +23,9 @@ type GeneratorFunction<Props> = (
   )[]
 ) => FlattenSimpleInterpolation;
 
-export default <Props>(rule: string): GeneratorFunction<Props> => (template, ...interpolation) => css`
+export default <Props>(rule: string): GeneratorFunction<Props> =>
+  (template, ...interpolation) =>
+    css`
       @media ${rule} {
         ${css(template, ...(interpolation as SimpleInterpolation[]))}
       }

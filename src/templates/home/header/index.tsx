@@ -1,16 +1,33 @@
 import * as S from './styles';
 import useConst from './const';
+import useAnimation from './animation';
 
 export default function Header() {
-  const t = useConst();
+  const { setNameLettersRef, setJobLettersRef, setHighlightsRef, cursorRef } = useAnimation();
+  const { name, job, highlights } = useConst();
 
   return (
     <S.Header>
-      <S.NameText>{t.name}</S.NameText>
-      <S.JobText>{t.job}</S.JobText>
+      <S.TextContainer>
+        <S.NameText>
+          {name.map(({ value, id }) => (
+            <S.LetterSpan key={id} ref={setNameLettersRef(id)}>
+              {value}
+            </S.LetterSpan>
+          ))}
+        </S.NameText>
+        <S.JobText>
+          {job.map(({ value, id }) => (
+            <S.LetterSpan key={id} ref={setJobLettersRef(id)}>
+              {value}
+            </S.LetterSpan>
+          ))}
+        </S.JobText>
+        <S.Cursor ref={cursorRef} />
+      </S.TextContainer>
       <S.HightlightsRow>
-        {t.highlights.map((highlight) => (
-          <S.HightlightText key={highlight}>
+        {highlights.map((highlight, index) => (
+          <S.HightlightText key={highlight} ref={setHighlightsRef(index)}>
             {highlight}
           </S.HightlightText>
         ))}
