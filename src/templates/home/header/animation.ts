@@ -18,11 +18,11 @@ export default function () {
         tl.set(previousCursor, { display: 'none' });
       }
 
-      tl.set(currentCursor, { display: 'block', delay: 0.3 * index });
+      tl.set(currentCursor, { display: 'block', delay: 0.2 * index });
 
       const letters = gsap.utils.selector(currentText)('span');
       letters.forEach(current => {
-        tl.set(current, { display: 'inline-block', autoAlpha: 1, delay: 0.3 });
+        tl.set(current, { display: 'inline-block', autoAlpha: 1, delay: 0.2 });
         tl.set(currentCursor, { left: '102%' });
       });
     });
@@ -39,7 +39,7 @@ export default function () {
       tlCursor.set(currentCursor, { display: 'block' }, 0.5);
     });
 
-    tl.to(highlightsRef.current, { autoAlpha: 1, y: 0, stagger: 0.3 });
+    tl.to(highlightsRef.current, { autoAlpha: 1, y: 0, stagger: 0.2 });
   }, []);
 
   return {
