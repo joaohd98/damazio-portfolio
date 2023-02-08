@@ -8,13 +8,13 @@ export default function Header() {
   const { greetings, job, highlights } = useConst();
 
   const renderNameJob = useMemo(() => {
-    const texts: [typeof greetings, typeof S.NameText][] = [
-      [greetings, S.NameText],
-      [job, S.JobText]
+    const texts: [string, typeof greetings, typeof S.NameText][] = [
+      ['grettings', greetings, S.NameText],
+      ['job', job, S.JobText]
     ];
 
-    return texts.map(([text, Text], index) => (
-      <Text ref={setTextsRef(index)}>
+    return texts.map(([key, text, Text], index) => (
+      <Text ref={setTextsRef(index)} key={key}>
         {text.map(({ value, id }) => (
           <S.LetterSpan key={id} isEmpty={value === ' '}>
             {value}

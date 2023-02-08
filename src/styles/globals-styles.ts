@@ -21,7 +21,11 @@ const GlobalStyles = createGlobalStyle`
     -ms-text-size-adjust: none;
     -webkit-text-size-adjust: none;
   }
-  
+
+   ol, ul, li {
+     list-style-type: none;
+   }
+
   @media (max-width: 1920px) {
     html {
       font-size: calc(100vw / 1920 * 10);

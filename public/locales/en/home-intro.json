@@ -1,0 +1,55 @@
+{
+  "currentWork": "I'm tech leader working remotely from São Paulo, Brazil.",
+  "descriptions": [
+    "I've working the past six plus years in all development areas: front-end, mobile, back-end... I'm happy to have experienced all the differents aspect of development.",
+    "Nowadays my time is spent working on FIAP as a Teach Leader."
+  ],
+  "jobs": [
+    {
+      "name": "Tech Leader",
+      "subjects": [
+        "Front End",
+        "Mobile"
+      ],
+      "start": 22,
+      "company": "FIAP"
+    },
+    {
+      "name": "Developer",
+      "subjects": [
+        "Mobile"
+      ],
+      "start": 20,
+      "end": 22,
+      "company": "FIAP"
+    },
+    {
+      "name": "Developer",
+      "subjects": [
+        "Front End"
+      ],
+      "start": 19,
+      "end": 20,
+      "company": "IP"
+    },
+    {
+      "name": "Developer",
+      "subjects": [
+        "Mobile"
+      ],
+      "start": 18,
+      "end": 19,
+      "company": "Everis"
+    },
+    {
+      "name": "Developer",
+      "subjects": [
+        "Full Stack"
+      ],
+      "start": 16,
+      "end": 18,
+      "company": "SMIT"
+    }
+  ]
+}
+
