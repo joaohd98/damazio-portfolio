@@ -22,7 +22,7 @@ export default function () {
       y: 0,
       scrollTrigger: {
         trigger: avatarContainerRef.current,
-        start: 'top 80%'
+        start: 'top 90%'
       }
     });
   };
@@ -36,7 +36,7 @@ export default function () {
         y: 0,
         scrollTrigger: {
           trigger: current,
-          start: 'top 80%'
+          start: 'top 90%'
         }
       });
     });

@@ -37,9 +37,9 @@ export const AvatarContainer = styled.div`
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 5rem;
     width: 100%;
-    padding-top: 0.5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
     background-color: ${({ theme }) => theme.primary};
     background-color: ${({ theme }) => theme.background};
   }
@@ -139,7 +139,7 @@ export const JobSubject = styled.span`
   font-size: 1.8rem;
 
   ${mediaMaxWidth('mobile')`
-    font-size: 2.2rem;
+    font-size: 2.5rem;
   `}
 `;
 
@@ -151,4 +151,8 @@ export const JobDuration = styled.span`
   right: 3rem;
   top: 50%;
   transform: translateY(-50%);
+
+  ${mediaMaxWidth('mobile')`
+    font-size: 4rem;
+  `}
 `;
