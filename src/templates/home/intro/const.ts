@@ -4,6 +4,7 @@ export default function () {
   const { t } = useTranslation('home-intro');
 
   return {
+    profilePicture: t('profilePicture'),
     currentWork: t('currentWork'),
     descriptions: t('descriptions', { returnObjects: true }) as string[],
     jobs: t('jobs', { returnObjects: true }) as {
