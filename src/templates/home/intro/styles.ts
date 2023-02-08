@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { mediaMaxWidth } from '@/utils/media-query';
 
 export const Intro = styled.section`
   width: 90%;
@@ -13,6 +14,11 @@ export const AvatarTextContainer = styled.div`
   gap: 5rem;
   margin-left: 5%;
   margin-right: 5%;
+
+  ${mediaMaxWidth('mobile')`
+    flex-direction: column;
+    margin: 0;
+  `}
 `;
 
 export const AvatarContainer = styled.div`
@@ -57,6 +63,10 @@ export const DescriptionsText = styled.p`
 
   :last-of-type {
     margin-bottom: 0;
+
+    ${mediaMaxWidth('mobile')`
+      margin-bottom: 6rem;
+    `}
   }
 `;
 
@@ -64,10 +74,18 @@ export const JobList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+
+  ${mediaMaxWidth('mobile')`
+    gap: 4rem;
+  `}
 `;
 
 export const JobItem = styled.li<{ startPosition: number }>`
   transform: translateX(${({ startPosition }) => startPosition}%);
+
+  ${mediaMaxWidth('mobile')`
+    transform: translateX(0);
+  `}
 `;
 
 export const JobWrapper = styled.div<{ width: number }>`
@@ -78,18 +96,31 @@ export const JobWrapper = styled.div<{ width: number }>`
   border-radius: 2rem;
   position: relative;
   width: ${({ width }) => width}%;
+
+  ${mediaMaxWidth('mobile')`
+    width: 100%;
+  `}
 `;
 
 export const JobCompany = styled.p`
   font-size: 2.5rem;
   font-weight: 500;
   margin-bottom: 1rem;
+
+  ${mediaMaxWidth('mobile')`
+    font-size: 3rem;
+  `}
 `;
 
 export const JobName = styled.p`
   font-size: 2rem;
   font-weight: 400;
   margin-bottom: 1rem;
+
+  ${mediaMaxWidth('mobile')`
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+  `}
 `;
 
 export const JobSubjectsRow = styled.div`
@@ -100,6 +131,10 @@ export const JobSubjectsRow = styled.div`
 export const JobSubject = styled.span`
   font-family: 'LD Mono Line Outline';
   font-size: 1.8rem;
+
+  ${mediaMaxWidth('mobile')`
+    font-size: 2.2rem;
+  `}
 `;
 
 export const JobDuration = styled.span`
