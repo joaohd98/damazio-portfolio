@@ -3,8 +3,7 @@ import { mediaMaxWidth } from '@/utils/media-query';
 
 export const Intro = styled.section`
   width: 90%;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto 10rem;
 `;
 
 export const AvatarTextContainer = styled.div`
@@ -30,6 +29,8 @@ export const AvatarContainer = styled.div`
   font-family: 'LD Mono Line Outline';
   text-align: center;
   border: 0.5px solid ${({ theme }) => theme.primary};
+  opacity: 0;
+  transform: translateY(5rem);
 
   :after {
     content: 'João';
@@ -44,9 +45,12 @@ export const AvatarContainer = styled.div`
   }
 `;
 
-export const Avatar = styled.img``;
-
-export const TextContainer = styled.div``;
+export const TextContainer = styled.div`
+  p {
+    opacity: 0;
+    transform: translateY(-5rem);
+  }
+`;
 
 export const CurrentWorkText = styled.p`
   font-family: 'Gotham HTF';
@@ -96,6 +100,8 @@ export const JobWrapper = styled.div<{ width: number }>`
   border-radius: 2rem;
   position: relative;
   width: ${({ width }) => width}%;
+  opacity: 0;
+  transform: translateX(-20rem);
 
   ${mediaMaxWidth('mobile')`
     width: 100%;

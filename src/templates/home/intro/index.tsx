@@ -1,9 +1,12 @@
 import React, { useMemo } from 'react';
 import gsap from 'gsap';
+import Image from 'next/image';
 import * as S from './styles';
 import useConst from './const';
+import useAnimation from './animation';
 
 export default function Intro() {
+  const { avatarContainerRef, textContainerRef, setJobsWrapperRef } = useAnimation();
   const { currentWork, descriptions, jobs, formatDuration } = useConst();
 
   const renderJobs = useMemo(() => {
@@ -19,14 +22,14 @@ export default function Intro() {
 
     return (
       <S.JobList>
-        {jobs.map(job => {
+        {jobs.map((job, index) => {
           const startPosition = gsap.utils.mapRange(startYear, endYear, 2.5, 97.5, job.start);
           const years = job.end ? job.end - job.start : endYear - job.start;
           const width = gsap.utils.mapRange(0, endYear - startYear, 2.5, 97.5, years || 1);
 
           return (
             <S.JobItem key={job.name + job.company} startPosition={startPosition}>
-              <S.JobWrapper width={width}>
+              <S.JobWrapper ref={setJobsWrapperRef(index)} width={width}>
                 <S.JobCompany>{job.company}</S.JobCompany>
                 <S.JobName>{job.name}</S.JobName>
                 <S.JobSubjectsRow>
@@ -46,10 +49,10 @@ export default function Intro() {
   return (
     <S.Intro>
       <S.AvatarTextContainer>
-        <S.AvatarContainer>
-          <S.Avatar src="./hang-lose.jpg" />
+        <S.AvatarContainer ref={avatarContainerRef}>
+          <Image src="/hang-lose.jpg" alt="Hang lose" width={348} height={375} priority />
         </S.AvatarContainer>
-        <S.TextContainer>
+        <S.TextContainer ref={textContainerRef}>
           <S.CurrentWorkText>{currentWork}</S.CurrentWorkText>
           {descriptions.map(description => (
             <S.DescriptionsText key={description}>{description}</S.DescriptionsText>
