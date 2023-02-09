@@ -4,7 +4,7 @@ import * as S from './styles';
 
 export default function Projects() {
   const { projects } = useConst();
-  const { pinRef } = useAnimation();
+  const { pinRef } = useAnimation(projects.length - 1);
 
   return (
     <S.Projects>

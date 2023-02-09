@@ -6,11 +6,21 @@ export const Projects = styled.section`
 
 export const PinContainer = styled.div`
   display: flex;
-  gap: 10rem;
-  overflow: hidden;
+  overflow: visible;
 `;
 
 export const ProjectContainer = styled.div`
   min-width: 100vw;
   min-height: 100vh;
+  font-size: 20rem;
+
+  :nth-child(even) {
+    background-color: red;
+    color: yellow;
+  }
+
+  :nth-child(odd) {
+    background-color: yellow;
+    color: red;
+  }
 `;
