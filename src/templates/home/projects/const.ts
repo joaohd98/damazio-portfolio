@@ -67,22 +67,12 @@ export default function () {
         {
           name: 'Sims School',
           img: {
-            src: 'school-android.png',
-            width: 1170,
-            height: 2532
-          },
-          technologies: ['Android', 'Kotlin'],
-          link: 'https://github.com/joaohd98/android-sims-school'
-        },
-        {
-          name: 'Sims School',
-          img: {
             src: 'school-ios.png',
             width: 1170,
             height: 2532
           },
-          technologies: ['SwiftUI'],
-          link: 'https://github.com/joaohd98/swiftui-sims-school'
+          technologies: ['Android', 'Kotlin', 'SwiftUI'],
+          link: 'https://github.com/joaohd98?tab=repositories&q=sims'
         },
         {
           name: 'SHIFT',
