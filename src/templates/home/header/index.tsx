@@ -8,19 +8,19 @@ export default function Header() {
   const { greetings, job, highlights } = useConst();
 
   const renderNameJob = useMemo(() => {
-    const texts: [string, typeof greetings, typeof S.NameText][] = [
+    const words: [string, typeof greetings, typeof S.NameText][] = [
       ['grettings', greetings, S.NameText],
       ['job', job, S.JobText]
     ];
 
-    return texts.map(([key, text, Text], index) => (
-      <Text ref={setTextsRef(index)} key={key}>
-        {text.map(({ value, id }) => (
-          <S.LetterSpan key={id} isEmpty={value === ' '}>
-            {value}
+    return words.map(([key, word, Text], indexWord) => (
+      <Text ref={setTextsRef(indexWord)} key={key}>
+        {word.map(({ id, letter }) => (
+          <S.LetterSpan key={id} isEmpty={letter === ' '}>
+            {letter}
           </S.LetterSpan>
         ))}
-        <S.Cursor ref={setCursorsRef(index)} />
+        <S.Cursor ref={setCursorsRef(indexWord)} />
       </Text>
     ));
   }, []);

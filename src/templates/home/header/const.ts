@@ -1,15 +1,24 @@
-import { useTranslation } from 'next-i18next';
+import useI18const from '@/hooks/useI18const';
 
 export default function () {
-  const { t } = useTranslation('home-header');
+  const splitText = (value: string) => value.split('').map((letter, index) => ({ letter, id: letter + index }));
 
-  return {
-    greetings: t('greetings')
-      .split('')
-      .map((value, id) => ({ id, value })),
-    job: t('job')
-      .split('')
-      .map((value, id) => ({ id, value })),
-    highlights: t('highlights', { returnObjects: true }) as string[]
-  };
+  return useI18const({
+    'en-US': {
+      greetings: splitText("Hey, I'm João!"),
+      job: splitText('A Developer'),
+      highlights: [
+        'Who loves to create pleasent, accessible, performatic',
+        'and attractive UI that transform ideias into reality'
+      ]
+    },
+    'pt-BR': {
+      greetings: splitText('Hey, sou o João!'),
+      job: splitText('Um Desevolvedor'),
+      highlights: [
+        'Que ama criar UI agradáveis, acessíveis, performáticas',
+        'e atraentes que transforma ideias em realidade'
+      ]
+    }
+  });
 }

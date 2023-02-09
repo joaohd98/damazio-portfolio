@@ -1,89 +1,93 @@
+import useI18const from '@/hooks/useI18const';
+
 export default function () {
-  return {
-    projects: [
-      {
-        name: 'Corporate',
-        img: {
-          source: 'corporate.png'
+  return useI18const({
+    'en-US': {
+      projects: [
+        {
+          name: 'Corporate',
+          img: {
+            source: 'corporate.png'
+          },
+          technologies: ['NextJS', 'Locomotive Scroll', 'GSAP'],
+          link: 'https://www.fiap.com.br/corporate/'
         },
-        technologies: ['NextJS', 'Locomotive Scroll', 'GSAP'],
-        link: 'https://www.fiap.com.br/corporate/'
-      },
-      {
-        name: 'FIAP ON',
-        img: {
-          source: 'fiapon.png',
-          isVertical: true
+        {
+          name: 'FIAP ON',
+          img: {
+            source: 'fiapon.png',
+            isVertical: true
+          },
+          technologies: ['React Native'],
+          link: 'https://apps.apple.com/br/app/fiap-on/id1270235539'
         },
-        technologies: ['React Native'],
-        link: 'https://apps.apple.com/br/app/fiap-on/id1270235539'
-      },
-      {
-        name: 'LGPD Shield',
-        img: {
-          source: 'lgpd-shield.png'
+        {
+          name: 'LGPD Shield',
+          img: {
+            source: 'lgpd-shield.png'
+          },
+          technologies: ['NextJS'],
+          link: 'https://www.fiap.com.br/lgpdshield/'
         },
-        technologies: ['NextJS'],
-        link: 'https://www.fiap.com.br/lgpdshield/'
-      },
-      {
-        name: 'NEXT',
-        img: {
-          source: 'next.png'
+        {
+          name: 'NEXT',
+          img: {
+            source: 'next.png'
+          },
+          technologies: ['PHP', 'Wordpress'],
+          link: 'https://www.fiap.com.br/next/'
         },
-        technologies: ['PHP', 'Wordpress'],
-        link: 'https://www.fiap.com.br/next/'
-      },
-      {
-        name: 'Pós Tech',
-        img: {
-          source: 'pos-tech.png'
+        {
+          name: 'Pós Tech',
+          img: {
+            source: 'pos-tech.png'
+          },
+          technologies: ['NextJS', 'Locomotive Scroll', 'GSAP'],
+          link: 'https://postech.fiap.com.br'
         },
-        technologies: ['NextJS', 'Locomotive Scroll', 'GSAP'],
-        link: 'https://postech.fiap.com.br'
-      },
-      {
-        name: 'Rock New Ventures',
-        img: {
-          source: 'rock-new-ventures.png'
+        {
+          name: 'Rock New Ventures',
+          img: {
+            source: 'rock-new-ventures.png'
+          },
+          technologies: ['NextJS', 'GSAP'],
+          link: 'https://www.fiap.com.br/rock-new-ventures/'
         },
-        technologies: ['NextJS', 'GSAP'],
-        link: 'https://www.fiap.com.br/rock-new-ventures/'
-      },
-      {
-        name: 'Sims School',
-        img: {
-          source: 'school-android.png',
-          isVertical: true
+        {
+          name: 'Sims School',
+          img: {
+            source: 'school-android.png',
+            isVertical: true
+          },
+          technologies: ['Android', 'Kotlin'],
+          link: 'https://github.com/joaohd98/android-sims-school'
         },
-        technologies: ['Android', 'Kotlin'],
-        link: 'https://github.com/joaohd98/android-sims-school'
-      },
-      {
-        name: 'Sims School',
-        img: {
-          source: 'school-ios.png',
-          isVertical: true
+        {
+          name: 'Sims School',
+          img: {
+            source: 'school-ios.png',
+            isVertical: true
+          },
+          technologies: ['SwiftUI'],
+          link: 'https://github.com/joaohd98/swiftui-sims-school'
         },
-        technologies: ['SwiftUI'],
-        link: 'https://github.com/joaohd98/swiftui-sims-school'
-      },
-      {
-        name: 'SHIFT',
-        img: {
-          source: 'shift.png'
+        {
+          name: 'SHIFT',
+          img: {
+            source: 'shift.png'
+          },
+          technologies: ['NextJS', 'Locomotive Scroll', 'GSAP'],
+          link: 'https://www.fiap.com.br/shift/'
         },
-        technologies: ['NextJS', 'Locomotive Scroll', 'GSAP'],
-        link: 'https://www.fiap.com.br/shift/'
-      },
-      {
-        name: 'Smart Mobility',
-        img: {
-          source: 'smart-mobility.png'
-        },
-        technologies: ['NextJS', 'GSAP'],
-        link: 'https://www.fiap.com.br/graduacao/smart-mobility/'
-      }
-    ]
-  };
+        {
+          name: 'Smart Mobility',
+          img: {
+            source: 'smart-mobility.png'
+          },
+          technologies: ['NextJS', 'GSAP'],
+          link: 'https://www.fiap.com.br/graduacao/smart-mobility/'
+        }
+      ]
+    }
+  });
 }

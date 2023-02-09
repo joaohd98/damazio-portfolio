@@ -1,7 +1,6 @@
 import type { AppProps } from 'next/app';
 import { ThemeProvider } from 'styled-components';
 import Head from 'next/head';
-import { appWithTranslation } from 'next-i18next';
 import { theme } from '@/styles/theme';
 import GlobalStyles from '@/styles/globals-styles';
 import GlobalGotham from '@/styles/fonts/gotham';
@@ -33,4 +32,4 @@ function App({ Component, pageProps }: AppProps) {
   );
 }
 
-export default appWithTranslation(App);
+export default App;

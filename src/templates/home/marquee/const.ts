@@ -1,9 +1,9 @@
-import { useTranslation } from 'next-i18next';
+import useI18const from '@/hooks/useI18const';
 
 export default function () {
-  const { t } = useTranslation('home-marquee');
-
-  return {
-    words: t('words', { returnObjects: true }) as string[]
-  };
+  return useI18const({
+    'en-US': {
+      words: ['front', 'creative', 'mobile', 'leadership']
+    }
+  });
 }
