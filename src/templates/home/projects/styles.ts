@@ -10,7 +10,6 @@ export const PinContainer = styled.div`
   display: flex;
   overflow: visible;
   margin-left: 50vw;
-  margin-right: 50vw;
 `;
 
 export const ProjectContainer = styled.div<{ position: number }>`
@@ -21,13 +20,13 @@ export const ProjectContainer = styled.div<{ position: number }>`
   ${({ position }) =>
     position === 50
       ? css`
-          div {
+          ${ProjectCard} {
             top: 50%;
             transform: translate(-50%, -50%);
           }
         `
       : css`
-          div {
+          ${ProjectCard} {
             top: ${position}rem;
 
             ${mediaMaxWidth('desktop1920')`
@@ -59,6 +58,10 @@ export const ProjectName = styled.p`
   margin-bottom: 1rem;
 `;
 
+export const ProjectContent = styled.div`
+  position: relative;
+`;
+
 export const ProjectImage = styled(Image)<{ isVertical: boolean }>`
   height: 100%;
   width: 100%;
@@ -85,8 +88,34 @@ export const ProjectImage = styled(Image)<{ isVertical: boolean }>`
         `}
 `;
 
-export const ProjectTryOutButton = styled.button`
+export const ProjectTechnologies = styled.p`
   position: absolute;
-  right: 0;
-  bottom: 0;
+  font-size: 1.6rem;
+  font-family: 'Gotham HTF';
+  color: transparent;
+  text-stroke: 0.1rem ${({ theme }) => theme.primary};
+  -webkit-text-stroke: 0.1rem ${({ theme }) => theme.primary};
+  rotate: 270deg;
+  transform-origin: 0 0;
+  left: -3rem;
+  top: 50%;
+  transform: translateX(-50%);
+`;
+
+export const ProjectTryOutButton = styled.a`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: -2.5rem;
+  bottom: -2.5rem;
+  width: 7.5rem;
+  height: 7.5rem;
+  border-radius: 100%;
+  rotate: 15deg;
+  font-size: 2rem;
+  font-family: 'Gotham HTF';
+  font-weight: 800;
+  background-color: ${({ theme }) => theme.secondary};
+  color: ${({ theme }) => theme.background};
 `;

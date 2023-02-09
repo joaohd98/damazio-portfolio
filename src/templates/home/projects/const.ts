@@ -31,7 +31,7 @@ export default function () {
             width: 2280,
             height: 1646
           },
-          technologies: ['NextJS'],
+          technologies: ['NextJS', 'Locomotive Scroll'],
           link: 'https://www.fiap.com.br/lgpdshield/'
         },
         {
