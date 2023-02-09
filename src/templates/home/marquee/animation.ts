@@ -8,28 +8,26 @@ export default () => {
   const marqueeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setTimeout(() => {
-      let position = 0;
+    let position = 0;
 
-      startLoop(() => {
-        const width = getWidth();
-        gsap.to(marqueeRef.current, { x: `-${position}`, duration: 0 });
+    startLoop(() => {
+      const width = getWidth();
+      gsap.to(marqueeRef.current, { x: `-${position}`, duration: 0 });
 
-        position += gsap.utils.mapRange(
-          viewportsBase.mobile.width,
-          viewportsBase.desktop2560.width,
-          5,
-          15,
-          window.innerWidth
-        );
+      position += gsap.utils.mapRange(
+        viewportsBase.mobile.width,
+        viewportsBase.desktop2560.width,
+        5,
+        15,
+        window.innerWidth
+      );
 
-        if (position >= width) {
-          position = 0;
-        }
+      if (position >= width) {
+        position = 0;
+      }
 
-        return true;
-      });
-    }, 500);
+      return true;
+    });
   }, []);
 
   const getWidth = () => {

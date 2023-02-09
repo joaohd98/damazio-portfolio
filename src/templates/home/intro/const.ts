@@ -31,14 +31,14 @@ export default function () {
           company: 'Interplayers'
         },
         {
-          name: 'Developer',
+          name: 'Dev',
           subjects: ['Mobile'],
           start: 18,
           end: 19,
           company: 'Everis'
         },
         {
-          name: 'Developer',
+          name: 'Dev',
           subjects: ['Full Stack'],
           start: 16,
           end: 18,
@@ -62,12 +62,6 @@ export default function () {
         },
         {
           name: 'Analista'
-        },
-        {
-          name: 'Dev'
-        },
-        {
-          name: 'Dev'
         }
       ]
     }
