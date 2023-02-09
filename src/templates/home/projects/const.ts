@@ -94,7 +94,11 @@ export default function () {
           technologies: ['NextJS', 'GSAP'],
           link: 'https://www.fiap.com.br/graduacao/smart-mobility/'
         }
-      ]
+      ],
+      tryOut: 'TRY'
+    },
+    'pt-BR': {
+      tryOut: 'VER'
     }
   });
 }

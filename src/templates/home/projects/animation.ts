@@ -5,7 +5,12 @@ export default function (quantity: number) {
   const pinRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    initSrollTrigger();
+  }, []);
+
+  const initSrollTrigger = () => {
     const end = ((quantity - 1) * 100) / 2;
+
     gsap.to(pinRef.current, {
       xPercent: 0,
       x: `${-end}%`,
@@ -20,7 +25,7 @@ export default function (quantity: number) {
         anticipatePin: 1
       }
     });
-  }, []);
+  };
 
   return {
     pinRef

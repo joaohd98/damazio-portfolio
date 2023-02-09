@@ -1,9 +1,10 @@
+import ArrowCursor from '@/components/ArrowCursor';
 import useConst from './const';
 import useAnimation from './animation';
 import * as S from './styles';
 
 export default function Projects() {
-  const { projects } = useConst();
+  const { projects, tryOut } = useConst();
   const { pinRef } = useAnimation(projects.length);
   const positions = [8, 50, 61, 37, 12, 73, 50, 12, 70];
 
@@ -28,7 +29,7 @@ export default function Projects() {
                   />
                   <S.ProjectTechnologies>{project.technologies.join(' • ')}</S.ProjectTechnologies>
                   <S.ProjectTryOutButton href={project.link} target="_blank">
-                    TRY
+                    {tryOut}
                   </S.ProjectTryOutButton>
                 </S.ProjectContent>
               </S.ProjectCard>
@@ -36,6 +37,7 @@ export default function Projects() {
           );
         })}
       </S.PinContainer>
+      <ArrowCursor onClick={() => null} />
     </S.Projects>
   );
 }

@@ -4,6 +4,7 @@ import { mediaMaxWidth, mediaMinAspectRatio, mediaMinWidth } from '@/utils/media
 
 export const Projects = styled.section`
   margin-top: 10rem;
+  cursor: none;
 `;
 
 export const PinContainer = styled.div`
@@ -109,8 +110,8 @@ export const ProjectTryOutButton = styled.a`
   position: absolute;
   right: -2.5rem;
   bottom: -2.5rem;
-  width: 7.5rem;
-  height: 7.5rem;
+  width: 10rem;
+  height: 10rem;
   border-radius: 100%;
   rotate: 15deg;
   font-size: 2rem;
