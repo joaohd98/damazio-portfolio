@@ -50,7 +50,7 @@ export default function Intro() {
     <S.Intro>
       <S.AvatarTextContainer>
         <S.AvatarContainer ref={avatarContainerRef}>
-          <Image src="/hang-lose.jpg" alt={profilePicture} width={348} height={375} priority />
+          <Image src="/imgs/hang-lose.jpg" alt={profilePicture} width={348} height={375} priority />
         </S.AvatarContainer>
         <S.TextContainer ref={textContainerRef}>
           <S.CurrentWorkText>{currentWork}</S.CurrentWorkText>
