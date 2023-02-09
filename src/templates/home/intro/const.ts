@@ -64,10 +64,10 @@ export default function () {
           name: 'Analista'
         },
         {
-          name: 'Desenvolvedor'
+          name: 'Dev'
         },
         {
-          name: 'Desenvolvedor'
+          name: 'Dev'
         }
       ]
     }
