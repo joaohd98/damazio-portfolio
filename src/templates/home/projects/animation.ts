@@ -5,7 +5,7 @@ export default function (quantity: number) {
   const pinRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const end = quantity * 100;
+    const end = (quantity * 100) / 2;
     gsap.to(pinRef.current, {
       xPercent: 0,
       x: `${-end}%`,

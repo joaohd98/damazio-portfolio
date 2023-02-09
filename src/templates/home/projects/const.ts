@@ -7,7 +7,9 @@ export default function () {
         {
           name: 'Corporate',
           img: {
-            source: 'corporate.png'
+            src: 'corporate.png',
+            width: 2280,
+            height: 1646
           },
           technologies: ['NextJS', 'Locomotive Scroll', 'GSAP'],
           link: 'https://www.fiap.com.br/corporate/'
@@ -15,8 +17,9 @@ export default function () {
         {
           name: 'FIAP ON',
           img: {
-            source: 'fiapon.png',
-            isVertical: true
+            src: 'fiapon.png',
+            width: 1170,
+            height: 2532
           },
           technologies: ['React Native'],
           link: 'https://apps.apple.com/br/app/fiap-on/id1270235539'
@@ -24,7 +27,9 @@ export default function () {
         {
           name: 'LGPD Shield',
           img: {
-            source: 'lgpd-shield.png'
+            src: 'lgpd-shield.png',
+            width: 2280,
+            height: 1646
           },
           technologies: ['NextJS'],
           link: 'https://www.fiap.com.br/lgpdshield/'
@@ -32,7 +37,9 @@ export default function () {
         {
           name: 'NEXT',
           img: {
-            source: 'next.png'
+            src: 'next.png',
+            width: 2280,
+            height: 1646
           },
           technologies: ['PHP', 'Wordpress'],
           link: 'https://www.fiap.com.br/next/'
@@ -40,7 +47,9 @@ export default function () {
         {
           name: 'Pós Tech',
           img: {
-            source: 'pos-tech.png'
+            src: 'pos-tech.png',
+            width: 2280,
+            height: 1646
           },
           technologies: ['NextJS', 'Locomotive Scroll', 'GSAP'],
           link: 'https://postech.fiap.com.br'
@@ -48,7 +57,9 @@ export default function () {
         {
           name: 'Rock New Ventures',
           img: {
-            source: 'rock-new-ventures.png'
+            src: 'rock-new-ventures.png',
+            width: 2280,
+            height: 1646
           },
           technologies: ['NextJS', 'GSAP'],
           link: 'https://www.fiap.com.br/rock-new-ventures/'
@@ -56,8 +67,9 @@ export default function () {
         {
           name: 'Sims School',
           img: {
-            source: 'school-android.png',
-            isVertical: true
+            src: 'school-android.png',
+            width: 1170,
+            height: 2532
           },
           technologies: ['Android', 'Kotlin'],
           link: 'https://github.com/joaohd98/android-sims-school'
@@ -65,8 +77,9 @@ export default function () {
         {
           name: 'Sims School',
           img: {
-            source: 'school-ios.png',
-            isVertical: true
+            src: 'school-ios.png',
+            width: 1170,
+            height: 2532
           },
           technologies: ['SwiftUI'],
           link: 'https://github.com/joaohd98/swiftui-sims-school'
@@ -74,7 +87,9 @@ export default function () {
         {
           name: 'SHIFT',
           img: {
-            source: 'shift.png'
+            src: 'shift.png',
+            width: 2280,
+            height: 1646
           },
           technologies: ['NextJS', 'Locomotive Scroll', 'GSAP'],
           link: 'https://www.fiap.com.br/shift/'
@@ -82,7 +97,9 @@ export default function () {
         {
           name: 'Smart Mobility',
           img: {
-            source: 'smart-mobility.png'
+            src: 'smart-mobility.png',
+            width: 2280,
+            height: 1646
           },
           technologies: ['NextJS', 'GSAP'],
           link: 'https://www.fiap.com.br/graduacao/smart-mobility/'
