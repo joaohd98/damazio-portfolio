@@ -20,23 +20,20 @@ const GlobalStyles = createGlobalStyle`
     -moz-text-size-adjust: none;
     -ms-text-size-adjust: none;
     -webkit-text-size-adjust: none;
+
+    @media (max-width: 1920px) {
+      font-size: calc(100vw / 1920 * 10);
+    }
+
+    @media (max-width: 599px) {
+      font-size: calc(100vw / 599 * 10);
+    }
   }
 
    ol, ul, li {
      list-style-type: none;
    }
 
-  @media (max-width: 1920px) {
-    html {
-      font-size: calc(100vw / 1920 * 10);
-    }
-  }
-  
-  @media (max-width: 599px) {
-    html {
-      font-size: calc(100vw / 599 * 10);
-    }
-  }
   
   a {
     color: inherit;

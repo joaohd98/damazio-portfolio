@@ -7,6 +7,11 @@ import GlobalStyles from '@/styles/globals-styles';
 import GlobalGotham from '@/styles/fonts/gotham';
 import GlobalRoboto from '@/styles/fonts/roboto';
 import GlobalMonoLine from '@/styles/fonts/ld-mono-line';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+import ScrollToPlugin from 'gsap/dist/ScrollToPlugin';
+
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 function App({ Component, pageProps }: AppProps) {
   return (

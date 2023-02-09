@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import useRefElements from '@/hooks/useRefElements';
 import gsap from 'gsap';
-import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 
 export default function () {
   const avatarContainerRef = useRef(null);
@@ -9,8 +8,6 @@ export default function () {
   const [jobsWrapperRef, setJobsWrapperRef] = useRefElements<HTMLDivElement>();
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
     avatarAnimation();
     paragraphsAnimation();
     jobsAnimation();
