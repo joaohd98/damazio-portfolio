@@ -67,7 +67,7 @@ export default function () {
         {
           name: 'Sims School',
           img: {
-            src: 'school-ios.png',
+            src: 'school.png',
             width: 1170,
             height: 2532
           },
