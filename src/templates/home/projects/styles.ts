@@ -10,7 +10,18 @@ export const Projects = styled.section`
 export const PinContainer = styled.div`
   display: flex;
   overflow: visible;
-  margin-left: 50vw;
+`;
+
+export const ProjectTitle = styled.p`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 50vw;
+  font-size: 10rem;
+  font-family: 'LD Mono Line Solid';
+  color: transparent;
+  text-stroke: 0.1rem ${({ theme }) => theme.primary};
+  -webkit-text-stroke: 0.1rem ${({ theme }) => theme.primary};
 `;
 
 export const ProjectContainer = styled.div<{ position: number }>`
@@ -41,13 +52,15 @@ export const ProjectContainer = styled.div<{ position: number }>`
         `}
 `;
 
-export const ProjectCard = styled.div<{ isVertical: boolean }>`
+export const ProjectCard = styled.div<{ isVertical: boolean; position: number }>`
   display: flex;
   flex-direction: column;
   align-items: center;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  opacity: 0.2;
+  margin-left: 15rem;
 `;
 
 export const ProjectName = styled.p`
@@ -98,7 +111,7 @@ export const ProjectTechnologies = styled.p`
   -webkit-text-stroke: 0.1rem ${({ theme }) => theme.primary};
   rotate: 270deg;
   transform-origin: 0 0;
-  left: -3rem;
+  left: -4rem;
   top: 50%;
   transform: translateX(-50%);
 `;

@@ -27,7 +27,7 @@ export const ArrowIcon = styled.div<{ isOverLink: boolean }>`
   top: 5rem;
   width: 100%;
   height: 1rem;
-  background-color: ${({ theme }) => theme.primary};
+  background-color: ${({ theme }) => theme.blue};
   transition: width 0.2s ease-in;
 
   ::after,
@@ -37,7 +37,7 @@ export const ArrowIcon = styled.div<{ isOverLink: boolean }>`
     width: 50%;
     height: 1rem;
     right: -0.8rem;
-    background-color: ${({ theme }) => theme.primary};
+    background-color: ${({ theme }) => theme.blue};
     transition-property: left, transform;
     transition-duration: 0.2s;
     transition-timing-function: ease-in;

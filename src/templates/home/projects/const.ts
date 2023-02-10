@@ -95,9 +95,11 @@ export default function () {
           link: 'https://www.fiap.com.br/graduacao/smart-mobility/'
         }
       ],
+      name: 'PROJECTS',
       tryOut: 'TRY'
     },
     'pt-BR': {
+      name: 'PROJETOS',
       tryOut: 'VER'
     }
   });
