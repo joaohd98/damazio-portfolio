@@ -30,6 +30,32 @@ export const ProjectCard = styled.li`
   top: 0;
   width: 100%;
   height: 100%;
+
+  :nth-child(1) {
+    opacity: 0.5;
+    scale: 0.9;
+  }
+`;
+
+export const LinkLabel = styled.div`
+  font-size: 2rem;
+  font-family: 'Gotham HTF';
+  font-weight: 600;
+  position: absolute;
+  top: 2rem;
+  margin-left: 2rem;
+  border: 0.1rem solid ${({ theme }) => theme.yellow};
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  color: ${({ theme }) => theme.yellow};
+  opacity: 0;
+`;
+
+export const NextLabel = styled(LinkLabel)`
+  right: 0;
+  margin-right: 2rem;
+  border-color: ${({ theme }) => theme.green};
+  color: ${({ theme }) => theme.green};
 `;
 
 export const ProjectImage = styled(Image)`
@@ -100,5 +126,3 @@ export const LikeButton = styled.a`
   border: 0.2rem solid ${({ theme }) => theme.green};
   color: ${({ theme }) => theme.green};
 `;
-
-export const Icon = styled(Image)``;
