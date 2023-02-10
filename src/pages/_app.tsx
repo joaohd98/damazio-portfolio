@@ -1,14 +1,15 @@
+import '../../public/fonts/gotham.css';
+import '../../public/fonts/roboto.css';
+import '../../public/fonts/ld-mono-line.css';
+
 import type { AppProps } from 'next/app';
 import { ThemeProvider } from 'styled-components';
 import Head from 'next/head';
 import { theme } from '@/styles/theme';
-import GlobalStyles from '@/styles/globals-styles';
-import GlobalGotham from '@/styles/fonts/gotham';
-import GlobalRoboto from '@/styles/fonts/roboto';
-import GlobalMonoLine from '@/styles/fonts/ld-mono-line';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import ScrollToPlugin from 'gsap/dist/ScrollToPlugin';
+import GlobalStyles from '@/styles/globals-styles';
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -22,9 +23,6 @@ function App({ Component, pageProps }: AppProps) {
       </Head>
       <ThemeProvider theme={theme}>
         <GlobalStyles />
-        <GlobalGotham />
-        <GlobalRoboto />
-        <GlobalMonoLine />
         {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <Component {...pageProps} />
       </ThemeProvider>
