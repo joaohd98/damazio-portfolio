@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import Image from 'next/image';
 import { mediaMaxWidth, mediaMinAspectRatio, mediaMinWidth } from '@/utils/media-query';
 
-export const Projects = styled.section`
+export const Projects = styled.div`
   margin-top: 10rem;
   cursor: none;
 `;

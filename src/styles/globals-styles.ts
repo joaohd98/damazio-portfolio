@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { mediaMaxWidth } from '@/utils/media-query';
 
 const GlobalStyles = createGlobalStyle`
    * {
@@ -38,6 +39,22 @@ const GlobalStyles = createGlobalStyle`
   a {
     color: inherit;
     text-decoration: none;
+  }
+  
+  .only-mobile {
+    display: none;
+
+    ${mediaMaxWidth('mobile')`
+      display: block;
+    `}
+  }
+  
+  .only-desktop {
+    display: block;
+
+    ${mediaMaxWidth('mobile', 1)`
+      display: none;
+    `}
   }
 `;
 
