@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
-export default function (onClick: () => void) {
+export default function (setCursorLeft: (b: boolean) => void, setOverLink: (b: boolean) => void) {
   const arrowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -26,12 +26,16 @@ export default function (onClick: () => void) {
     };
   }, []);
 
-  const onListenMouseMove = (content: HTMLDivElement) => (coors: MouseEvent) => {
-    const isInsideContent = content.offsetTop < coors.pageY && content.offsetTop + content.offsetHeight > coors.pageY;
+  const onListenMouseMove = (content: HTMLDivElement) => (event: MouseEvent) => {
+    const target = event.target as HTMLAnchorElement;
 
+    setCursorLeft(event.clientX < window.innerWidth / 2);
+    setOverLink(target.href !== undefined && target.onclick !== undefined);
+
+    const isInsideContent = content.offsetTop < event.pageY && content.offsetTop + content.offsetHeight > event.pageY;
     if (isInsideContent) {
       const tl = gsap.timeline();
-      tl.to(arrowRef.current, { left: coors.clientX, top: coors.clientY, duration: 0.05 });
+      tl.to(arrowRef.current, { left: event.clientX, top: event.clientY, duration: 0.05 });
       tl.set(arrowRef.current, { display: 'block' });
       return;
     }
@@ -39,13 +43,15 @@ export default function (onClick: () => void) {
     gsap.set(arrowRef.current, { display: 'none' });
   };
 
-  const onListenClick = (coors: MouseEvent) => {
-    const target = coors.target as HTMLAnchorElement;
+  const onListenClick = (event: MouseEvent) => {
+    const target = event.target as HTMLAnchorElement;
     if (target.href || target.onclick) {
       return;
     }
 
-    onClick();
+    const isPointingToLeft = event.clientX < window.innerWidth / 2;
+    const y = isPointingToLeft ? '-=700' : '+=700';
+    gsap.to(window, { scrollTo: { y } });
   };
 
   return {

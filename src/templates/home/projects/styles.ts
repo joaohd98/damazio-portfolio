@@ -59,13 +59,8 @@ export const ProjectName = styled.p`
   margin-bottom: 1rem;
 `;
 
-export const ProjectContent = styled.div`
+export const ProjectContent = styled.div<{ isVertical: boolean }>`
   position: relative;
-`;
-
-export const ProjectImage = styled(Image)<{ isVertical: boolean }>`
-  height: 100%;
-  width: 100%;
 
   ${({ isVertical }) =>
     isVertical
@@ -87,6 +82,11 @@ export const ProjectImage = styled(Image)<{ isVertical: boolean }>`
             width: 90rem;
           `}
         `}
+`;
+
+export const ProjectImage = styled(Image)`
+  height: 100%;
+  width: 100%;
 `;
 
 export const ProjectTechnologies = styled.p`
@@ -119,4 +119,5 @@ export const ProjectTryOutButton = styled.a`
   font-weight: 800;
   background-color: ${({ theme }) => theme.secondary};
   color: ${({ theme }) => theme.background};
+  cursor: none;
 `;

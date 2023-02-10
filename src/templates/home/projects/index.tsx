@@ -19,13 +19,12 @@ export default function Projects() {
             <S.ProjectContainer key={project.link} position={position}>
               <S.ProjectCard isVertical={isVertical}>
                 <S.ProjectName>{project.name}</S.ProjectName>
-                <S.ProjectContent>
+                <S.ProjectContent isVertical={isVertical}>
                   <S.ProjectImage
                     src={`/imgs/projects/${project.img.src}`}
                     alt={project.name}
                     width={project.img.width}
                     height={project.img.height}
-                    isVertical={isVertical}
                   />
                   <S.ProjectTechnologies>{project.technologies.join(' • ')}</S.ProjectTechnologies>
                   <S.ProjectTryOutButton href={project.link} target="_blank">
@@ -37,7 +36,7 @@ export default function Projects() {
           );
         })}
       </S.PinContainer>
-      <ArrowCursor onClick={() => null} />
+      <ArrowCursor />
     </S.Projects>
   );
 }
