@@ -64,7 +64,7 @@ export const ProjectCard = styled.div<{ isVertical: boolean; position: number }>
 `;
 
 export const ProjectName = styled.p`
-  font-size: 5rem;
+  font-size: 4rem;
   font-family: 'LD Mono Line Solid';
   color: transparent;
   text-stroke: 0.1rem ${({ theme }) => theme.primary};
