@@ -29,7 +29,6 @@ export default function (setCursorLeft: (b: boolean) => void, setOverLink: (b: b
   }, []);
 
   const onListenMouseMove = (content: HTMLDivElement) => (event: MouseEvent) => {
-    console.log('inside');
     setCursorLeft(isCursorInLeftPosition(event));
     setOverLink(isCursorOverLink(event));
 
