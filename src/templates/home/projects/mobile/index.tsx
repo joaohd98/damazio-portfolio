@@ -23,8 +23,10 @@ export default function ProjectsMobile() {
           return (
             <S.ProjectCard key={project.name}>
               <S.ProjectImage src={`/imgs/projects/${src}`} width={width} height={height} alt={project.name} />
-              <S.ProjectName>{project.name}</S.ProjectName>
-              <S.ProjectTechnologies>{project.technologies.join(', ')}</S.ProjectTechnologies>
+              <S.ProjectTextBackground>
+                <S.ProjectName>{project.name}</S.ProjectName>
+                <S.ProjectTechnologies>{project.technologies.join(', ')}</S.ProjectTechnologies>
+              </S.ProjectTextBackground>
             </S.ProjectCard>
           );
         })}

@@ -35,25 +35,36 @@ export const ProjectCard = styled.li`
 `;
 
 export const ProjectImage = styled(Image)`
-  position: absolute;
-  left: 0;
-  top: 0;
-  max-width: 75vw;
-  max-height: 70vh;
-  height: 100%;
   width: 100%;
-  overflow: hidden;
+  height: 100%;
   border-radius: 1rem;
 `;
 
-export const ProjectName = styled.p`
+export const ProjectTextBackground = styled.div`
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.8));
+  width: 100%;
   position: absolute;
+  pointer-events: none;
   bottom: 0;
+  left: 0;
+  padding-top: 2.5rem;
+  padding-bottom: 3rem;
+  padding-left: 2.5rem;
+`;
+
+export const ProjectName = styled.p`
+  font-size: 3rem;
+  font-family: 'Gotham HTF';
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: ${({ theme }) => theme.primary};
 `;
 
 export const ProjectTechnologies = styled.p`
-  position: absolute;
-  bottom: 0;
+  font-size: 2rem;
+  font-family: 'Gotham HTF';
+  font-weight: 400;
+  color: ${({ theme }) => theme.primary};
 `;
 
 export const ButtonsRow = styled.div``;
