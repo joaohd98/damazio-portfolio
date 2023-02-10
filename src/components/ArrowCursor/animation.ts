@@ -13,20 +13,23 @@ export default function (setCursorLeft: (b: boolean) => void, setOverLink: (b: b
 
     body.addEventListener('mousemove', onListenMouseMove(content));
     body.addEventListener('mouseenter', onListenMouseMove(content));
-    body.addEventListener('mouseleave', onListenMouseMove(content));
     body.addEventListener('wheel', onListenMouseMove(content));
+
+    body.addEventListener('mouseleave', onListenMouseLeave);
     content.addEventListener('click', onListenClick);
 
     return () => {
       body.removeEventListener('mousemove', onListenMouseMove(content));
       body.removeEventListener('mouseenter', onListenMouseMove(content));
-      body.removeEventListener('mouseleave', onListenMouseMove(content));
       body.removeEventListener('wheel', onListenMouseMove(content));
+
+      body.removeEventListener('mouseleave', onListenMouseLeave);
       content.removeEventListener('click', onListenClick);
     };
   }, []);
 
   const onListenMouseMove = (content: HTMLDivElement) => (event: MouseEvent) => {
+    console.log('inside');
     setCursorLeft(isCursorInLeftPosition(event));
     setOverLink(isCursorOverLink(event));
 
@@ -34,10 +37,18 @@ export default function (setCursorLeft: (b: boolean) => void, setOverLink: (b: b
     if (isInsideContent) {
       const tl = gsap.timeline();
       tl.to(arrowRef.current, { left: event.clientX, top: event.clientY, duration: 0.05 });
-      tl.set(arrowRef.current, { display: 'block' });
+
+      if (arrowRef.current?.style.display === 'none') {
+        tl.set(arrowRef.current, { display: 'block' });
+      }
+
       return;
     }
 
+    gsap.set(arrowRef.current, { display: 'none' });
+  };
+
+  const onListenMouseLeave = () => {
     gsap.set(arrowRef.current, { display: 'none' });
   };
 
@@ -57,7 +68,7 @@ export default function (setCursorLeft: (b: boolean) => void, setOverLink: (b: b
   const isCursorOverLink = (event: MouseEvent) => {
     const target = document.elementFromPoint(event.clientX, event.clientY) as HTMLAnchorElement;
 
-    return target.href !== undefined && target.onclick !== undefined;
+    return target && target.href !== undefined && target.onclick !== undefined;
   };
 
   return {
