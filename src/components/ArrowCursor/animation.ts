@@ -27,10 +27,8 @@ export default function (setCursorLeft: (b: boolean) => void, setOverLink: (b: b
   }, []);
 
   const onListenMouseMove = (content: HTMLDivElement) => (event: MouseEvent) => {
-    const target = event.target as HTMLAnchorElement;
-
-    setCursorLeft(event.clientX < window.innerWidth / 2);
-    setOverLink(target.href !== undefined && target.onclick !== undefined);
+    setCursorLeft(isCursorInLeftPosition(event));
+    setOverLink(isCursorOverLink(event));
 
     const isInsideContent = content.offsetTop < event.pageY && content.offsetTop + content.offsetHeight > event.pageY;
     if (isInsideContent) {
@@ -44,14 +42,22 @@ export default function (setCursorLeft: (b: boolean) => void, setOverLink: (b: b
   };
 
   const onListenClick = (event: MouseEvent) => {
-    const target = event.target as HTMLAnchorElement;
-    if (target.href || target.onclick) {
+    if (isCursorOverLink(event)) {
       return;
     }
 
-    const isPointingToLeft = event.clientX < window.innerWidth / 2;
-    const y = isPointingToLeft ? '-=700' : '+=700';
+    const y = isCursorInLeftPosition(event) ? '-=700' : '+=700';
     gsap.to(window, { scrollTo: { y } });
+  };
+
+  const isCursorInLeftPosition = (event: MouseEvent) => {
+    return event.clientX < window.innerWidth / 2;
+  };
+
+  const isCursorOverLink = (event: MouseEvent) => {
+    const target = document.elementFromPoint(event.clientX, event.clientY) as HTMLAnchorElement;
+
+    return target.href !== undefined && target.onclick !== undefined;
   };
 
   return {
