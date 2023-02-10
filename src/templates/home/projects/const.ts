@@ -131,7 +131,8 @@ export default function () {
         }
       ],
       name: 'PROJECTS',
-      tryOut: 'TRY'
+      tryOut: 'TRY',
+      nextCard: 'NEXT'
     },
     'pt-BR': {
       name: 'PROJETOS',

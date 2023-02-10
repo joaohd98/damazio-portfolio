@@ -67,12 +67,33 @@ export const ProjectTechnologies = styled.p`
   color: ${({ theme }) => theme.primary};
 `;
 
-export const ButtonsRow = styled.div``;
+export const ButtonsRow = styled.div`
+  display: flex;
+  justify-content: space-around;
+  margin-top: 3rem;
 
-export const NextButton = styled.button``;
+  a,
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 7.5rem;
+    width: 7.5rem;
+    font-size: 2rem;
+    border-radius: 100%;
+    background-color: transparent;
+  }
+`;
+
+export const NextButton = styled.button`
+  border: 0.2rem solid #ffc107;
+  color: #ffc107;
+`;
 
 export const LikeButton = styled.a`
-  width: 20rem;
-  height: 20rem;
-  font-size: 10rem;
+  border: 0.2rem solid #28a745;
+  color: #28a745;
+  background: url('../../../../components/IconLink/index.tsx') center no-repeat;
 `;
+
+export const Icon = styled(Image)``;

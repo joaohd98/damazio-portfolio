@@ -1,10 +1,12 @@
 import { useMemo, useState } from 'react';
+import IconLink from '@/components/IconLink';
+import IconRotate from '@/components/IconRotate';
 import * as S from './styles';
 import useConst from '../const';
 
 export default function ProjectsMobile() {
   const [current, setCurrent] = useState(0);
-  const { projects, name } = useConst();
+  const { projects, name, tryOut, nextCard } = useConst();
 
   const next = useMemo(() => {
     const value = current + 1;
@@ -32,8 +34,12 @@ export default function ProjectsMobile() {
         })}
       </S.ProjectList>
       <S.ButtonsRow>
-        <S.NextButton />
-        <S.LikeButton onClick={() => setCurrent(next)}>Like</S.LikeButton>
+        <S.NextButton aria-label={nextCard} onClick={() => setCurrent(next)}>
+          <IconRotate />
+        </S.NextButton>
+        <S.LikeButton aria-label={tryOut} href={projects[current].link} target="_blank">
+          <IconLink />
+        </S.LikeButton>
       </S.ButtonsRow>
     </S.ProjectsMobile>
   );
