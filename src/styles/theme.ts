@@ -5,7 +5,9 @@ export const theme = {
   secondary: '#E4E6C3',
   thirdiary: '#899878',
   background: '#121113',
-  blue: '#6495ED'
+  blue: '#6495ED',
+  yellow: '#ffc107',
+  green: '#28a745'
 };
 
 export type ColorFamily = typeof theme;

@@ -2,9 +2,7 @@ import styled from 'styled-components';
 import Image from 'next/image';
 
 export const ProjectsMobile = styled.div`
-  margin-top: 5rem;
-  margin-left: 5vh;
-  margin-right: 5vh;
+  margin: 5rem 5vh 10rem;
 `;
 
 export const ProjectTitle = styled.div`
@@ -86,14 +84,21 @@ export const ButtonsRow = styled.div`
 `;
 
 export const NextButton = styled.button`
-  border: 0.2rem solid #ffc107;
-  color: #ffc107;
+  border: 0.2rem solid ${({ theme }) => theme.yellow};
+  transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+
+  svg {
+    fill: ${({ theme }) => theme.yellow};
+  }
+
+  :active {
+    transform: scale(0.9);
+  }
 `;
 
 export const LikeButton = styled.a`
-  border: 0.2rem solid #28a745;
-  color: #28a745;
-  background: url('../../../../components/IconLink/index.tsx') center no-repeat;
+  border: 0.2rem solid ${({ theme }) => theme.green};
+  color: ${({ theme }) => theme.green};
 `;
 
 export const Icon = styled(Image)``;
