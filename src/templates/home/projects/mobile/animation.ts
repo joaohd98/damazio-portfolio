@@ -34,11 +34,14 @@ export default function ({
       return;
     }
 
+    const tl = gsap.timeline();
     const elements = [nextLabelRef.current, linkLabelRef.current, currentCardRef.current, nextCardRef.current];
-    gsap.set(elements, { clearProps: 'all' });
-
-    const next = state.current > total - 2 ? 0 : state.current + 1;
-    setState({ next, current: state.current });
+    tl.set(elements, { clearProps: 'all' });
+    tl.delay(100);
+    tl.call(() => {
+      const next = state.current > total - 2 ? 0 : state.current + 1;
+      setState({ next, current: state.current });
+    });
   }, [state]);
 
   const initScrollTrigger = () => {
@@ -72,9 +75,8 @@ export default function ({
     }
 
     Draggable.create(currentCardRef.current, {
-      type: 'x,y',
+      type: 'x',
       dragResistance: 0.3,
-      lockAxis: true,
       onDrag() {
         if (!this.x) {
           return;
@@ -83,13 +85,8 @@ export default function ({
         dragTimeline(this.x);
       },
       onDragEnd() {
-        if (this.y) {
-          gsap.to(currentCardRef.current, { y: 0 });
-          return;
-        }
-
         if (Math.abs(this.x) < 20) {
-          gsap.to(currentCardRef.current, { x: 0, y: 0 });
+          gsap.to(currentCardRef.current, { x: 0 });
           return;
         }
 
@@ -115,7 +112,6 @@ export default function ({
     });
 
     const isRight = x > 0;
-
     if (isRight) {
       tl.to(nextLabelRef.current, { opacity: 1 });
     } else {
