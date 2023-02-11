@@ -63,6 +63,8 @@ export const ProjectImage = styled(Image)`
   width: 100%;
   height: 100%;
   border-radius: 1rem;
+  object-fit: cover;
+  object-position: top;
 `;
 
 export const ProjectTextBackground = styled.div`
