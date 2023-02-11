@@ -1,8 +1,6 @@
-import { MutableRefObject, useRef } from 'react';
+import { useRef } from 'react';
 
-type Response<Type> = [MutableRefObject<(Type | null)[]>, (index?: number) => (element: Type | null) => void];
-
-export default function useRefElements<Type>(initial: Type[] = []): Response<Type> {
+export default function useRefElements<Type>(initial: Type[] = []) {
   const ref = useRef<(Type | null)[]>(initial);
 
   const setRef =
@@ -11,5 +9,5 @@ export default function useRefElements<Type>(initial: Type[] = []): Response<Typ
       ref.current[index] = element;
     };
 
-  return [ref, setRef];
+  return [ref, setRef] as const;
 }

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import IconLink from '@/components/IconLink';
 import IconRotate from '@/components/IconRotate';
 import * as S from './styles';
@@ -8,10 +7,11 @@ import useAnimation from './animation';
 export default function ProjectsMobile() {
   const { projects, name, tryOut, nextCard } = useConst();
 
-  const [current, setCurrent] = useState(0);
-  const next = current > projects.length - 2 ? 0 : current + 1;
-
-  const { currentCardRef, nextCardRef, nextLabelRef, linkLabelRef } = useAnimation(() => setCurrent(next));
+  const { current, next, onChangeCurrent, currentCardRef, nextCardRef, nextLabelRef, linkLabelRef } = useAnimation({
+    current: 0,
+    total: projects.length,
+    getLink: index => projects[index].link
+  });
 
   const renderContent = (position: number) => {
     const project = projects[position];
@@ -40,10 +40,15 @@ export default function ProjectsMobile() {
         </S.ProjectCard>
       </S.ProjectList>
       <S.ButtonsRow>
-        <S.NextButton aria-label={nextCard} onClick={() => setCurrent(next)}>
+        <S.NextButton aria-label={nextCard} onClick={() => onChangeCurrent('left')}>
           <IconRotate />
         </S.NextButton>
-        <S.LikeButton aria-label={tryOut} href={projects[current].link} target="_blank">
+        <S.LikeButton
+          aria-label={tryOut}
+          onClick={() => onChangeCurrent('right')}
+          href={projects[current].link}
+          target="_blank"
+        >
           <IconLink />
         </S.LikeButton>
       </S.ButtonsRow>

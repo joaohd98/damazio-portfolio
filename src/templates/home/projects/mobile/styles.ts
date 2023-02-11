@@ -44,18 +44,18 @@ export const LinkLabel = styled.div`
   position: absolute;
   top: 2rem;
   margin-left: 2rem;
-  border: 0.1rem solid ${({ theme }) => theme.yellow};
   padding: 1rem 2rem;
   border-radius: 1rem;
-  color: ${({ theme }) => theme.yellow};
+  border: 0.1rem solid ${({ theme }) => theme.green};
+  color: ${({ theme }) => theme.green};
   opacity: 0;
 `;
 
 export const NextLabel = styled(LinkLabel)`
   right: 0;
   margin-right: 2rem;
-  border-color: ${({ theme }) => theme.green};
-  color: ${({ theme }) => theme.green};
+  border-color: ${({ theme }) => theme.yellow};
+  color: ${({ theme }) => theme.yellow};
 `;
 
 export const ProjectImage = styled(Image)`
