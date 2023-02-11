@@ -34,14 +34,11 @@ export default function ({
       return;
     }
 
-    const tl = gsap.timeline();
     const elements = [nextLabelRef.current, linkLabelRef.current, currentCardRef.current, nextCardRef.current];
-    tl.set(elements, { clearProps: 'all' });
-    tl.delay(100);
-    tl.call(() => {
-      const next = state.current > total - 2 ? 0 : state.current + 1;
-      setState({ next, current: state.current });
-    });
+    gsap.set(elements, { clearProps: 'all' });
+
+    const next = state.current > total - 2 ? 0 : state.current + 1;
+    setState({ next, current: state.current });
   }, [state]);
 
   const initScrollTrigger = () => {
