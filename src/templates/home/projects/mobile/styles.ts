@@ -31,10 +31,12 @@ export const ProjectCard = styled.li`
   top: 0;
   width: 100%;
   height: 100%;
+  z-index: 1;
 
   :nth-child(1) {
     opacity: 0.5;
     scale: 0.9;
+    z-index: 0;
   }
 `;
 
