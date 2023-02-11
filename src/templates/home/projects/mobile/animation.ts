@@ -34,11 +34,16 @@ export default function ({
       return;
     }
 
-    const elements = [nextLabelRef.current, linkLabelRef.current, currentCardRef.current, nextCardRef.current];
-    gsap.set(elements, { clearProps: 'all' });
+    const tl = gsap.timeline({
+      onComplete: () => {
+        const next = state.current > total - 2 ? 0 : state.current + 1;
+        setState({ next, current: state.current });
+      }
+    });
 
-    const next = state.current > total - 2 ? 0 : state.current + 1;
-    setState({ next, current: state.current });
+    tl.set([nextLabelRef.current, linkLabelRef.current], { clearProps: 'all' });
+    tl.set(currentCardRef.current, { clearProps: 'all' });
+    tl.set(nextCardRef.current, { clearProps: 'all' });
   }, [state]);
 
   const initScrollTrigger = () => {
@@ -105,7 +110,16 @@ export default function ({
   const slideTimeline = (x: number) => {
     const tl = gsap.timeline({
       onStart: () => setMakingAnimation(true),
-      onComplete: () => setMakingAnimation(false)
+      onComplete: () => {
+        setMakingAnimation(false);
+
+        const { current, next } = stateRef.current;
+        setState({ next, current: next });
+
+        if (isRight) {
+          window.open(getLink(current), '_target');
+        }
+      }
     });
 
     const isRight = x > 0;
@@ -117,15 +131,6 @@ export default function ({
 
     tl.to(currentCardRef.current, { x: `${x > 0 ? 100 : -100}vw` }, '<');
     tl.to(nextCardRef.current, { opacity: 1, scale: 1 });
-
-    tl.call(() => {
-      const { current, next } = stateRef.current;
-      setState({ next, current: next });
-
-      if (isRight) {
-        window.open(getLink(current), '_target');
-      }
-    });
   };
 
   const onChangeCurrent = (direction: 'left' | 'right') => {
