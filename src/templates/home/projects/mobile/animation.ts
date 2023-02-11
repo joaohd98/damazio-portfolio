@@ -43,9 +43,11 @@ export default function ({
 
   const initScrollTrigger = () => {
     const tl = gsap.timeline({
+      onStart: () => setMakingAnimation(true),
+      onComplete: () => setMakingAnimation(false),
       scrollTrigger: {
         trigger: currentCardRef.current,
-        start: 'top 40%'
+        start: 'top 80%'
       }
     });
 
@@ -128,7 +130,7 @@ export default function ({
       setState({ next, current: next });
 
       if (isRight) {
-        window.open(getLink(current), 'popup');
+        window.open(getLink(current), '_target');
       }
     });
   };

@@ -19,7 +19,7 @@ export const ProjectTitle = styled.div`
 export const ProjectList = styled.ul`
   position: relative;
   width: 75vw;
-  height: 70vh;
+  height: 65vh;
   margin-left: auto;
   margin-right: auto;
 `;
