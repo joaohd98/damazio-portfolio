@@ -34,9 +34,9 @@ export default function ({
       return;
     }
 
-    gsap.set([nextLabelRef.current, linkLabelRef.current, currentCardRef.current, nextCardRef.current], {
-      clearProps: 'all'
-    });
+    gsap.set([nextLabelRef.current, linkLabelRef.current], { opacity: 0 });
+    gsap.set(currentCardRef.current, { x: 0 });
+    gsap.set(nextCardRef.current, { opacity: 0.5, scale: 0.9 });
 
     const next = state.current > total - 2 ? 0 : state.current + 1;
     setState({ next, current: state.current });
