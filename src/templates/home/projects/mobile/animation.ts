@@ -25,6 +25,45 @@ export default function ({
   const linkLabelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    initDraggable();
+    initScrollTrigger();
+  }, []);
+
+  useEffect(() => {
+    if (state.next !== state.current) {
+      return;
+    }
+
+    const elements = [nextLabelRef.current, linkLabelRef.current, currentCardRef.current, nextCardRef.current];
+    gsap.set(elements, { clearProps: 'all' });
+
+    const next = state.current > total - 2 ? 0 : state.current + 1;
+    setState({ next, current: state.current });
+  }, [state]);
+
+  const initScrollTrigger = () => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: currentCardRef.current,
+        start: 'top 40%'
+      }
+    });
+
+    const duration = 0.3;
+    tl.to(currentCardRef.current, { x: -20, duration });
+    tl.to(nextLabelRef.current, { opacity: 1, duration }, '<');
+
+    tl.to(currentCardRef.current, { x: 0, duration });
+    tl.to(nextLabelRef.current, { opacity: 0, duration }, '<');
+
+    tl.to(currentCardRef.current, { x: 20, duration });
+    tl.to(linkLabelRef.current, { opacity: 1, duration }, '<');
+
+    tl.to(currentCardRef.current, { x: 0, duration });
+    tl.to(linkLabelRef.current, { opacity: 0, duration }, '<');
+  };
+
+  const initDraggable = () => {
     const bounds = currentCardRef.current?.parentElement;
     if (!bounds) {
       return;
@@ -55,21 +94,7 @@ export default function ({
         slideTimeline(this.x);
       }
     });
-  }, []);
-
-  useEffect(() => {
-    if (state.next !== state.current) {
-      return;
-    }
-
-    const elements = [nextLabelRef.current, linkLabelRef.current, currentCardRef.current, nextCardRef.current];
-    gsap.set(elements, { clearProps: 'all' });
-
-    const next = state.current > total - 2 ? 0 : state.current + 1;
-    setState({ next, current: state.current });
-
-    setMakingAnimation(false);
-  }, [state]);
+  };
 
   const dragTimeline = (x: number) => {
     if (x > 0) {
@@ -103,7 +128,7 @@ export default function ({
       setState({ next, current: next });
 
       if (isRight) {
-        window.open(getLink(current), '_blank');
+        window.open(getLink(current), 'popup');
       }
     });
   };
