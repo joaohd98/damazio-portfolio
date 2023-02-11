@@ -43,6 +43,7 @@ export default function ({
 
     tl.set([nextLabelRef.current, linkLabelRef.current], { clearProps: 'all' });
     tl.set(currentCardRef.current, { clearProps: 'all' });
+    tl.delay(1);
     tl.set(nextCardRef.current, { clearProps: 'all' });
   }, [state]);
 
