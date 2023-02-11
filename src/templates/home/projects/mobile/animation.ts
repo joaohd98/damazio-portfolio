@@ -1,13 +1,23 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Draggable from 'gsap/dist/Draggable';
 import gsap from 'gsap';
 import useStateRef from '@/hooks/useStateRef';
 
-export default function (initialState: { total: number; current: number; getLink: (index: number) => string }) {
+export default function ({
+  getLink,
+  total,
+  ...initialState
+}: {
+  total: number;
+  current: number;
+  getLink: (index: number) => string;
+}) {
   const [state, setState, stateRef] = useStateRef({
     current: initialState.current,
     next: initialState.current + 1
   });
+
+  const [isMakingAnimation, setMakingAnimation] = useState(false);
 
   const currentCardRef = useRef<HTMLLIElement>(null);
   const nextCardRef = useRef<HTMLLIElement>(null);
@@ -52,13 +62,13 @@ export default function (initialState: { total: number; current: number; getLink
       return;
     }
 
-    gsap.set(nextLabelRef.current, { opacity: 0 });
-    gsap.set(linkLabelRef.current, { opacity: 0 });
+    const elements = [nextLabelRef.current, linkLabelRef.current, currentCardRef.current, nextCardRef.current];
+    gsap.set(elements, { clearProps: 'all' });
 
-    gsap.set(currentCardRef.current, { x: 0 });
-    gsap.set(nextCardRef.current, { opacity: 0.5, scale: 0.9 });
+    const next = state.current > total - 2 ? 0 : state.current + 1;
+    setState({ next, current: state.current });
 
-    setState({ next: state.next + 1, current: state.next });
+    setMakingAnimation(false);
   }, [state]);
 
   const dragTimeline = (x: number) => {
@@ -72,7 +82,11 @@ export default function (initialState: { total: number; current: number; getLink
   };
 
   const slideTimeline = (x: number) => {
-    const tl = gsap.timeline();
+    const tl = gsap.timeline({
+      onStart: () => setMakingAnimation(true),
+      onComplete: () => setMakingAnimation(false)
+    });
+
     const isRight = x > 0;
 
     if (isRight) {
@@ -85,10 +99,11 @@ export default function (initialState: { total: number; current: number; getLink
     tl.to(nextCardRef.current, { opacity: 1, scale: 1 });
 
     tl.call(() => {
-      setState({ next: stateRef.current.next, current: stateRef.current.next });
+      const { current, next } = stateRef.current;
+      setState({ next, current: next });
 
       if (isRight) {
-        window.open(initialState.getLink(stateRef.current.current), '_blank');
+        window.open(getLink(current), '_blank');
       }
     });
   };
@@ -100,6 +115,7 @@ export default function (initialState: { total: number; current: number; getLink
   return {
     current: state.current,
     next: state.next,
+    isMakingAnimation,
     onChangeCurrent,
     currentCardRef,
     nextCardRef,

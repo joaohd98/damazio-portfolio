@@ -1,5 +1,6 @@
 import IconLink from '@/components/IconLink';
 import IconRotate from '@/components/IconRotate';
+import { useEffect } from 'react';
 import * as S from './styles';
 import useConst from '../const';
 import useAnimation from './animation';
@@ -7,11 +8,22 @@ import useAnimation from './animation';
 export default function ProjectsMobile() {
   const { projects, name, tryOut, nextCard } = useConst();
 
-  const { current, next, onChangeCurrent, currentCardRef, nextCardRef, nextLabelRef, linkLabelRef } = useAnimation({
-    current: 0,
-    total: projects.length,
-    getLink: index => projects[index].link
-  });
+  const { current, next, isMakingAnimation, onChangeCurrent, currentCardRef, nextCardRef, nextLabelRef, linkLabelRef } =
+    useAnimation({
+      current: 0,
+      total: projects.length,
+      getLink: index => projects[index].link
+    });
+
+  // workaround while there is no load
+  useEffect(() => {
+    projects.forEach(project => {
+      const { src } = project.imgMobile || project.img;
+
+      const downloadingImage = new Image();
+      downloadingImage.src = `/imgs/projects/${src}`;
+    });
+  }, []);
 
   const renderContent = (position: number) => {
     const project = projects[position];
@@ -29,7 +41,7 @@ export default function ProjectsMobile() {
   };
 
   return (
-    <S.ProjectsMobile>
+    <S.ProjectsMobile isMakingAnimation={isMakingAnimation}>
       <S.ProjectTitle>{name}</S.ProjectTitle>
       <S.ProjectList>
         <S.ProjectCard ref={nextCardRef}>{renderContent(next)}</S.ProjectCard>
@@ -43,12 +55,7 @@ export default function ProjectsMobile() {
         <S.NextButton aria-label={nextCard} onClick={() => onChangeCurrent('left')}>
           <IconRotate />
         </S.NextButton>
-        <S.LikeButton
-          aria-label={tryOut}
-          onClick={() => onChangeCurrent('right')}
-          href={projects[current].link}
-          target="_blank"
-        >
+        <S.LikeButton aria-label={tryOut} onClick={() => onChangeCurrent('right')}>
           <IconLink />
         </S.LikeButton>
       </S.ButtonsRow>

@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 
-export const ProjectsMobile = styled.div`
+export const ProjectsMobile = styled.div<{ isMakingAnimation: boolean }>`
   margin: 5rem 5vh 10rem;
+  pointer-events: ${({ isMakingAnimation }) => (isMakingAnimation ? 'none' : 'auto')};
 `;
 
 export const ProjectTitle = styled.div`
@@ -111,7 +112,7 @@ export const ButtonsRow = styled.div`
 
 export const NextButton = styled.button`
   border: 0.2rem solid ${({ theme }) => theme.yellow};
-  transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+  transition: transform ease-in 0.1s;
 
   svg {
     fill: ${({ theme }) => theme.yellow};
@@ -122,7 +123,10 @@ export const NextButton = styled.button`
   }
 `;
 
-export const LikeButton = styled.a`
-  border: 0.2rem solid ${({ theme }) => theme.green};
-  color: ${({ theme }) => theme.green};
+export const LikeButton = styled(NextButton)`
+  border-color: ${({ theme }) => theme.green};
+
+  svg {
+    fill: ${({ theme }) => theme.green};
+  }
 `;
