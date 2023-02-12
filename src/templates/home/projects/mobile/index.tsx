@@ -1,18 +1,22 @@
 import IconLink from '@/components/IconLink';
 import IconRotate from '@/components/IconRotate';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
+import ModalConfirmation from '@/components/ModalConfirmation';
+import { ModalConfirmationRef } from '@/components/ModalConfirmation/props';
 import * as S from './styles';
 import useConst from '../const';
 import useAnimation from './animation';
 
 export default function ProjectsMobile() {
-  const { projects, name, tryOut, nextCard } = useConst();
+  const { projects, name, tryOut, nextCard, popup } = useConst();
+  const modalConfirmationRef = useRef<ModalConfirmationRef>(null);
 
   const { current, next, isMakingAnimation, onChangeCurrent, currentCardRef, nextCardRef, nextLabelRef, linkLabelRef } =
     useAnimation({
       current: 0,
       total: projects.length,
-      getLink: index => projects[index].link
+      getLink: index => projects[index].link,
+      openModal: () => modalConfirmationRef.current?.show()
     });
 
   // workaround while there is no load
@@ -55,10 +59,21 @@ export default function ProjectsMobile() {
         <S.NextButton aria-label={nextCard} onClick={() => onChangeCurrent('left')}>
           <IconRotate />
         </S.NextButton>
-        <S.LikeButton aria-label={tryOut} onClick={() => onChangeCurrent('right')}>
+        <S.LikeButton
+          aria-label={tryOut}
+          href={projects[current].link}
+          target="_blank"
+          onClick={() => onChangeCurrent('right')}
+        >
           <IconLink />
         </S.LikeButton>
       </S.ButtonsRow>
+      <ModalConfirmation
+        ref={modalConfirmationRef}
+        title={popup.title}
+        message={popup.message}
+        anchor={{ text: popup.button, href: projects[current].link }}
+      />
     </S.ProjectsMobile>
   );
 }

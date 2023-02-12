@@ -132,11 +132,21 @@ export default function () {
       ],
       name: 'PROJECTS',
       tryOut: 'TRY',
-      nextCard: 'NEXT'
+      nextCard: 'NEXT',
+      popup: {
+        title: 'POP-UP BLOCK',
+        message: 'There is a pop-up block in your browser. Click the button below, to access the link.',
+        button: 'REDIRECT'
+      }
     },
     'pt-BR': {
       name: 'PROJETOS',
-      tryOut: 'VER'
+      tryOut: 'VER',
+      popup: {
+        title: 'BLOQUEIO DE POP-UP',
+        message: 'Há um bloco de pop-up em seu navegador. Clique no botão abaixo, para acessar o link.',
+        button: 'REDIRECIONAR'
+      }
     }
   });
 }

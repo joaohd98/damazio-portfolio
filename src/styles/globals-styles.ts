@@ -41,6 +41,11 @@ const GlobalStyles = createGlobalStyle`
     text-decoration: none;
   }
   
+  button {
+    background: none;
+    border: none;
+  }
+  
   .only-mobile {
     display: none;
 

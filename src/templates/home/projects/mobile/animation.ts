@@ -6,10 +6,12 @@ import useStateRef from '@/hooks/useStateRef';
 export default function ({
   getLink,
   total,
+  openModal,
   ...initialState
 }: {
   total: number;
   current: number;
+  openModal: () => void;
   getLink: (index: number) => string;
 }) {
   const [state, setState, stateRef] = useStateRef({
@@ -103,15 +105,18 @@ export default function ({
     }
   };
 
-  const slideTimeline = (x: number) => {
+  const slideTimeline = (x: number, shouldDisableClick?: boolean) => {
     const tl = gsap.timeline({
       onStart: () => setMakingAnimation(true),
       onComplete: () => {
         const { current, next } = stateRef.current;
         setState({ next, current: next });
 
-        if (isRight) {
-          window.open(getLink(current), '_target');
+        if (isRight && !shouldDisableClick) {
+          const win = window.open(getLink(current), '_target');
+          if (!win || win.closed || typeof win.closed === 'undefined') {
+            openModal();
+          }
         }
       }
     });
@@ -128,7 +133,7 @@ export default function ({
   };
 
   const onChangeCurrent = (direction: 'left' | 'right') => {
-    slideTimeline(direction === 'left' ? -1 : 1);
+    slideTimeline(direction === 'left' ? -1 : 1, true);
   };
 
   return {

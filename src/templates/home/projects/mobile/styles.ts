@@ -22,6 +22,7 @@ export const ProjectList = styled.ul`
   height: 65vh;
   margin-left: auto;
   margin-right: auto;
+  z-index: 1;
 `;
 
 export const ProjectCard = styled.li`
@@ -31,12 +32,10 @@ export const ProjectCard = styled.li`
   top: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
 
   :nth-child(1) {
     opacity: 0.5;
     scale: 0.9;
-    z-index: 0;
   }
 `;
 
@@ -114,7 +113,7 @@ export const ButtonsRow = styled.div`
   }
 `;
 
-export const NextButton = styled.button`
+export const NextButton = styled.a`
   border: 0.2rem solid ${({ theme }) => theme.yellow};
   transition: transform ease-in 0.1s;
 

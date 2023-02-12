@@ -5,7 +5,10 @@ export const theme = {
   secondary: '#E4E6C3',
   thirdiary: '#899878',
   background: '#121113',
+  backgroundModal: '#0D0C0F',
+  backgroundOverlay: '#121113fc',
   blue: '#6495ED',
+  blueDark: '#445EDA',
   yellow: '#ffc107',
   green: '#28a745'
 };
