@@ -37,7 +37,7 @@ export default function ({
     }
 
     gsap.set([nextLabelRef.current, linkLabelRef.current], { opacity: 0 });
-    gsap.set(currentCardRef.current, { x: 0 });
+    gsap.set(currentCardRef.current, { x: 0, rotate: 0 });
     gsap.set(nextCardRef.current, { opacity: 0.5, scale: 0.9 });
 
     const next = state.current > total - 2 ? 0 : state.current + 1;
@@ -55,16 +55,16 @@ export default function ({
     });
 
     const duration = 0.3;
-    tl.to(currentCardRef.current, { x: -20, duration });
+    tl.to(currentCardRef.current, { x: -40, rotate: '-5deg', duration });
     tl.to(nextLabelRef.current, { opacity: 1, duration }, '<');
 
-    tl.to(currentCardRef.current, { x: 0, duration });
+    tl.to(currentCardRef.current, { x: 0, rotate: 0, duration });
     tl.to(nextLabelRef.current, { opacity: 0, duration }, '<');
 
-    tl.to(currentCardRef.current, { x: 20, duration });
+    tl.to(currentCardRef.current, { x: 40, rotate: '5deg', duration });
     tl.to(linkLabelRef.current, { opacity: 1, duration }, '<');
 
-    tl.to(currentCardRef.current, { x: 0, duration });
+    tl.to(currentCardRef.current, { x: 0, rotate: 0, duration });
     tl.to(linkLabelRef.current, { opacity: 0, duration }, '<');
   };
 
@@ -86,7 +86,7 @@ export default function ({
       },
       onDragEnd() {
         if (Math.abs(this.x) < 20) {
-          gsap.to(currentCardRef.current, { x: 0 });
+          gsap.to(currentCardRef.current, { x: 0, rotate: 0 });
           return;
         }
 
@@ -96,12 +96,15 @@ export default function ({
   };
 
   const dragTimeline = (x: number) => {
+    const duration = 0.2;
     if (x > 0) {
-      gsap.to(linkLabelRef.current, { opacity: x > 20 ? 1 : 0, duration: 0.2 });
+      gsap.to(linkLabelRef.current, { opacity: x > 20 ? 1 : 0, duration });
+      gsap.to(currentCardRef.current, { rotate: x > 5 ? '5deg' : 0, duration });
     }
 
     if (x < 0) {
-      gsap.to(nextLabelRef.current, { opacity: x < -20 ? 1 : 0, duration: 0.2 });
+      gsap.to(nextLabelRef.current, { opacity: x < -20 ? 1 : 0, duration });
+      gsap.to(currentCardRef.current, { rotate: x < -5 ? '-5deg' : 0, duration });
     }
   };
 
@@ -124,8 +127,10 @@ export default function ({
     const isRight = x > 0;
     if (isRight) {
       tl.to(linkLabelRef.current, { opacity: 1 });
+      tl.to(currentCardRef.current, { rotate: '5deg' }, '<');
     } else {
       tl.to(nextLabelRef.current, { opacity: 1 });
+      tl.to(currentCardRef.current, { rotate: '-5deg' }, '<');
     }
 
     tl.to(currentCardRef.current, { x: `${x > 0 ? 100 : -100}vw` }, '<');
