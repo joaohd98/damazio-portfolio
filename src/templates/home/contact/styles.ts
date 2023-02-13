@@ -39,8 +39,7 @@ export const ContainerPong = styled.div`
   flex: 1;
 
   ${mediaMaxWidth('mobile')`
-    margin-top: 5rem;
-    margin-bottom: 5rem;
+    display: none;
   `}
 `;
 

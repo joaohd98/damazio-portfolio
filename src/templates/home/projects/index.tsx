@@ -6,7 +6,7 @@ import { mediaMaxWidth } from '@/utils/media-query';
 
 const ProjectsSection = styled.section`
   ${mediaMaxWidth('mobile')`
-    margin-bottom: 5rem;  
+    margin-bottom: 15rem;  
   `}
 `;
 
