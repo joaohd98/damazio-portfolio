@@ -9,12 +9,13 @@ export const Pong = styled.div`
   width: 100%;
 `;
 
-export const Canvas = styled.div`
+export const Container = styled.div`
   position: relative;
   width: 80rem;
   height: 50rem;
   border-top: 1rem solid ${({ theme }) => theme.primary};
   border-bottom: 1rem solid ${({ theme }) => theme.primary};
+  overflow: hidden;
 `;
 
 const Score = styled.p`
@@ -57,16 +58,18 @@ const Paddle = styled.div`
   position: absolute;
   height: 12rem;
   width: 1.5rem;
-  top: 50%;
   transform: translateY(-50%);
   background-color: ${({ theme }) => theme.primary};
+  pointer-events: none;
 `;
 
 export const PaddleEnemy = styled(Paddle)`
+  top: 50%;
   left: 2rem;
 `;
 
 export const PaddlePlayer = styled(Paddle)`
+  top: 50%;
   right: 2rem;
 `;
 
@@ -74,7 +77,6 @@ export const Ball = styled.div`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: 20%;
   height: 3rem;
   width: 3rem;
   background-color: ${({ theme }) => theme.primary};

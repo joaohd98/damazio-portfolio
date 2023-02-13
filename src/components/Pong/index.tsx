@@ -1,11 +1,14 @@
 import * as S from './styles';
+import useGame from './game';
 
 const dots = Array.from(Array(10).keys());
 
 export default function Pong() {
+  const { containerRef, paddlePlayerRef, paddleEnemyRef, ballRef } = useGame();
+
   return (
     <S.Pong>
-      <S.Canvas>
+      <S.Container ref={containerRef}>
         <S.ScorePlayer>2</S.ScorePlayer>
         <S.ScoreEnemy>5</S.ScoreEnemy>
         <S.Divider>
@@ -13,10 +16,10 @@ export default function Pong() {
             <S.DividerDot key={dot} />
           ))}
         </S.Divider>
-        <S.PaddlePlayer />
-        <S.PaddleEnemy />
-        <S.Ball />
-      </S.Canvas>
+        <S.PaddlePlayer ref={paddlePlayerRef} />
+        <S.PaddleEnemy ref={paddleEnemyRef} />
+        <S.Ball ref={ballRef} />
+      </S.Container>
     </S.Pong>
   );
 }
