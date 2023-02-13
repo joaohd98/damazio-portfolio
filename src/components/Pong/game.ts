@@ -26,7 +26,9 @@ export default function () {
 
   const startPlayingPong = () => {
     let left = 20;
-    let inscrease = 0.7;
+    let top = 50;
+    let inscreaseLeft = 0.7;
+    let increaseTop = -0.3;
 
     const playingPong = () => {
       const container = containerRef.current;
@@ -38,13 +40,21 @@ export default function () {
         return false;
       }
 
-      gsap.set(ball, { left: `${left}%` });
-      left += inscrease;
-
       const ballBounds = ball.getBoundingClientRect();
-
       const playerBounds = paddlePlayer.getBoundingClientRect();
       const enemyBounds = paddleEnemy.getBoundingClientRect();
+
+      gsap.set(ball, { left: `${left}%`, top: `${top}%` });
+      left += inscreaseLeft;
+      top += increaseTop;
+
+      if (top <= 0) {
+        increaseTop = 0.3;
+      }
+
+      if (top >= 100) {
+        increaseTop = -0.3;
+      }
 
       if (
         playerBounds.top <= ballBounds.top * 1.05 &&
@@ -52,7 +62,7 @@ export default function () {
         playerBounds.right - playerBounds.width <= ballBounds.right &&
         playerBounds.left + playerBounds.width >= ballBounds.left
       ) {
-        inscrease = -1.2;
+        inscreaseLeft = -1.2;
       }
 
       if (
@@ -61,7 +71,7 @@ export default function () {
         enemyBounds.x + enemyBounds.width >= ballBounds.x &&
         enemyBounds.right - enemyBounds.width <= ballBounds.right
       ) {
-        inscrease = 1.2;
+        inscreaseLeft = 1.2;
       }
 
       return true;
