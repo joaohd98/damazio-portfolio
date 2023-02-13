@@ -1,6 +1,7 @@
 import IconFacebook from '@/components/IconFacebook';
 import IconInstagram from '@/components/IconInstagram';
 import IconLinkedin from '@/components/IconLinkedin';
+import Pong from '@/components/Pong';
 import * as S from './styles';
 import useConst from './const';
 
@@ -40,7 +41,9 @@ export default function Contact() {
           </S.SocialMediaRow>
         </S.WrapperSocial>
       </S.ContainerSocial>
-      <S.ContainerPong />
+      <S.ContainerPong>
+        <Pong />
+      </S.ContainerPong>
     </S.Contact>
   );
 }
