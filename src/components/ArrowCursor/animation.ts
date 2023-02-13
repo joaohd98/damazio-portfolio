@@ -15,7 +15,9 @@ export default function (setCursorLeft: (b: boolean) => void, setOverLink: (b: b
     body.addEventListener('mouseenter', onListenMouseMove(content));
     body.addEventListener('wheel', onListenMouseMove(content));
 
+    content.addEventListener('mouseleave', onListenMouseLeave);
     body.addEventListener('mouseleave', onListenMouseLeave);
+
     content.addEventListener('click', onListenClick);
 
     return () => {
@@ -23,7 +25,9 @@ export default function (setCursorLeft: (b: boolean) => void, setOverLink: (b: b
       body.removeEventListener('mouseenter', onListenMouseMove(content));
       body.removeEventListener('wheel', onListenMouseMove(content));
 
+      content.removeEventListener('mouseleave', onListenMouseLeave);
       body.removeEventListener('mouseleave', onListenMouseLeave);
+
       content.removeEventListener('click', onListenClick);
     };
   }, []);
