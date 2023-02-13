@@ -17,6 +17,7 @@ export default function ({ initialPosition, size }: { initialPosition: number; s
   const previousCardRef = useRef<HTMLLIElement>(null);
   const nextLabelRef = useRef<HTMLDivElement>(null);
   const previousLabelRef = useRef<HTMLDivElement>(null);
+  const anchorTryRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
     initDraggable();
@@ -109,6 +110,8 @@ export default function ({ initialPosition, size }: { initialPosition: number; s
       }
     });
 
+    gsap.to(anchorTryRef.current, { opacity: 0, duration: 0.2 });
+
     if (isRight) {
       tl.to(previousLabelRef.current, { opacity: 0 });
       tl.to(nextLabelRef.current, { opacity: 1 }, '<');
@@ -122,7 +125,7 @@ export default function ({ initialPosition, size }: { initialPosition: number; s
     const actualCard = isRight ? nextCardRef.current : previousCardRef.current;
 
     if (progress !== undefined) {
-      const xValue = (1 - progress) * (isRight ? -80 : 80);
+      const xValue = (1 - progress) * (isRight ? -100 : 100);
       tl.to(actualCard, { x: `${xValue}vw` }, '<');
       tl.progress(progress);
 
@@ -141,6 +144,7 @@ export default function ({ initialPosition, size }: { initialPosition: number; s
     tl.to([nextLabelRef.current, previousLabelRef.current], { opacity: 0, duration }, '<');
     tl.to(nextCardRef.current, { x: '-100vw', opacity: 0.5, scale: 0.9, duration }, '<');
     tl.to(previousCardRef.current, { x: '100vw', opacity: 0.5, scale: 0.9, duration }, '<');
+    tl.to(anchorTryRef.current, { opacity: 1 }, '<');
   };
 
   return {
@@ -149,6 +153,7 @@ export default function ({ initialPosition, size }: { initialPosition: number; s
     currentCardRef,
     nextCardRef,
     previousCardRef,
+    anchorTryRef,
     nextLabelRef,
     previousLabelRef
   };

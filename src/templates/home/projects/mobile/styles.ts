@@ -108,9 +108,9 @@ export const AnchorTryOut = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 5rem;
+  position: absolute;
+  right: -5rem;
+  bottom: -5rem;
   width: 10rem;
   height: 10rem;
   border-radius: 100%;
@@ -120,4 +120,5 @@ export const AnchorTryOut = styled.a`
   background-color: ${({ theme }) => theme.secondary};
   color: ${({ theme }) => theme.background};
   cursor: pointer;
+  z-index: 1;
 `;

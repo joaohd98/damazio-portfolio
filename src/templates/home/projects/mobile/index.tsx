@@ -15,7 +15,8 @@ export default function ProjectsMobile() {
     nextCardRef,
     previousCardRef,
     nextLabelRef,
-    previousLabelRef
+    previousLabelRef,
+    anchorTryRef
   } = useAnimation({
     initialPosition: 0,
     size: projects.length
@@ -55,12 +56,12 @@ export default function ProjectsMobile() {
         <S.ProjectCard ref={currentCardRef}>
           <S.PreviousLabel ref={previousLabelRef}>{previousCard}</S.PreviousLabel>
           <S.NextLabel ref={nextLabelRef}>{nextCard}</S.NextLabel>
+          <S.AnchorTryOut ref={anchorTryRef} href={projects[current].link} target="_blank">
+            {tryOut}
+          </S.AnchorTryOut>
           {renderContent(current)}
         </S.ProjectCard>
       </S.ProjectList>
-      <S.AnchorTryOut href={projects[current].link} target="_blank">
-        {tryOut}
-      </S.AnchorTryOut>
     </S.ProjectsMobile>
   );
 }
