@@ -22,7 +22,6 @@ export const ProjectList = styled.ul`
   height: 65vh;
   margin-left: auto;
   margin-right: auto;
-  z-index: 1;
 `;
 
 export const ProjectCard = styled.li`
@@ -32,32 +31,42 @@ export const ProjectCard = styled.li`
   top: 0;
   width: 100%;
   height: 100%;
-
-  :nth-child(1) {
-    opacity: 0.5;
-    scale: 0.9;
-  }
 `;
 
-export const LinkLabel = styled.div`
+export const PreviousCard = styled(ProjectCard)`
+  opacity: 0.5;
+  scale: 0.9;
+  transform: translateX(100vw);
+`;
+
+export const NextCard = styled(ProjectCard)`
+  opacity: 0.5;
+  scale: 0.9;
+  transform: translateX(-100vw);
+`;
+
+const Label = styled.div`
+  position: absolute;
+  top: 2rem;
   font-size: 2rem;
   font-family: 'Gotham HTF';
   font-weight: 600;
-  position: absolute;
-  top: 2rem;
-  margin-left: 2rem;
   padding: 1rem 2rem;
   border-radius: 1rem;
-  border: 0.1rem solid ${({ theme }) => theme.green};
-  color: ${({ theme }) => theme.green};
+  border-width: 0.1rem;
+  border-style: solid;
   opacity: 0;
 `;
-
-export const NextLabel = styled(LinkLabel)`
-  right: 0;
-  margin-right: 2rem;
+export const PreviousLabel = styled(Label)`
+  right: 2rem;
   border-color: ${({ theme }) => theme.yellow};
   color: ${({ theme }) => theme.yellow};
+`;
+
+export const NextLabel = styled(Label)`
+  left: 2rem;
+  border-color: ${({ theme }) => theme.green};
+  color: ${({ theme }) => theme.green};
 `;
 
 export const ProjectImage = styled(Image)`
@@ -95,41 +104,20 @@ export const ProjectTechnologies = styled.p`
   color: ${({ theme }) => theme.primary};
 `;
 
-export const ButtonsRow = styled.div`
+export const AnchorTryOut = styled.a`
   display: flex;
-  justify-content: space-around;
-  margin-top: 3rem;
-
-  a,
-  button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 7.5rem;
-    width: 7.5rem;
-    font-size: 2rem;
-    border-radius: 100%;
-    background-color: transparent;
-  }
-`;
-
-export const NextButton = styled.a`
-  border: 0.2rem solid ${({ theme }) => theme.yellow};
-  transition: transform ease-in 0.1s;
-
-  svg {
-    fill: ${({ theme }) => theme.yellow};
-  }
-
-  :active {
-    transform: scale(0.9);
-  }
-`;
-
-export const LikeButton = styled(NextButton)`
-  border-color: ${({ theme }) => theme.green};
-
-  svg {
-    fill: ${({ theme }) => theme.green};
-  }
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5rem;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 100%;
+  font-size: 2rem;
+  font-family: 'Gotham HTF';
+  font-weight: 800;
+  background-color: ${({ theme }) => theme.secondary};
+  color: ${({ theme }) => theme.background};
+  cursor: pointer;
 `;

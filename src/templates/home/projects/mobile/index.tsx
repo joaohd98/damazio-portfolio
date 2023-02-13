@@ -1,23 +1,25 @@
-import IconLink from '@/components/IconLink';
-import IconRotate from '@/components/IconRotate';
-import { useEffect, useRef } from 'react';
-import ModalConfirmation from '@/components/ModalConfirmation';
-import { ModalConfirmationRef } from '@/components/ModalConfirmation/props';
+import { useEffect } from 'react';
 import * as S from './styles';
 import useConst from '../const';
 import useAnimation from './animation';
 
 export default function ProjectsMobile() {
-  const { projects, name, tryOut, nextCard, popup } = useConst();
-  const modalConfirmationRef = useRef<ModalConfirmationRef>(null);
+  const { projects, name, tryOut, nextCard, previousCard } = useConst();
 
-  const { current, next, isMakingAnimation, onChangeCurrent, currentCardRef, nextCardRef, nextLabelRef, linkLabelRef } =
-    useAnimation({
-      current: 0,
-      total: projects.length,
-      getLink: index => projects[index].link,
-      openModal: () => modalConfirmationRef.current?.show()
-    });
+  const {
+    current,
+    next,
+    previous,
+    isMakingAnimation,
+    currentCardRef,
+    nextCardRef,
+    previousCardRef,
+    nextLabelRef,
+    previousLabelRef
+  } = useAnimation({
+    initialPosition: 0,
+    size: projects.length
+  });
 
   // workaround while there is no load
   useEffect(() => {
@@ -48,32 +50,17 @@ export default function ProjectsMobile() {
     <S.ProjectsMobile isMakingAnimation={isMakingAnimation}>
       <S.ProjectTitle>{name}</S.ProjectTitle>
       <S.ProjectList>
-        <S.ProjectCard ref={nextCardRef}>{renderContent(next)}</S.ProjectCard>
+        <S.PreviousCard ref={previousCardRef}>{renderContent(previous)}</S.PreviousCard>
+        <S.NextCard ref={nextCardRef}>{renderContent(next)}</S.NextCard>
         <S.ProjectCard ref={currentCardRef}>
+          <S.PreviousLabel ref={previousLabelRef}>{previousCard}</S.PreviousLabel>
           <S.NextLabel ref={nextLabelRef}>{nextCard}</S.NextLabel>
-          <S.LinkLabel ref={linkLabelRef}>{tryOut}</S.LinkLabel>
           {renderContent(current)}
         </S.ProjectCard>
       </S.ProjectList>
-      <S.ButtonsRow>
-        <S.NextButton aria-label={nextCard} onClick={() => onChangeCurrent('left')}>
-          <IconRotate />
-        </S.NextButton>
-        <S.LikeButton
-          aria-label={tryOut}
-          href={projects[current].link}
-          target="_blank"
-          onClick={() => onChangeCurrent('right')}
-        >
-          <IconLink />
-        </S.LikeButton>
-      </S.ButtonsRow>
-      <ModalConfirmation
-        ref={modalConfirmationRef}
-        title={popup.title}
-        message={popup.message}
-        anchor={{ text: popup.button, href: projects[current].link }}
-      />
+      <S.AnchorTryOut href={projects[current].link} target="_blank">
+        {tryOut}
+      </S.AnchorTryOut>
     </S.ProjectsMobile>
   );
 }

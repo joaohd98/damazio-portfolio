@@ -3,28 +3,20 @@ import Draggable from 'gsap/dist/Draggable';
 import gsap from 'gsap';
 import useStateRef from '@/hooks/useStateRef';
 
-export default function ({
-  getLink,
-  total,
-  openModal,
-  ...initialState
-}: {
-  total: number;
-  current: number;
-  openModal: () => void;
-  getLink: (index: number) => string;
-}) {
+export default function ({ initialPosition, size }: { initialPosition: number; size: number }) {
   const [state, setState, stateRef] = useStateRef({
-    current: initialState.current,
-    next: initialState.current + 1
+    current: initialPosition,
+    next: initialPosition + 1,
+    previous: size - 1
   });
 
   const [isMakingAnimation, setMakingAnimation] = useState(true);
 
   const currentCardRef = useRef<HTMLLIElement>(null);
   const nextCardRef = useRef<HTMLLIElement>(null);
+  const previousCardRef = useRef<HTMLLIElement>(null);
   const nextLabelRef = useRef<HTMLDivElement>(null);
-  const linkLabelRef = useRef<HTMLDivElement>(null);
+  const previousLabelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     initDraggable();
@@ -32,16 +24,16 @@ export default function ({
   }, []);
 
   useEffect(() => {
-    if (state.next !== state.current) {
+    if (state.next !== state.current && state.previous !== state.current) {
       return;
     }
 
-    gsap.set([nextLabelRef.current, linkLabelRef.current], { opacity: 0 });
-    gsap.set(currentCardRef.current, { x: 0, rotate: 0 });
-    gsap.set(nextCardRef.current, { opacity: 0.5, scale: 0.9 });
+    reverseTimeline(gsap.timeline());
 
-    const next = state.current > total - 2 ? 0 : state.current + 1;
-    setState({ next, current: state.current });
+    const next = state.current >= size - 1 ? 0 : state.current + 1;
+    const previous = state.current <= 2 ? size - 1 : state.current - 1;
+
+    setState({ current: state.current, next, previous });
     setMakingAnimation(false);
   }, [state]);
 
@@ -54,18 +46,17 @@ export default function ({
       }
     });
 
-    const duration = 0.3;
-    tl.to(currentCardRef.current, { x: -40, rotate: '-5deg', duration });
+    const duration = 0.4;
+
+    tl.to(currentCardRef.current, { x: 50, rotate: '5deg', duration });
     tl.to(nextLabelRef.current, { opacity: 1, duration }, '<');
+    tl.to(nextCardRef.current, { x: '-65vw', opacity: 1, duration }, '<');
+    reverseTimeline(tl, duration);
 
-    tl.to(currentCardRef.current, { x: 0, rotate: 0, duration });
-    tl.to(nextLabelRef.current, { opacity: 0, duration }, '<');
-
-    tl.to(currentCardRef.current, { x: 40, rotate: '5deg', duration });
-    tl.to(linkLabelRef.current, { opacity: 1, duration }, '<');
-
-    tl.to(currentCardRef.current, { x: 0, rotate: 0, duration });
-    tl.to(linkLabelRef.current, { opacity: 0, duration }, '<');
+    tl.to(currentCardRef.current, { x: -50, rotate: '-5deg', duration });
+    tl.to(previousLabelRef.current, { opacity: 1, duration }, '<');
+    tl.to(previousCardRef.current, { x: '65vw', opacity: 1, duration }, '<');
+    reverseTimeline(tl, duration);
   };
 
   const initDraggable = () => {
@@ -73,6 +64,8 @@ export default function ({
     if (!bounds) {
       return;
     }
+
+    const percentage = (x: number) => gsap.utils.mapRange(0, window.innerWidth, 0, 1, Math.abs(x));
 
     Draggable.create(currentCardRef.current, {
       type: 'x',
@@ -82,73 +75,81 @@ export default function ({
           return;
         }
 
-        dragTimeline(this.x);
+        slideTimeline(this.x, { progress: percentage(this.x) });
       },
       onDragEnd() {
-        if (Math.abs(this.x) < 20) {
-          gsap.to(currentCardRef.current, { x: 0, rotate: 0 });
+        if (Math.abs(this.x) < 30) {
+          reverseTimeline(
+            gsap.timeline({
+              onComplete: () => setMakingAnimation(false)
+            }),
+            0.4
+          );
+
           return;
         }
 
-        slideTimeline(this.x);
+        slideTimeline(this.x, { isFinished: true });
       }
     });
   };
 
-  const dragTimeline = (x: number) => {
-    const duration = 0.2;
-    if (x > 0) {
-      gsap.to(linkLabelRef.current, { opacity: x > 20 ? 1 : 0, duration });
-      gsap.to(currentCardRef.current, { rotate: x > 5 ? '5deg' : 0, duration });
-    }
-
-    if (x < 0) {
-      gsap.to(nextLabelRef.current, { opacity: x < -20 ? 1 : 0, duration });
-      gsap.to(currentCardRef.current, { rotate: x < -5 ? '-5deg' : 0, duration });
-    }
-  };
-
-  const slideTimeline = (x: number, shouldDisableClick?: boolean) => {
+  const slideTimeline = (x: number, { progress, isFinished }: { progress?: number; isFinished?: boolean }) => {
+    const isRight = x > 0;
     const tl = gsap.timeline({
+      paused: !isFinished,
       onStart: () => setMakingAnimation(true),
       onComplete: () => {
-        const { current, next } = stateRef.current;
-        setState({ next, current: next });
-
-        if (isRight && !shouldDisableClick) {
-          const win = window.open(getLink(current), '_target');
-          if (!win || win.closed || typeof win.closed === 'undefined') {
-            openModal();
-          }
+        if (!isFinished) {
+          return;
         }
+
+        const { next, previous } = stateRef.current;
+        setState({ ...stateRef.current, ...(isRight ? { next, current: next } : { previous, current: previous }) });
       }
     });
 
-    const isRight = x > 0;
     if (isRight) {
-      tl.to(linkLabelRef.current, { opacity: 1 });
+      tl.to(previousLabelRef.current, { opacity: 0 });
+      tl.to(nextLabelRef.current, { opacity: 1 }, '<');
       tl.to(currentCardRef.current, { rotate: '5deg' }, '<');
     } else {
-      tl.to(nextLabelRef.current, { opacity: 1 });
+      tl.to(nextLabelRef.current, { opacity: 0 });
+      tl.to(previousLabelRef.current, { opacity: 1 }, '<');
       tl.to(currentCardRef.current, { rotate: '-5deg' }, '<');
     }
 
-    tl.to(currentCardRef.current, { x: `${x > 0 ? 100 : -100}vw` }, '<');
-    tl.to(nextCardRef.current, { opacity: 1, scale: 1 });
+    const actualCard = isRight ? nextCardRef.current : previousCardRef.current;
+
+    if (progress !== undefined) {
+      const xValue = (1 - progress) * (isRight ? -80 : 80);
+      tl.to(actualCard, { x: `${xValue}vw` }, '<');
+      tl.progress(progress);
+
+      return;
+    }
+
+    if (isFinished) {
+      tl.to(currentCardRef.current, { x: `${isRight ? 100 : -100}vw` }, '<');
+      tl.to(actualCard, { x: 0 }, '<');
+      tl.to(actualCard, { opacity: 1, scale: 1 });
+    }
   };
 
-  const onChangeCurrent = (direction: 'left' | 'right') => {
-    slideTimeline(direction === 'left' ? -1 : 1, true);
+  const reverseTimeline = (tl: gsap.core.Timeline, duration = 0) => {
+    tl.to(currentCardRef.current, { x: 0, rotate: 0, duration });
+    tl.to([nextLabelRef.current, previousLabelRef.current], { opacity: 0, duration }, '<');
+    tl.to(nextCardRef.current, { x: '-100vw', opacity: 0.5, scale: 0.9, duration }, '<');
+    tl.to(previousCardRef.current, { x: '100vw', opacity: 0.5, scale: 0.9, duration }, '<');
   };
 
   return {
-    current: state.current,
-    next: state.next,
+    ...state,
     isMakingAnimation,
-    onChangeCurrent,
     currentCardRef,
     nextCardRef,
+    previousCardRef,
     nextLabelRef,
-    linkLabelRef
+    previousLabelRef
   };
 }

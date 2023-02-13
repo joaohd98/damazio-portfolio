@@ -5,6 +5,7 @@ export const Marquee = styled.div`
   overflow: hidden;
   position: relative;
   width: 100%;
+  margin-bottom: 10rem;
 `;
 
 export const Container = styled.div`
