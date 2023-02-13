@@ -25,10 +25,11 @@ export default function () {
   }, []);
 
   const startPlayingPong = () => {
-    let left = 20;
+    let actual: 'player' | 'enemy' = 'player';
+    let left = 60;
     let top = 50;
     let inscreaseLeft = 0.7;
-    let increaseTop = -0.3;
+    let increaseTop = -0.1;
 
     const playingPong = () => {
       const container = containerRef.current;
@@ -44,34 +45,51 @@ export default function () {
       const playerBounds = paddlePlayer.getBoundingClientRect();
       const enemyBounds = paddleEnemy.getBoundingClientRect();
 
-      gsap.set(ball, { left: `${left}%`, top: `${top}%` });
       left += inscreaseLeft;
       top += increaseTop;
 
-      if (top <= 0) {
-        increaseTop = 0.3;
-      }
+      gsap.set(ball, { left: `${left}%`, top: `${top}%` });
 
-      if (top >= 100) {
-        increaseTop = -0.3;
+      if (top <= 0 || top >= 100) {
+        increaseTop *= -1;
       }
 
       if (
-        playerBounds.top <= ballBounds.top * 1.05 &&
-        playerBounds.bottom * 1.05 >= ballBounds.bottom &&
-        playerBounds.right - playerBounds.width <= ballBounds.right &&
-        playerBounds.left + playerBounds.width >= ballBounds.left
+        playerBounds.top <= ballBounds.top &&
+        playerBounds.bottom >= ballBounds.bottom &&
+        playerBounds.right - playerBounds.width - 5 <= ballBounds.right &&
+        playerBounds.left + playerBounds.width + 5 >= ballBounds.left &&
+        actual === 'player'
       ) {
-        inscreaseLeft = -1.2;
+        increaseTop = gsap.utils.mapRange(
+          playerBounds.top,
+          playerBounds.top + playerBounds.height,
+          -2.5,
+          2.5,
+          ballBounds.top + ballBounds.height / 2
+        );
+
+        inscreaseLeft = -1.5;
+        actual = 'enemy';
       }
 
       if (
-        enemyBounds.top <= ballBounds.top * 1.05 &&
-        enemyBounds.bottom * 1.05 >= ballBounds.bottom &&
+        enemyBounds.top <= ballBounds.top &&
+        enemyBounds.bottom >= ballBounds.bottom &&
         enemyBounds.x + enemyBounds.width >= ballBounds.x &&
-        enemyBounds.right - enemyBounds.width <= ballBounds.right
+        enemyBounds.right - enemyBounds.width <= ballBounds.right &&
+        actual === 'enemy'
       ) {
-        inscreaseLeft = 1.2;
+        increaseTop = gsap.utils.mapRange(
+          enemyBounds.top,
+          enemyBounds.top + enemyBounds.height,
+          -2.5,
+          2.5,
+          ballBounds.top + ballBounds.height / 2
+        );
+
+        inscreaseLeft = 1.5;
+        actual = 'player';
       }
 
       return true;
