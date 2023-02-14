@@ -1,16 +1,18 @@
 import styled from 'styled-components';
-import { mediaMaxWidth } from '@/utils/media-query';
+import { mediaMaxWidth, mediaMinWidth } from '@/utils/media-query';
 
 export const Contact = styled.section`
   display: flex;
-  min-width: 100vw;
-  min-height: 100vh;
+  margin: 20vh 10rem;
 
-  ${mediaMaxWidth('mobile')`
-    min-width: auto;
-    min-height: auto;
+  ${mediaMinWidth('desktop2560')`
+    margin-left: 30rem;
+    margin-right: 30rem;
+  `}
+
+  ${mediaMaxWidth('desktop1024')`
     flex-direction: column-reverse;
-    margin-bottom: 10rem;
+    gap: 10rem;
   `}
 `;
 
@@ -19,19 +21,10 @@ export const ContainerSocial = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding-right: 20rem;
 
-  ${mediaMaxWidth('mobile')`
-    padding-right: 7.5rem;
-    padding-left: 7.5rem;
-  `}
-`;
-
-export const WrapperSocial = styled.div`
-  padding-left: 15rem;
-
-  ${mediaMaxWidth('mobile')`
-    padding-left: 0;
+  ${mediaMaxWidth('desktop1024')`
+    flex-direction: row;
+    gap: 30rem;
   `}
 `;
 
@@ -39,6 +32,7 @@ export const ContainerPong = styled.div`
   flex: 1;
 
   ${mediaMaxWidth('mobile')`
+    display: none;
   `}
 `;
 
@@ -47,12 +41,15 @@ export const GetInTouchText = styled.p`
   font-size: 6rem;
   font-weight: 500;
   margin-bottom: 15rem;
+  max-width: 70rem;
 
   ${mediaMaxWidth('mobile')`
     font-size: 4rem;
     margin-bottom: 8rem;
   `}
 `;
+
+export const LinkContainer = styled.div``;
 
 export const EmailText = styled.p`
   font-family: 'Gotham HTF';

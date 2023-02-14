@@ -6,10 +6,20 @@ import * as S from './styles';
 export default function ProjectsDesktop() {
   const { projects, name, tryOut } = useConst();
   const { pinRef, setCardsRef } = useAnimation(projects.length);
-  const positions = [8, 50, 61, 37, 12, 73, 50, 12, 70];
+  const positions = [
+    { type: 'top', value: 6 },
+    { type: 'top', value: 50 },
+    { type: 'bottom', value: 10 },
+    { type: 'top', value: 30 },
+    { type: 'top', value: 5 },
+    { type: 'bottom', value: 10 },
+    { type: 'top', value: 50 },
+    { type: 'top', value: 12 },
+    { type: 'bottom', value: 10 }
+  ];
 
   return (
-    <S.Projects>
+    <S.ProjectsDesktop>
       <S.PinContainer ref={pinRef}>
         <S.ProjectTitle>{name}</S.ProjectTitle>
         {projects.map((project, index) => {
@@ -18,7 +28,7 @@ export default function ProjectsDesktop() {
 
           return (
             <S.ProjectContainer key={project.link} position={position}>
-              <S.ProjectCard ref={setCardsRef(index)} isVertical={isVertical} position={position}>
+              <S.ProjectCard ref={setCardsRef(index)}>
                 <S.ProjectName>{project.name}</S.ProjectName>
                 <S.ProjectContent isVertical={isVertical}>
                   <S.ProjectImage
@@ -38,6 +48,6 @@ export default function ProjectsDesktop() {
         })}
       </S.PinContainer>
       <ArrowCursor />
-    </S.Projects>
+    </S.ProjectsDesktop>
   );
 }

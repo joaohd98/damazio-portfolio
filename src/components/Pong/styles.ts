@@ -4,7 +4,6 @@ export const Pong = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: -10rem;
   height: 100%;
   width: 100%;
 `;

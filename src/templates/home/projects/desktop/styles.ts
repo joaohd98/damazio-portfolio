@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import Image from 'next/image';
 import { mediaMaxWidth, mediaMinAspectRatio, mediaMinWidth } from '@/utils/media-query';
 
-export const Projects = styled.div`
+export const ProjectsDesktop = styled.div`
   margin-top: 10rem;
   cursor: none;
 `;
@@ -24,13 +24,13 @@ export const ProjectTitle = styled.p`
   -webkit-text-stroke: 0.1rem ${({ theme }) => theme.primary};
 `;
 
-export const ProjectContainer = styled.div<{ position: number }>`
+export const ProjectContainer = styled.div<{ position: { type: string; value: number } }>`
   position: relative;
   min-width: 50vw;
   min-height: 100vh;
 
   ${({ position }) =>
-    position === 50
+    position.value === 50
       ? css`
           ${ProjectCard} {
             top: 50%;
@@ -39,20 +39,12 @@ export const ProjectContainer = styled.div<{ position: number }>`
         `
       : css`
           ${ProjectCard} {
-            top: ${position}rem;
-
-            ${mediaMaxWidth('desktop1920')`
-              top: ${position * 0.8}rem;
-            `}
-
-            ${mediaMinAspectRatio('ultrawide')`
-              top: ${position * 0.6}rem;
-            `}
+            ${position.type}: ${position.value}vh;
           }
         `}
 `;
 
-export const ProjectCard = styled.div<{ isVertical: boolean; position: number }>`
+export const ProjectCard = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -79,6 +71,7 @@ export const ProjectContent = styled.div<{ isVertical: boolean }>`
     isVertical
       ? css`
           width: 30rem;
+          min-width: 100px;
 
           ${mediaMinWidth('desktop2560')`
             width: 55rem;
@@ -87,12 +80,20 @@ export const ProjectContent = styled.div<{ isVertical: boolean }>`
           ${mediaMinAspectRatio('ultrawide')`
             width: 40rem;
           `}
+
+          ${mediaMaxWidth('desktop1024')`
+            width: 50rem;
+          `}
         `
       : css`
           width: 60rem;
 
           ${mediaMinWidth('desktop2560')`
             width: 90rem;
+          `}
+
+          ${mediaMaxWidth('desktop1024')`
+            width: 80rem;
           `}
         `}
 `;

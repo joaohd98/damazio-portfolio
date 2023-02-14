@@ -24,8 +24,8 @@ export default function Contact() {
   return (
     <S.Contact>
       <S.ContainerSocial>
-        <S.WrapperSocial>
-          <S.GetInTouchText>{getInTouch}</S.GetInTouchText>
+        <S.GetInTouchText>{getInTouch}</S.GetInTouchText>
+        <S.LinkContainer>
           <S.EmailText>{emailLabel}</S.EmailText>
           {emails.map(email => (
             <S.EmailValue key={email} href={`mailto:${email}`}>
@@ -39,7 +39,7 @@ export default function Contact() {
               </S.SocialLink>
             ))}
           </S.SocialMediaRow>
-        </S.WrapperSocial>
+        </S.LinkContainer>
       </S.ContainerSocial>
       <S.ContainerPong>
         <Pong />
