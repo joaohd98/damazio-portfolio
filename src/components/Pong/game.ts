@@ -9,7 +9,7 @@ type Constructor = {
 };
 
 type Rules = {
-  actual: 'player' | 'enemy';
+  firstPlay: 'player' | 'enemy';
   left: number;
   top: number;
   inscreaseLeft: number;
@@ -76,11 +76,11 @@ export default class PongModel {
     gsap.set(this.paddlePlayer, { top });
   };
 
-  startingPlaying(partial: Pick<Rules, 'actual' | 'enemySpeed'>) {
+  startingPlaying(partial: Pick<Rules, 'firstPlay' | 'enemySpeed'>) {
     this.rules = {
       ...partial,
-      left: partial.actual === 'player' ? 60 : 30,
-      inscreaseLeft: partial.actual === 'player' ? 0.7 : -0.7,
+      left: partial.firstPlay === 'player' ? 60 : 30,
+      inscreaseLeft: partial.firstPlay === 'player' ? 0.2 : -0.2,
       top: gsap.utils.random(20, 80),
       increaseTop: gsap.utils.random(-1, 1)
     };
@@ -106,9 +106,9 @@ export default class PongModel {
       throw Error('is necessary to call starting playing before');
     }
 
+    // const quarterPaddle = this.enemyBounds.height / 4;
     gsap.set(this.paddleEnemy, {
-      top: `${this.rules.top}%`,
-      duration: gsap.utils.random(this.rules.enemySpeed - 0.5, this.rules.enemySpeed + 0.5)
+      top: `${this.rules.top}%`
     });
 
     const newContainerBounds = this.container.getBoundingClientRect();
@@ -136,18 +136,20 @@ export default class PongModel {
     return this.rules.left <= -10 || this.rules.left >= 110;
   }
 
-  hasHitPlayerPaddle() {
+  hasHitPaddle(paddle: 'player' | 'enemy') {
     if (!this.rules) {
       throw Error('is necessary to call starting playing before');
     }
 
-    return (
-      this.playerBounds.top <= this.ballBounds.top &&
-      this.playerBounds.bottom >= this.ballBounds.bottom &&
-      this.playerBounds.right - this.playerBounds.width - 5 <= this.ballBounds.right &&
-      this.playerBounds.left + this.playerBounds.width + 5 >= this.ballBounds.left &&
-      this.rules.actual === 'player'
-    );
+    const eleA = paddle === 'player' ? this.playerBounds : this.enemyBounds;
+    const eleB = this.ballBounds;
+    if ((eleB.top >= eleA.top && eleB.top <= eleA.bottom) || (eleB.bottom >= eleA.top && eleB.bottom <= eleA.bottom)) {
+      return (
+        (eleB.left >= eleA.left && eleB.left <= eleA.right) || (eleB.right >= eleA.left && eleB.right <= eleA.right)
+      );
+    }
+
+    return false;
   }
 
   hittedPlayerPaddle() {
@@ -164,21 +166,6 @@ export default class PongModel {
     );
 
     this.rules.inscreaseLeft = -1.5;
-    this.rules.actual = 'enemy';
-  }
-
-  hasHitEnemyPaddle() {
-    if (!this.rules) {
-      throw Error('is necessary to call starting playing before');
-    }
-
-    return (
-      this.enemyBounds.top <= this.ballBounds.top &&
-      this.enemyBounds.bottom >= this.ballBounds.bottom &&
-      this.enemyBounds.x + this.enemyBounds.width >= this.ballBounds.x &&
-      this.enemyBounds.right - this.enemyBounds.width <= this.ballBounds.right &&
-      this.rules.actual === 'enemy'
-    );
   }
 
   hittedEnemyPaddle() {
@@ -195,6 +182,5 @@ export default class PongModel {
     );
 
     this.rules.inscreaseLeft = 1.5;
-    this.rules.actual = 'player';
   }
 }

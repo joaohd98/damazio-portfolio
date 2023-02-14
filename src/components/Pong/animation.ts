@@ -28,7 +28,7 @@ export default function () {
     const pong = new PongModel({ containerRef, paddlePlayerRef, paddleEnemyRef, ballRef });
 
     pong.startingPlaying({
-      actual: 'enemy',
+      firstPlay: 'player',
       enemySpeed: 0.6
     });
 
@@ -41,11 +41,11 @@ export default function () {
         return false;
       }
 
-      if (pong.hasHitPlayerPaddle()) {
+      if (pong.hasHitPaddle('player')) {
         pong.hittedPlayerPaddle();
       }
 
-      if (pong.hasHitEnemyPaddle()) {
+      if (pong.hasHitPaddle('enemy')) {
         pong.hittedEnemyPaddle();
       }
 
