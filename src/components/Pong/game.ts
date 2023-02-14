@@ -95,13 +95,36 @@ export default class PongModel {
     this.rules.top += this.rules.increaseTop;
 
     gsap.set(this.ball, { left: `${this.rules.left}%`, top: `${this.rules.top}%` });
-    gsap.to(this.paddleEnemy, {
-      top: `${gsap.utils.random(this.rules.top - 5, this.rules.top + 5)}%`,
-      duration: gsap.utils.random(this.rules.enemySpeed - 0.3, this.rules.enemySpeed + 0.3)
-    });
 
     if (this.rules.top <= 0 || this.rules.top >= 100) {
       this.rules.increaseTop *= -1;
+    }
+  }
+
+  moveEnemyPaddle() {
+    if (!this.rules) {
+      throw Error('is necessary to call starting playing before');
+    }
+
+    gsap.set(this.paddleEnemy, {
+      top: `${this.rules.top}%`,
+      duration: gsap.utils.random(this.rules.enemySpeed - 0.5, this.rules.enemySpeed + 0.5)
+    });
+
+    const newContainerBounds = this.container.getBoundingClientRect();
+    const newPaddleEnemyBound = this.paddleEnemy.getBoundingClientRect();
+
+    const topRelative = newContainerBounds.top - newPaddleEnemyBound.top;
+    const bottomRelative = newContainerBounds.bottom - newPaddleEnemyBound.bottom;
+    const halfPaddle = newPaddleEnemyBound.height / 2 - 1;
+    const halfBottomPaddle = newContainerBounds.height - newPaddleEnemyBound.height / 2 - 8;
+
+    if (topRelative >= 0) {
+      gsap.set(this.paddleEnemy, { top: halfPaddle });
+    }
+
+    if (bottomRelative <= 0) {
+      gsap.set(this.paddleEnemy, { top: halfBottomPaddle });
     }
   }
 

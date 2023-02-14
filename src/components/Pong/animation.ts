@@ -34,6 +34,7 @@ export default function () {
 
     const playingPong = () => {
       pong.moveBall();
+      pong.moveEnemyPaddle();
       pong.refreshRefs({ containerRef, paddlePlayerRef, paddleEnemyRef, ballRef });
 
       if (pong.hasFinishedGame()) {
