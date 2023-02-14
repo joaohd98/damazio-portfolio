@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { mediaMaxWidth, mediaMinWidth } from '@/utils/media-query';
+import { mediaBetween, mediaMaxWidth, mediaMinWidth } from '@/utils/media-query';
 
 export const Contact = styled.section`
   display: flex;
@@ -13,6 +13,7 @@ export const Contact = styled.section`
   ${mediaMaxWidth('desktop1024')`
     flex-direction: column-reverse;
     gap: 10rem;
+    margin: 5vh 5rem;
   `}
 `;
 
@@ -22,7 +23,7 @@ export const ContainerSocial = styled.div`
   justify-content: center;
   flex-direction: column;
 
-  ${mediaMaxWidth('desktop1024')`
+  ${mediaBetween('mobile', 'desktop1024', 1)`
     flex-direction: row;
     gap: 30rem;
   `}
@@ -31,8 +32,12 @@ export const ContainerSocial = styled.div`
 export const ContainerPong = styled.div`
   flex: 1;
 
-  ${mediaMaxWidth('mobile')`
+  @media (pointer: coarse) {
     display: none;
+  }
+
+  ${mediaMaxWidth('desktop1024')`
+    margin-bottom: 10rem;
   `}
 `;
 
@@ -42,6 +47,10 @@ export const GetInTouchText = styled.p`
   font-weight: 500;
   margin-bottom: 15rem;
   max-width: 70rem;
+
+  ${mediaMaxWidth('desktop1024')`
+    font-size: 5rem;
+  `}
 
   ${mediaMaxWidth('mobile')`
     font-size: 4rem;
@@ -56,6 +65,10 @@ export const EmailText = styled.p`
   font-size: 3rem;
   font-weight: 300;
   margin-bottom: 1.5rem;
+
+  ${mediaMaxWidth('desktop1024')`
+    font-size: 4rem;  
+  `}
 `;
 
 export const EmailValue = styled.a`
@@ -65,7 +78,7 @@ export const EmailValue = styled.a`
   font-weight: 300;
   margin-bottom: 0.5rem;
 
-  ${mediaMaxWidth('mobile')`
+  ${mediaMaxWidth('desktop1024')`
     font-size: 2.5rem;
     margin-bottom: 1rem;
   `}
@@ -92,11 +105,16 @@ export const SocialLink = styled.a`
   background-color: ${({ theme }) => theme.background};
   transition: background-color 0.4s linear;
 
+  ${mediaMaxWidth('desktop1024')`
+    width: 8rem;
+    height: 8rem;
+  `}
+
   svg {
     width: 3rem;
     height: 3rem;
 
-    ${mediaMaxWidth('mobile')`
+    ${mediaMaxWidth('desktop1024')`
       width: 5rem;
       height: 5rem;
     `}
