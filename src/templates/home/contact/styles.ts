@@ -39,7 +39,6 @@ export const ContainerPong = styled.div`
   flex: 1;
 
   ${mediaMaxWidth('mobile')`
-    display: none;
   `}
 `;
 
@@ -70,6 +69,7 @@ export const EmailValue = styled.a`
   margin-bottom: 0.5rem;
 
   ${mediaMaxWidth('mobile')`
+    font-size: 2.5rem;
     margin-bottom: 1rem;
   `}
 `;

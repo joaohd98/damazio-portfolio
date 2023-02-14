@@ -10,14 +10,15 @@ type Constructor = {
 
 type Rules = {
   firstPlay: 'player' | 'enemy';
+  current: 'player' | 'enemy';
   left: number;
   top: number;
   inscreaseLeft: number;
   increaseTop: number;
-  // 1 easy
-  // 0.8 medium
-  // 0.6 hard
-  enemySpeed: 0.6 | 0.8 | 1;
+  // 0.4 easy
+  // 0.6 medium
+  // 0.8 hard
+  enemySpeed: 0.4 | 0.6 | 0.8;
 };
 
 export default class PongModel {
@@ -79,8 +80,9 @@ export default class PongModel {
   startingPlaying(partial: Pick<Rules, 'firstPlay' | 'enemySpeed'>) {
     this.rules = {
       ...partial,
+      current: partial.firstPlay,
       left: partial.firstPlay === 'player' ? 60 : 30,
-      inscreaseLeft: partial.firstPlay === 'player' ? 0.2 : -0.2,
+      inscreaseLeft: partial.firstPlay === 'player' ? 1 : -1,
       top: gsap.utils.random(20, 80),
       increaseTop: gsap.utils.random(-1, 1)
     };
@@ -96,7 +98,7 @@ export default class PongModel {
 
     gsap.set(this.ball, { left: `${this.rules.left}%`, top: `${this.rules.top}%` });
 
-    if (this.rules.top <= 0 || this.rules.top >= 100) {
+    if (this.rules.top <= 5 || this.rules.top >= 95) {
       this.rules.increaseTop *= -1;
     }
   }
@@ -106,26 +108,27 @@ export default class PongModel {
       throw Error('is necessary to call starting playing before');
     }
 
-    // const quarterPaddle = this.enemyBounds.height / 4;
-    gsap.set(this.paddleEnemy, {
-      top: `${this.rules.top}%`
+    gsap.to(this.paddleEnemy, {
+      top: `${gsap.utils.random(this.rules.top - 5, this.rules.top + 5)}%`,
+      duration: this.rules.enemySpeed,
+      onUpdate: () => {
+        const newContainerBounds = this.container.getBoundingClientRect();
+        const newPaddleEnemyBound = this.paddleEnemy.getBoundingClientRect();
+
+        const topRelative = newContainerBounds.top - newPaddleEnemyBound.top;
+        const bottomRelative = newContainerBounds.bottom - newPaddleEnemyBound.bottom;
+        const halfPaddle = newPaddleEnemyBound.height / 2 - 1;
+        const halfBottomPaddle = newContainerBounds.height - newPaddleEnemyBound.height / 2 - 8;
+
+        if (topRelative >= 0) {
+          gsap.set(this.paddleEnemy, { top: halfPaddle });
+        }
+
+        if (bottomRelative <= 0) {
+          gsap.set(this.paddleEnemy, { top: halfBottomPaddle });
+        }
+      }
     });
-
-    const newContainerBounds = this.container.getBoundingClientRect();
-    const newPaddleEnemyBound = this.paddleEnemy.getBoundingClientRect();
-
-    const topRelative = newContainerBounds.top - newPaddleEnemyBound.top;
-    const bottomRelative = newContainerBounds.bottom - newPaddleEnemyBound.bottom;
-    const halfPaddle = newPaddleEnemyBound.height / 2 - 1;
-    const halfBottomPaddle = newContainerBounds.height - newPaddleEnemyBound.height / 2 - 8;
-
-    if (topRelative >= 0) {
-      gsap.set(this.paddleEnemy, { top: halfPaddle });
-    }
-
-    if (bottomRelative <= 0) {
-      gsap.set(this.paddleEnemy, { top: halfBottomPaddle });
-    }
   }
 
   hasFinishedGame() {
@@ -141,6 +144,10 @@ export default class PongModel {
       throw Error('is necessary to call starting playing before');
     }
 
+    if (this.rules.current !== paddle) {
+      return false;
+    }
+
     const eleA = paddle === 'player' ? this.playerBounds : this.enemyBounds;
     const eleB = this.ballBounds;
     if ((eleB.top >= eleA.top && eleB.top <= eleA.bottom) || (eleB.bottom >= eleA.top && eleB.bottom <= eleA.bottom)) {
@@ -152,35 +159,24 @@ export default class PongModel {
     return false;
   }
 
-  hittedPlayerPaddle() {
+  hittedPaddle(paddle: 'player' | 'enemy') {
     if (!this.rules) {
       throw Error('is necessary to call starting playing before');
     }
 
-    this.rules.increaseTop = gsap.utils.mapRange(
-      this.playerBounds.top,
-      this.playerBounds.top + this.playerBounds.height,
+    const isPlayer = paddle === 'player';
+    const paddleBound = isPlayer ? this.playerBounds : this.enemyBounds;
+
+    const increaseTop = gsap.utils.mapRange(
+      paddleBound.top - 10,
+      paddleBound.bottom + 10,
       -2.5,
       2.5,
       this.ballBounds.top + this.ballBounds.height / 2
     );
 
-    this.rules.inscreaseLeft = -1.5;
-  }
-
-  hittedEnemyPaddle() {
-    if (!this.rules) {
-      throw Error('is necessary to call starting playing before');
-    }
-
-    this.rules.increaseTop = gsap.utils.mapRange(
-      this.enemyBounds.top,
-      this.enemyBounds.top + this.enemyBounds.height,
-      -2.5,
-      2.5,
-      this.ballBounds.top + this.ballBounds.height / 2
-    );
-
-    this.rules.inscreaseLeft = 1.5;
+    this.rules.increaseTop = gsap.utils.clamp(-2.5, 2.5, increaseTop);
+    this.rules.current = isPlayer ? 'enemy' : 'player';
+    this.rules.inscreaseLeft = isPlayer ? -2 : 2;
   }
 }

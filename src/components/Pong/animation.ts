@@ -29,7 +29,7 @@ export default function () {
 
     pong.startingPlaying({
       firstPlay: 'player',
-      enemySpeed: 0.6
+      enemySpeed: 0.4
     });
 
     const playingPong = () => {
@@ -42,11 +42,11 @@ export default function () {
       }
 
       if (pong.hasHitPaddle('player')) {
-        pong.hittedPlayerPaddle();
+        pong.hittedPaddle('player');
       }
 
       if (pong.hasHitPaddle('enemy')) {
-        pong.hittedEnemyPaddle();
+        pong.hittedPaddle('enemy');
       }
 
       return true;

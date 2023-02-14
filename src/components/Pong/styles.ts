@@ -11,8 +11,8 @@ export const Pong = styled.div`
 
 export const Container = styled.div`
   position: relative;
-  width: 80rem;
-  height: 50rem;
+  width: 90rem;
+  height: 60rem;
   border-top: 1rem solid ${({ theme }) => theme.primary};
   border-bottom: 1rem solid ${({ theme }) => theme.primary};
   overflow: hidden;
