@@ -1,10 +1,10 @@
 import * as S from './styles';
-import useGame from './game';
+import useAnimation from './animation';
 
 const dots = Array.from(Array(10).keys());
 
 export default function Pong() {
-  const { containerRef, paddlePlayerRef, paddleEnemyRef, ballRef } = useGame();
+  const { containerRef, paddlePlayerRef, paddleEnemyRef, ballRef } = useAnimation();
 
   return (
     <S.Pong>
