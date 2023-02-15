@@ -1,69 +1,25 @@
-import { useEffect, useRef } from 'react';
-import useRequestFrameAnimationLoop from '@/hooks/useRequestFrameAnimationLoop';
-import PongModel from './game';
+import { useRef } from 'react';
+import gsap from 'gsap';
+import PongOptions from './props';
 
-export default function () {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const paddlePlayerRef = useRef<HTMLDivElement>(null);
-  const paddleEnemyRef = useRef<HTMLDivElement>(null);
-  const ballRef = useRef<HTMLDivElement>(null);
+export default function (setOptionsPartial: (partial: Partial<PongOptions>) => void) {
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
-  const { startLoop } = useRequestFrameAnimationLoop();
+  const onChangeOption = (partial: Partial<PongOptions>, withoutAnimation?: boolean) => {
+    if (withoutAnimation) {
+      setOptionsPartial(partial);
+      return;
+    }
 
-  useEffect(() => {
-    startPlayingPong();
+    const tl = gsap.timeline();
 
-    containerRef.current?.addEventListener('mouseenter', onMouseMove);
-    containerRef.current?.addEventListener('mousemove', onMouseMove);
-    containerRef.current?.addEventListener('mouseleave', onMouseMove);
-
-    return () => {
-      containerRef.current?.removeEventListener('mouseenter', onMouseMove);
-      containerRef.current?.removeEventListener('mousemove', onMouseMove);
-      containerRef.current?.removeEventListener('mouseleave', onMouseMove);
-    };
-  }, []);
-
-  const startPlayingPong = () => {
-    const pong = new PongModel({ containerRef, paddlePlayerRef, paddleEnemyRef, ballRef });
-
-    pong.startingPlaying({
-      firstPlay: 'player',
-      enemySpeed: 0.4
-    });
-
-    const playingPong = () => {
-      pong.moveBall();
-      pong.moveEnemyPaddle();
-      pong.refreshRefs({ containerRef, paddlePlayerRef, paddleEnemyRef, ballRef });
-
-      if (pong.hasFinishedGame()) {
-        return false;
-      }
-
-      if (pong.hasHitPaddle('player')) {
-        pong.hittedPaddle('player');
-      }
-
-      if (pong.hasHitPaddle('enemy')) {
-        pong.hittedPaddle('enemy');
-      }
-
-      return true;
-    };
-
-    startLoop(playingPong);
-  };
-
-  const onMouseMove = (event: MouseEvent) => {
-    const pong = new PongModel({ containerRef, paddlePlayerRef, paddleEnemyRef, ballRef });
-    pong.onPaddleMove(event);
+    tl.to(wrapperRef.current, { opacity: 0, duration: 0.2 });
+    tl.call(() => setOptionsPartial(partial));
+    tl.to(wrapperRef.current, { opacity: 1, duration: 0.2 });
   };
 
   return {
-    containerRef,
-    paddlePlayerRef,
-    paddleEnemyRef,
-    ballRef
+    wrapperRef,
+    onChangeOption
   };
 }

@@ -2,7 +2,7 @@ import { MutableRefObject } from 'react';
 import gsap from 'gsap';
 
 type Constructor = {
-  containerRef: MutableRefObject<HTMLDivElement | null>;
+  pongTableRef: MutableRefObject<HTMLDivElement | null>;
   paddlePlayerRef: MutableRefObject<HTMLDivElement | null>;
   paddleEnemyRef: MutableRefObject<HTMLDivElement | null>;
   ballRef: MutableRefObject<HTMLDivElement | null>;
@@ -44,12 +44,12 @@ export default class PongModel {
     this.refreshRefs(constructor);
   }
 
-  refreshRefs = ({ containerRef, paddlePlayerRef, paddleEnemyRef, ballRef }: Constructor) => {
-    if (!containerRef.current || !paddlePlayerRef.current || !paddleEnemyRef.current || !ballRef.current) {
+  refreshRefs = ({ pongTableRef, paddlePlayerRef, paddleEnemyRef, ballRef }: Constructor) => {
+    if (!pongTableRef.current || !paddlePlayerRef.current || !paddleEnemyRef.current || !ballRef.current) {
       throw new Error('Arguments Invalid');
     }
 
-    this.container = containerRef.current;
+    this.container = pongTableRef.current;
     this.paddlePlayer = paddlePlayerRef.current;
     this.paddleEnemy = paddleEnemyRef.current;
     this.ball = ballRef.current;
@@ -96,7 +96,7 @@ export default class PongModel {
     this.rules.left += this.rules.inscreaseLeft;
     this.rules.top += this.rules.increaseTop;
 
-    gsap.set(this.ball, { left: `${this.rules.left}%`, top: `${this.rules.top}%` });
+    gsap.set(this.ball, { left: `${this.rules.left}%`, top: `${this.rules.top}%`, opacity: 1 });
 
     if (this.rules.top <= 5 || this.rules.top >= 95) {
       this.rules.increaseTop *= -1;

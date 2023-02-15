@@ -1,14 +1,19 @@
 import { useEffect, useRef } from 'react';
 
 export default function () {
+  const isPausedRef = useRef(false);
   const animationFrameRef = useRef<number | null>(null);
 
   const startLoop = (call: () => boolean) => {
-    const keep = call();
+    const keep = isPausedRef.current ? true : call();
 
     if (keep) {
       animationFrameRef.current = requestAnimationFrame(() => startLoop(call));
     }
+  };
+
+  const setStatusLoop = (status: 'pause' | 'resume') => {
+    isPausedRef.current = status === 'pause';
   };
 
   const stopLoop = () => {
@@ -23,6 +28,7 @@ export default function () {
 
   return {
     startLoop,
-    stopLoop
+    stopLoop,
+    setStatusLoop
   };
 }

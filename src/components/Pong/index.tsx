@@ -1,25 +1,22 @@
+import useStateMultiObj from '@/hooks/useStateMultiObj';
+import PongOptions from '@/components/Pong/props';
+import PongMenu from '@/components/Pong/Menu';
 import * as S from './styles';
 import useAnimation from './animation';
-
-const dots = Array.from(Array(10).keys());
+import PongGame from './Game';
 
 export default function Pong() {
-  const { containerRef, paddlePlayerRef, paddleEnemyRef, ballRef } = useAnimation();
+  const [options, , setOptionsPartial] = useStateMultiObj<PongOptions>({ hasStartedPlayed: false });
+  const { wrapperRef, onChangeOption } = useAnimation(setOptionsPartial);
 
   return (
     <S.Pong>
-      <S.Container ref={containerRef}>
-        <S.ScorePlayer>2</S.ScorePlayer>
-        <S.ScoreEnemy>5</S.ScoreEnemy>
-        <S.Divider>
-          {dots.map(dot => (
-            <S.DividerDot key={dot} />
-          ))}
-        </S.Divider>
-        <S.PaddlePlayer ref={paddlePlayerRef} />
-        <S.PaddleEnemy ref={paddleEnemyRef} />
-        <S.Ball ref={ballRef} />
-      </S.Container>
+      <S.TableBound>
+        <S.Wrapper ref={wrapperRef}>
+          <PongGame hasInitGame={options.hasStartedPlayed && !!options.dificulty} options={options} />
+          <PongMenu options={options} onChangeOption={onChangeOption} />
+        </S.Wrapper>
+      </S.TableBound>
     </S.Pong>
   );
 }
