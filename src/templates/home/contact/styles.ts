@@ -12,8 +12,7 @@ export const Contact = styled.section`
 
   ${mediaMaxWidth('desktop1024')`
     flex-direction: column-reverse;
-    gap: 10rem;
-    margin: 5vh 5rem;
+    margin: 5rem;
   `}
 `;
 
@@ -31,10 +30,6 @@ export const ContainerSocial = styled.div`
 
 export const ContainerPong = styled.div`
   flex: 1;
-
-  @media (pointer: coarse) {
-    display: none;
-  }
 
   ${mediaMaxWidth('desktop1024')`
     margin-bottom: 10rem;

@@ -15,11 +15,12 @@ export default function ({ options, onScore }: Pick<PongGameProps, 'options' | '
     pongTableRef.current?.addEventListener('mouseenter', onMouseMove);
     pongTableRef.current?.addEventListener('mousemove', onMouseMove);
     pongTableRef.current?.addEventListener('mouseleave', onMouseMove);
+    pongTableRef.current?.addEventListener('touchstart', onTouchMove);
 
     return () => {
       pongTableRef.current?.removeEventListener('mouseenter', onMouseMove);
       pongTableRef.current?.removeEventListener('mousemove', onMouseMove);
-      pongTableRef.current?.removeEventListener('mouseleave', onMouseMove);
+      pongTableRef.current?.removeEventListener('touchstart', onTouchMove);
     };
   }, [options]);
 
@@ -27,13 +28,17 @@ export default function ({ options, onScore }: Pick<PongGameProps, 'options' | '
     setStatusLoop(options.paused ? 'pause' : 'resume');
   }, [options.paused]);
 
-  const onMouseMove = (event: MouseEvent) => {
+  const onTouchMove = (event: globalThis.TouchEvent) => {
+    onMouseMove({ clientY: event.touches[0].clientY });
+  };
+
+  const onMouseMove = (event: { clientY: number }) => {
     if (!options.hasStartedPlayed || !options.dificulty || !!options.winner) {
       return;
     }
 
     const pong = new PongModel({ pongTableRef, paddlePlayerRef, paddleEnemyRef, ballRef });
-    pong.onPaddleMove(event);
+    pong.onPaddleMove(event.clientY);
   };
 
   const startPlayingPong = () => {

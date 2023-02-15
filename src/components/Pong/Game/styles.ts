@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { mediaMaxWidth } from '@/utils/media-query';
 
 export const PongTable = styled.div`
   position: relative;
@@ -15,14 +16,26 @@ const Score = styled.p`
   transform: translateX(-50%);
   text-stroke: 0.1rem ${({ theme }) => theme.primary};
   -webkit-text-stroke: 0.1rem ${({ theme }) => theme.primary};
+
+  ${mediaMaxWidth('mobile')`
+    font-size: 6rem;
+  `}
 `;
 
 export const ScoreEnemy = styled(Score)`
   left: 60%;
+
+  ${mediaMaxWidth('mobile')`
+    left: 65%;
+  `}
 `;
 
 export const ScorePlayer = styled(Score)`
   left: 40%;
+
+  ${mediaMaxWidth('mobile')`
+    left: 35%;
+  `}
 `;
 
 export const Divider = styled.div`
@@ -40,6 +53,11 @@ export const DividerDot = styled.div`
   height: 2.5rem;
   width: 2.5rem;
   background-color: ${({ theme }) => theme.primary};
+
+  ${mediaMaxWidth('mobile')`
+    height: 2rem;
+    width: 2rem;
+  `}
 `;
 
 const Paddle = styled.div`

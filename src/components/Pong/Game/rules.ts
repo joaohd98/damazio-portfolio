@@ -1,5 +1,6 @@
 import { MutableRefObject } from 'react';
 import gsap from 'gsap';
+import { viewportsBase } from '@/styles/viewport-base';
 
 type Constructor = {
   pongTableRef: MutableRefObject<HTMLDivElement | null>;
@@ -60,8 +61,8 @@ export default class PongModel {
     this.enemyBounds = this.paddleEnemy.getBoundingClientRect();
   };
 
-  onPaddleMove = (event: MouseEvent) => {
-    const top = event.clientY - this.containerBounds.top;
+  onPaddleMove = (clientY: number) => {
+    const top = clientY - this.containerBounds.top;
     const halfPaddle = this.paddlePlayer.clientHeight / 2 - 1;
     if (top < halfPaddle) {
       gsap.set(this.paddlePlayer, { top: halfPaddle });
@@ -188,9 +189,10 @@ export default class PongModel {
       2.5,
       this.ballBounds.top + this.ballBounds.height / 2
     );
-
     this.rules.increaseTop = gsap.utils.clamp(-2.5, 2.5, increaseTop);
     this.rules.current = isPlayer ? 'enemy' : 'player';
-    this.rules.inscreaseLeft = isPlayer ? -2 : 2;
+
+    const increaseLeft = window.innerWidth > viewportsBase.mobile.width ? 2 : 1.5;
+    this.rules.inscreaseLeft = isPlayer ? -increaseLeft : increaseLeft;
   }
 }

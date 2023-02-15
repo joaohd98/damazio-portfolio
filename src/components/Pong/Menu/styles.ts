@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { mediaMaxWidth } from '@/utils/media-query';
 
 export const MenuOverlay = styled.div`
   position: absolute;
@@ -49,14 +50,27 @@ export const TextButton = styled.button`
   }
 `;
 
+export const RestartButon = styled(TextButton)`
+  background: ${({ theme }) => theme.background};
+  margin-top: 2rem;
+`;
+
 export const MenuText = styled.p`
   font-family: 'Gotham HTF';
   font-size: 3.5rem;
   font-weight: 500;
+
+  ${mediaMaxWidth('mobile')`
+    font-size: 3rem;
+  `}
 `;
 
 export const OverlayText = styled(MenuText)`
   position: absolute;
   left: 5rem;
   bottom: 3rem;
+
+  ${mediaMaxWidth('mobile')`
+    font-size: 2.5rem;
+  `}
 `;

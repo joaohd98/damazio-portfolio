@@ -4,16 +4,8 @@ import * as S from './styles';
 import useConst from '../const';
 
 export default function PongMenu({ options, onChangeOption, restartGame }: PongMenuProps) {
-  const {
-    startGame,
-    pong,
-    difficulties,
-    instructionToPause,
-    instructionToResume,
-    youWon,
-    youtLost,
-    instructionToRestart
-  } = useConst();
+  const { startGame, pong, difficulties, instructionToPause, instructionToResume, youWon, youtLost, restart } =
+    useConst();
 
   useEffect(() => {
     const onKeyboardListener = (event: globalThis.KeyboardEvent) => {
@@ -23,10 +15,6 @@ export default function PongMenu({ options, onChangeOption, restartGame }: PongM
 
       if (event.key === 'p') {
         onChangeOption({ paused: !options.paused }, true);
-      }
-
-      if (options.winner && event.key === 'r') {
-        restartGame();
       }
     };
 
@@ -70,7 +58,7 @@ export default function PongMenu({ options, onChangeOption, restartGame }: PongM
         <S.OverlayText>
           {options.winner === 'player' ? youWon : youtLost}
           <br />
-          {instructionToRestart}
+          <S.RestartButon onClick={restartGame}>{restart}</S.RestartButon>
         </S.OverlayText>
       );
     }

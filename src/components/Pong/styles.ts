@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { mediaMaxWidth } from '@/utils/media-query';
 
 export const Pong = styled.div`
   display: flex;
@@ -12,9 +13,22 @@ export const TableBound = styled.div`
   position: relative;
   width: 90rem;
   height: 60rem;
-  border-top: 1rem solid ${({ theme }) => theme.primary};
-  border-bottom: 1rem solid ${({ theme }) => theme.primary};
+  border-style: solid;
+  border-color: ${({ theme }) => theme.primary};
+  border-top-width: 1rem;
+  border-bottom-width: 1rem;
+  border-left-width: 0;
+  border-right-width: 0;
   overflow: hidden;
+
+  ${mediaMaxWidth('mobile')`
+    width: 90vw;
+    height: 40vh;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 1rem;
+    border-right-width: 1rem;
+  `}
 `;
 
 export const Wrapper = styled.div`
