@@ -111,32 +111,33 @@ export default class PongModel {
       throw Error('is necessary to call starting playing before');
     }
 
+    const halfTopPaddle = this.enemyBounds.height / 2;
+    const halfBottomPaddle = this.containerBounds.height - halfTopPaddle;
+    const halfBall = this.ballBounds.height / 2;
+
+    const paddleTopRelative = this.enemyBounds.top - this.containerBounds.top + halfTopPaddle;
+    const ballTopRelative = this.ballBounds.top - this.containerBounds.top + halfBall;
+
+    const distance = paddleTopRelative - ballTopRelative;
+
     const enemySpeed = {
-      easy: 0.4,
-      normal: 0.6,
-      hard: 0.8
-    };
+      easy: 5,
+      normal: 6,
+      hard: 7
+    }[this.rules.dificulty];
 
-    gsap.to(this.paddleEnemy, {
-      top: `${gsap.utils.random(this.rules.top - 5, this.rules.top + 5)}%`,
-      duration: enemySpeed[this.rules.dificulty],
-      onUpdate: () => {
-        const newContainerBounds = this.container.getBoundingClientRect();
-        const newPaddleEnemyBound = this.paddleEnemy.getBoundingClientRect();
+    let increase = 0;
 
-        const topRelative = newContainerBounds.top - newPaddleEnemyBound.top;
-        const bottomRelative = newContainerBounds.bottom - newPaddleEnemyBound.bottom;
-        const halfPaddle = newPaddleEnemyBound.height / 2 - 1;
-        const halfBottomPaddle = newContainerBounds.height - newPaddleEnemyBound.height / 2;
+    if (distance < -halfTopPaddle) {
+      increase = gsap.utils.random(enemySpeed - 0.3, enemySpeed + 0.3);
+    }
 
-        if (topRelative >= 0) {
-          gsap.set(this.paddleEnemy, { top: halfPaddle });
-        }
+    if (distance > halfTopPaddle) {
+      increase = -gsap.utils.random(enemySpeed - 0.3, enemySpeed + 0.3);
+    }
 
-        if (bottomRelative <= 0) {
-          gsap.set(this.paddleEnemy, { top: halfBottomPaddle });
-        }
-      }
+    gsap.set(this.paddleEnemy, {
+      top: gsap.utils.clamp(halfTopPaddle, halfBottomPaddle, paddleTopRelative + increase)
     });
   }
 

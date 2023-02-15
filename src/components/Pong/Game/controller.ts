@@ -20,6 +20,7 @@ export default function ({ options, onScore }: Pick<PongGameProps, 'options' | '
     return () => {
       pongTableRef.current?.removeEventListener('mouseenter', onMouseMove);
       pongTableRef.current?.removeEventListener('mousemove', onMouseMove);
+      pongTableRef.current?.removeEventListener('mouseleave', onMouseMove);
       pongTableRef.current?.removeEventListener('touchstart', onTouchMove);
     };
   }, [options]);
