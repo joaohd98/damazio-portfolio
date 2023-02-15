@@ -3,7 +3,7 @@ import useRequestFrameAnimationLoop from '@/hooks/useRequestFrameAnimationLoop';
 import PongModel from './rules';
 import PongGameProps from './props';
 
-export default function ({ options, onScore, whoHasWon }: Pick<PongGameProps, 'options' | 'onScore' | 'whoHasWon'>) {
+export default function ({ options, onScore }: Pick<PongGameProps, 'options' | 'onScore'>) {
   const pongTableRef = useRef<HTMLDivElement>(null);
   const paddlePlayerRef = useRef<HTMLDivElement>(null);
   const paddleEnemyRef = useRef<HTMLDivElement>(null);
@@ -21,14 +21,14 @@ export default function ({ options, onScore, whoHasWon }: Pick<PongGameProps, 'o
       pongTableRef.current?.removeEventListener('mousemove', onMouseMove);
       pongTableRef.current?.removeEventListener('mouseleave', onMouseMove);
     };
-  }, [options, whoHasWon]);
+  }, [options]);
 
   useEffect(() => {
     setStatusLoop(options.paused ? 'pause' : 'resume');
   }, [options.paused]);
 
   const onMouseMove = (event: MouseEvent) => {
-    if (!options.hasStartedPlayed || !options.dificulty || !!whoHasWon) {
+    if (!options.hasStartedPlayed || !options.dificulty || !!options.winner) {
       return;
     }
 

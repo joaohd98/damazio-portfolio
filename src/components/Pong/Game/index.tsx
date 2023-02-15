@@ -1,35 +1,28 @@
-import useEffectOnlyChanges from '@/hooks/useEffectOnlyChanges';
+import { forwardRef, useImperativeHandle } from 'react';
 import * as S from './styles';
 import useController from './controller';
-import PongGameProps from './props';
+import PongGameProps, { PongGameRef } from './props';
 
 const dots = Array.from(Array(10).keys());
 
-export default function PongGame({ hasInitGame, options, scorePlayer, scoreEnemy, onScore, whoHasWon }: PongGameProps) {
+const PongGame = forwardRef<PongGameRef, PongGameProps>(({ options, onScore }, ref) => {
   const { pongTableRef, ballRef, paddlePlayerRef, paddleEnemyRef, startPlayingPong } = useController({
     options,
-    onScore,
-    whoHasWon
+    onScore
   });
 
-  useEffectOnlyChanges(() => {
-    if (hasInitGame) {
-      startPlayingPong();
-    }
-  }, [hasInitGame]);
-
-  useEffectOnlyChanges(() => {
-    if (whoHasWon !== undefined) {
-      return;
-    }
-
-    startPlayingPong();
-  }, [options.firstPlaying]);
+  useImperativeHandle(
+    ref,
+    () => ({
+      startPlayingPong
+    }),
+    [options]
+  );
 
   return (
     <S.PongTable ref={pongTableRef}>
-      <S.ScorePlayer>{scorePlayer}</S.ScorePlayer>
-      <S.ScoreEnemy>{scoreEnemy}</S.ScoreEnemy>
+      <S.ScorePlayer>{options.scorePlayer}</S.ScorePlayer>
+      <S.ScoreEnemy>{options.scoreEnemy}</S.ScoreEnemy>
       <S.Divider>
         {dots.map(dot => (
           <S.DividerDot key={dot} />
@@ -40,4 +33,6 @@ export default function PongGame({ hasInitGame, options, scorePlayer, scoreEnemy
       <S.Ball ref={ballRef} />
     </S.PongTable>
   );
-}
+});
+
+export default PongGame;

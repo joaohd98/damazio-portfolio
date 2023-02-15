@@ -1,24 +1,17 @@
-import { useState } from 'react';
+import useStateRef from '@/hooks/useStateRef';
 
-const useStateMultiObj = <T>(
-  intialState: T
-): [T, (index: keyof T, value: T[keyof T], removeOthers?: boolean) => void, (partial: Partial<T>) => void] => {
-  const [state, setState] = useState<T>(intialState);
+const useStateMultiObj = <T>(intialState: T) => {
+  const [state, setState, stateRef] = useStateRef<T>(intialState);
 
-  return [
-    state,
-    (index, value, removeOthers) => {
-      if (removeOthers) {
-        setState({ ...intialState, [index]: value });
-        return;
-      }
+  const onChangePartial = (partial: Partial<T>) => {
+    setState({ ...state, ...partial });
+  };
 
-      setState({ ...state, [index]: value });
-    },
-    partial => {
-      setState({ ...state, ...partial });
-    }
-  ];
+  const restoreInitialState = () => {
+    setState(intialState);
+  };
+
+  return [state, onChangePartial, stateRef, restoreInitialState] as const;
 };
 
 export default useStateMultiObj;

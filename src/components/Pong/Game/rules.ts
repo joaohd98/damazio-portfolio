@@ -98,7 +98,7 @@ export default class PongModel {
 
     gsap.set(this.ball, { left: `${this.rules.left}%`, top: `${this.rules.top}%`, opacity: 1 });
 
-    if (this.rules.top <= 5 || this.rules.top >= 95) {
+    if (this.rules.top <= 1 || this.rules.top >= 99) {
       this.rules.increaseTop *= -1;
     }
   }

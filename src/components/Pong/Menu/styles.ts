@@ -51,7 +51,7 @@ export const TextButton = styled.button`
 
 export const MenuText = styled.p`
   font-family: 'Gotham HTF';
-  font-size: 4rem;
+  font-size: 3.5rem;
   font-weight: 500;
 `;
 

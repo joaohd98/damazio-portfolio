@@ -9,7 +9,8 @@ export default function () {
       instructionToPause: 'Press (P) to pause',
       instructionToResume: 'Paused, press (P) to continue',
       youWon: 'YOU WON',
-      youtLost: 'YOU LOST'
+      youtLost: 'YOU LOST',
+      instructionToRestart: 'Press (R) to go back to start'
     },
     'pt-BR': {
       startGame: 'INICIAR JOGO',
@@ -17,7 +18,8 @@ export default function () {
       instructionToPause: 'Pressione (P) para pausar',
       instructionToResume: 'Pausado, pressione (P) para continuar',
       youWon: 'VOCÊ VENCEU',
-      youtLost: 'VOCÊ PERDEU'
+      youtLost: 'VOCÊ PERDEU',
+      instructionToRestart: 'Pressione (R) para voltar para o começo'
     }
   });
 }
