@@ -1,14 +1,11 @@
 import { useEffect, useMemo } from 'react';
-import PongOptions from '@/components/Pong/props';
+import PongMenuProps from './props';
 import * as S from './styles';
+import useConst from '../const';
 
-type Props = {
-  options: PongOptions;
-  onChangeOption: (partial: Partial<PongOptions>, wihoutAnimation?: boolean) => void;
-  hasWon?: 'player' | 'enemy';
-};
+export default function PongMenu({ options, onChangeOption, hasWon }: PongMenuProps) {
+  const { startGame, difficulties, instructionToPause, instructionToResume, youWon, youtLost } = useConst();
 
-export default function PongMenu({ options, onChangeOption, hasWon }: Props) {
   useEffect(() => {
     const onKeyboardListener = (event: globalThis.KeyboardEvent) => {
       if (!options.hasStartedPlayed || !options.dificulty) {
@@ -32,7 +29,7 @@ export default function PongMenu({ options, onChangeOption, hasWon }: Props) {
         <S.MenuOverlay>
           <S.PongText>PONG</S.PongText>
           <S.ButtonsContainer>
-            <S.TextButton onClick={() => onChangeOption({ hasStartedPlayed: true })}>START GAME</S.TextButton>
+            <S.TextButton onClick={() => onChangeOption({ hasStartedPlayed: true })}>{startGame}</S.TextButton>
           </S.ButtonsContainer>
         </S.MenuOverlay>
       );
@@ -42,21 +39,21 @@ export default function PongMenu({ options, onChangeOption, hasWon }: Props) {
       return (
         <S.MenuOverlay>
           <S.ButtonsContainer>
-            <S.TextButton onClick={() => onChangeOption({ dificulty: 'easy' })}>EASY</S.TextButton>
-            <S.TextButton onClick={() => onChangeOption({ dificulty: 'normal' })}>NORMAL</S.TextButton>
-            <S.TextButton onClick={() => onChangeOption({ dificulty: 'hard' })}>HARD</S.TextButton>
-            <S.MenuText>Press (P) to pause</S.MenuText>
+            <S.TextButton onClick={() => onChangeOption({ dificulty: 'easy' })}>{difficulties[0]}</S.TextButton>
+            <S.TextButton onClick={() => onChangeOption({ dificulty: 'normal' })}>{difficulties[1]}</S.TextButton>
+            <S.TextButton onClick={() => onChangeOption({ dificulty: 'hard' })}>{difficulties[2]}</S.TextButton>
+            <S.MenuText>{instructionToPause}</S.MenuText>
           </S.ButtonsContainer>
         </S.MenuOverlay>
       );
     }
 
     if (options.paused) {
-      return <S.OverlayText>Paused, press P to continue</S.OverlayText>;
+      return <S.OverlayText>{instructionToResume}</S.OverlayText>;
     }
 
     if (hasWon !== undefined) {
-      return <S.OverlayText>{hasWon === 'player' ? 'YOU WON' : 'YOU LOST'}</S.OverlayText>;
+      return <S.OverlayText>{hasWon === 'player' ? youWon : youtLost}</S.OverlayText>;
     }
 
     return <div />;

@@ -1,30 +1,30 @@
-import { useEffect, useState } from 'react';
-import PongOptions from '@/components/Pong/props';
+import useEffectOnlyChanges from '@/hooks/useEffectOnlyChanges';
 import * as S from './styles';
 import useController from './controller';
+import PongGameProps from './props';
 
 const dots = Array.from(Array(10).keys());
 
-type Props = {
-  hasInitGame: boolean;
-  options: PongOptions;
-};
+export default function PongGame({ hasInitGame, options, scorePlayer, scoreEnemy, onScore }: PongGameProps) {
+  const { pongTableRef, ballRef, paddlePlayerRef, paddleEnemyRef, startPlayingPong } = useController({
+    options,
+    onScore
+  });
 
-export default function PongGame({ hasInitGame, options }: Props) {
-  const [score] = useState({ player: 0, enemy: 0 });
-
-  const { pongTableRef, ballRef, paddlePlayerRef, paddleEnemyRef, startPlayingPong } = useController(options);
-
-  useEffect(() => {
+  useEffectOnlyChanges(() => {
     if (hasInitGame) {
       startPlayingPong();
     }
   }, [hasInitGame]);
 
+  useEffectOnlyChanges(() => {
+    startPlayingPong();
+  }, [options.firstPlaying]);
+
   return (
     <S.PongTable ref={pongTableRef}>
-      <S.ScorePlayer>{score.player}</S.ScorePlayer>
-      <S.ScoreEnemy>{score.enemy}</S.ScoreEnemy>
+      <S.ScorePlayer>{scorePlayer}</S.ScorePlayer>
+      <S.ScoreEnemy>{scoreEnemy}</S.ScoreEnemy>
       <S.Divider>
         {dots.map(dot => (
           <S.DividerDot key={dot} />

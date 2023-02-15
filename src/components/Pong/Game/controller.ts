@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react';
 import useRequestFrameAnimationLoop from '@/hooks/useRequestFrameAnimationLoop';
-import PongOptions from '@/components/Pong/props';
 import PongModel from './rules';
+import PongGameProps from './props';
 
-export default function (options: PongOptions) {
+export default function ({ options, onScore }: Pick<PongGameProps, 'options' | 'onScore'>) {
   const pongTableRef = useRef<HTMLDivElement>(null);
   const paddlePlayerRef = useRef<HTMLDivElement>(null);
   const paddleEnemyRef = useRef<HTMLDivElement>(null);
@@ -36,8 +36,8 @@ export default function (options: PongOptions) {
     const pong = new PongModel({ pongTableRef, paddlePlayerRef, paddleEnemyRef, ballRef });
 
     pong.startingPlaying({
-      firstPlay: 'player',
-      enemySpeed: 0.4
+      firstPlay: options.firstPlaying,
+      dificulty: options.dificulty!
     });
 
     const playingPong = () => {
@@ -45,7 +45,9 @@ export default function (options: PongOptions) {
       pong.moveEnemyPaddle();
       pong.refreshRefs({ pongTableRef, paddlePlayerRef, paddleEnemyRef, ballRef });
 
-      if (pong.hasFinishedGame()) {
+      const whoWon = pong.hasWinnerGame();
+      if (whoWon) {
+        onScore(whoWon);
         return false;
       }
 

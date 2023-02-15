@@ -18,7 +18,7 @@ type Rules = {
   // 0.4 easy
   // 0.6 medium
   // 0.8 hard
-  enemySpeed: 0.4 | 0.6 | 0.8;
+  dificulty: 'easy' | 'normal' | 'hard';
 };
 
 export default class PongModel {
@@ -77,7 +77,7 @@ export default class PongModel {
     gsap.set(this.paddlePlayer, { top });
   };
 
-  startingPlaying(partial: Pick<Rules, 'firstPlay' | 'enemySpeed'>) {
+  startingPlaying(partial: Pick<Rules, 'firstPlay' | 'dificulty'>) {
     this.rules = {
       ...partial,
       current: partial.firstPlay,
@@ -108,9 +108,15 @@ export default class PongModel {
       throw Error('is necessary to call starting playing before');
     }
 
+    const enemySpeed = {
+      easy: 0.4,
+      normal: 0.6,
+      hard: 0.8
+    };
+
     gsap.to(this.paddleEnemy, {
       top: `${gsap.utils.random(this.rules.top - 5, this.rules.top + 5)}%`,
-      duration: this.rules.enemySpeed,
+      duration: enemySpeed[this.rules.dificulty],
       onUpdate: () => {
         const newContainerBounds = this.container.getBoundingClientRect();
         const newPaddleEnemyBound = this.paddleEnemy.getBoundingClientRect();
@@ -131,12 +137,20 @@ export default class PongModel {
     });
   }
 
-  hasFinishedGame() {
+  hasWinnerGame() {
     if (!this.rules) {
       throw Error('is necessary to call starting playing before');
     }
 
-    return this.rules.left <= -10 || this.rules.left >= 110;
+    if (this.rules.left <= -10) {
+      return 'player';
+    }
+
+    if (this.rules.left >= 110) {
+      return 'enemy';
+    }
+
+    return undefined;
   }
 
   hasHitPaddle(paddle: 'player' | 'enemy') {
