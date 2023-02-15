@@ -16,12 +16,14 @@ export default function ({ options, onScore }: Pick<PongGameProps, 'options' | '
     pongTableRef.current?.addEventListener('mousemove', onMouseMove);
     pongTableRef.current?.addEventListener('mouseleave', onMouseMove);
     pongTableRef.current?.addEventListener('touchstart', onTouchMove);
+    pongTableRef.current?.addEventListener('touchmove', onTouchMove);
 
     return () => {
       pongTableRef.current?.removeEventListener('mouseenter', onMouseMove);
       pongTableRef.current?.removeEventListener('mousemove', onMouseMove);
       pongTableRef.current?.removeEventListener('mouseleave', onMouseMove);
       pongTableRef.current?.removeEventListener('touchstart', onTouchMove);
+      pongTableRef.current?.removeEventListener('touchmove', onTouchMove);
     };
   }, [options]);
 
@@ -30,6 +32,7 @@ export default function ({ options, onScore }: Pick<PongGameProps, 'options' | '
   }, [options.paused]);
 
   const onTouchMove = (event: globalThis.TouchEvent) => {
+    event.preventDefault();
     onMouseMove({ clientY: event.touches[0].clientY });
   };
 
