@@ -3,7 +3,7 @@ import useRequestFrameAnimationLoop from '@/hooks/useRequestFrameAnimationLoop';
 import PongModel from './rules';
 import PongGameProps from './props';
 
-export default function ({ options, onScore }: Pick<PongGameProps, 'options' | 'onScore'>) {
+export default function ({ options, onScore, whoHasWon }: Pick<PongGameProps, 'options' | 'onScore' | 'whoHasWon'>) {
   const pongTableRef = useRef<HTMLDivElement>(null);
   const paddlePlayerRef = useRef<HTMLDivElement>(null);
   const paddleEnemyRef = useRef<HTMLDivElement>(null);
@@ -21,13 +21,17 @@ export default function ({ options, onScore }: Pick<PongGameProps, 'options' | '
       pongTableRef.current?.removeEventListener('mousemove', onMouseMove);
       pongTableRef.current?.removeEventListener('mouseleave', onMouseMove);
     };
-  }, [options]);
+  }, [options, whoHasWon]);
 
   useEffect(() => {
     setStatusLoop(options.paused ? 'pause' : 'resume');
   }, [options.paused]);
 
   const onMouseMove = (event: MouseEvent) => {
+    if (!options.hasStartedPlayed || !options.dificulty || !!whoHasWon) {
+      return;
+    }
+
     const pong = new PongModel({ pongTableRef, paddlePlayerRef, paddleEnemyRef, ballRef });
     pong.onPaddleMove(event);
   };
@@ -45,9 +49,9 @@ export default function ({ options, onScore }: Pick<PongGameProps, 'options' | '
       pong.moveEnemyPaddle();
       pong.refreshRefs({ pongTableRef, paddlePlayerRef, paddleEnemyRef, ballRef });
 
-      const whoWon = pong.hasWinnerGame();
-      if (whoWon) {
-        onScore(whoWon);
+      const matchWinner = pong.matchWinner();
+      if (matchWinner) {
+        onScore(matchWinner);
         return false;
       }
 

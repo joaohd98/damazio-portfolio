@@ -137,7 +137,7 @@ export default class PongModel {
     });
   }
 
-  hasWinnerGame() {
+  matchWinner() {
     if (!this.rules) {
       throw Error('is necessary to call starting playing before');
     }

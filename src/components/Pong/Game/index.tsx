@@ -5,10 +5,11 @@ import PongGameProps from './props';
 
 const dots = Array.from(Array(10).keys());
 
-export default function PongGame({ hasInitGame, options, scorePlayer, scoreEnemy, onScore }: PongGameProps) {
+export default function PongGame({ hasInitGame, options, scorePlayer, scoreEnemy, onScore, whoHasWon }: PongGameProps) {
   const { pongTableRef, ballRef, paddlePlayerRef, paddleEnemyRef, startPlayingPong } = useController({
     options,
-    onScore
+    onScore,
+    whoHasWon
   });
 
   useEffectOnlyChanges(() => {
@@ -18,6 +19,10 @@ export default function PongGame({ hasInitGame, options, scorePlayer, scoreEnemy
   }, [hasInitGame]);
 
   useEffectOnlyChanges(() => {
+    if (whoHasWon !== undefined) {
+      return;
+    }
+
     startPlayingPong();
   }, [options.firstPlaying]);
 

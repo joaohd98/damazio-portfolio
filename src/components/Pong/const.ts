@@ -3,6 +3,7 @@ import useI18const from '@/hooks/useI18const';
 export default function () {
   return useI18const({
     'en-US': {
+      pong: 'PONG',
       startGame: 'START GAME',
       difficulties: ['easy', 'normal', 'hard'],
       instructionToPause: 'Press (P) to pause',

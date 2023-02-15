@@ -6,4 +6,5 @@ export default interface PongGameProps {
   scorePlayer: number;
   scoreEnemy: number;
   onScore: (who: 'player' | 'enemy') => void;
+  whoHasWon?: 'player' | 'enemy';
 }

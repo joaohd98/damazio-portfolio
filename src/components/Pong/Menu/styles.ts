@@ -57,6 +57,6 @@ export const MenuText = styled.p`
 
 export const OverlayText = styled(MenuText)`
   position: absolute;
-  left: 2rem;
-  bottom: 2rem;
+  left: 5rem;
+  bottom: 3rem;
 `;
