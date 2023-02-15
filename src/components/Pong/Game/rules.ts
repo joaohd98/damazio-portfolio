@@ -69,7 +69,7 @@ export default class PongModel {
       return;
     }
 
-    const halfBottomPaddle = this.containerBounds.height - this.paddlePlayer.clientHeight / 2 - 8;
+    const halfBottomPaddle = this.containerBounds.height - this.paddlePlayer.clientHeight / 2;
     if (top > halfBottomPaddle) {
       gsap.set(this.paddlePlayer, { top: halfBottomPaddle });
       return;
@@ -83,8 +83,8 @@ export default class PongModel {
       ...partial,
       current: partial.firstPlay,
       left: partial.firstPlay === 'player' ? 60 : 30,
-      inscreaseLeft: partial.firstPlay === 'player' ? 1 : -1,
-      top: gsap.utils.random(20, 80),
+      inscreaseLeft: partial.firstPlay === 'player' ? 0.7 : -0.7,
+      top: gsap.utils.random(40, 60),
       increaseTop: gsap.utils.random(-1, 1)
     };
   }
@@ -95,7 +95,9 @@ export default class PongModel {
     }
 
     this.rules.left += this.rules.inscreaseLeft;
-    this.rules.top += this.rules.increaseTop;
+
+    const top = this.rules.top + this.rules.increaseTop;
+    this.rules.top = gsap.utils.clamp(0, 100, top);
 
     gsap.set(this.ball, { left: `${this.rules.left}%`, top: `${this.rules.top}%`, opacity: 1 });
 
@@ -125,7 +127,7 @@ export default class PongModel {
         const topRelative = newContainerBounds.top - newPaddleEnemyBound.top;
         const bottomRelative = newContainerBounds.bottom - newPaddleEnemyBound.bottom;
         const halfPaddle = newPaddleEnemyBound.height / 2 - 1;
-        const halfBottomPaddle = newContainerBounds.height - newPaddleEnemyBound.height / 2 - 8;
+        const halfBottomPaddle = newContainerBounds.height - newPaddleEnemyBound.height / 2;
 
         if (topRelative >= 0) {
           gsap.set(this.paddleEnemy, { top: halfPaddle });
