@@ -18,22 +18,19 @@ export default function (size: number) {
 
     tl.to(rainsDrop[0], { opacity: 1, marginTop: 0, duration: 0.8 });
     tl.to(rainsDrop[1], { opacity: 0.4, marginTop: 0, duration: 0.8 }, '<');
-
-    tl.to(rainsDrop, { scaleY: 0, duration: 0.4 }, '>-0.2');
-    tl.set(rainsPaddle, { visibility: 'visible' }, '>-0.3');
     tl.to(
-      rainsPaddle,
+      rainsDrop,
       {
-        width: '50rem',
-        height: '50rem',
-        duration: 2,
-        onStart: () => {
-          animatedRain(index === size - 1 ? 0 : index + 1);
-        }
+        scaleY: 0,
+        duration: 0.4,
+        onStart: () => animatedRain(index === size - 1 ? 0 : index + 1)
       },
-      '<'
+      '>-0.3'
     );
-    tl.to(rainsPaddle, { opacity: 0, duration: 1.5 }, '>-0.8');
+
+    tl.set(rainsPaddle, { visibility: 'visible' }, '>-0.3');
+    tl.to(rainsPaddle, { width: '50rem', height: '50rem', duration: 2 }, '<');
+    tl.to(rainsPaddle, { opacity: 0, duration: 1.5 }, '>-0.5');
 
     tl.call(() => {
       gsap.set([rainsDrop, rainsPaddle], { clearProps: true });
