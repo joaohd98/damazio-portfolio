@@ -37,7 +37,7 @@ export default function ({ options, onScore }: Pick<PongGameProps, 'options' | '
   };
 
   const onMouseMove = (event: { clientY: number }) => {
-    if (!options.hasStartedPlayed || !options.dificulty || !!options.winner) {
+    if (!options.hasStartedPlayed || options.paused || !options.dificulty || !!options.winner) {
       return;
     }
 
