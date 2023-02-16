@@ -99,7 +99,10 @@ export default function ({ initialPosition, size }: { initialPosition: number; s
     const isRight = x > 0;
     const tl = gsap.timeline({
       paused: !isFinished,
-      onStart: () => setMakingAnimation(true),
+      onStart: () => {
+        gsap.to(anchorTryRef.current, { opacity: 0, duration: 0.2 });
+        setMakingAnimation(true);
+      },
       onComplete: () => {
         if (!isFinished) {
           return;
@@ -109,8 +112,6 @@ export default function ({ initialPosition, size }: { initialPosition: number; s
         setState({ ...stateRef.current, ...(isRight ? { next, current: next } : { previous, current: previous }) });
       }
     });
-
-    gsap.to(anchorTryRef.current, { opacity: 0, duration: 0.2 });
 
     if (isRight) {
       tl.to(previousLabelRef.current, { opacity: 0 });
