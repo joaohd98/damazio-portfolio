@@ -5,6 +5,10 @@ export default () => {
     'en-US': {
       items: [
         {
+          text: 'home',
+          link: '#home'
+        },
+        {
           text: 'about',
           link: '#about'
         },
