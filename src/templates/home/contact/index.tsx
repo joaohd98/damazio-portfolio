@@ -4,8 +4,10 @@ import IconLinkedin from '@/components/IconLinkedin';
 import Pong from '@/components/Pong';
 import * as S from './styles';
 import useConst from './const';
+import useAnimation from './animation';
 
 export default function Contact() {
+  const { containerContactRef, backgroundPongRef } = useAnimation();
   const { getInTouch, emailLabel, emails, social } = useConst();
 
   const renderSocialIcon = (name: string) => {
@@ -23,7 +25,7 @@ export default function Contact() {
 
   return (
     <S.Contact>
-      <S.ContainerSocial>
+      <S.ContainerSocial ref={containerContactRef}>
         <S.GetInTouchText>{getInTouch}</S.GetInTouchText>
         <S.LinkContainer>
           <S.EmailText>{emailLabel}</S.EmailText>
@@ -43,6 +45,7 @@ export default function Contact() {
       </S.ContainerSocial>
       <S.ContainerPong>
         <Pong />
+        <S.PongBackground ref={backgroundPongRef} />
       </S.ContainerPong>
     </S.Contact>
   );

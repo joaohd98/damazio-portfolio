@@ -24,10 +24,6 @@ export const TableBound = styled.div`
   ${mediaMaxWidth('mobile')`
     width: 90vw;
     height: 40vh;
-    border-top-width: 0;
-    border-bottom-width: 0;
-    border-left-width: 1rem;
-    border-right-width: 1rem;
   `}
 `;
 

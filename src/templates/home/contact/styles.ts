@@ -21,6 +21,8 @@ export const ContainerSocial = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
+  opacity: 0;
+  padding-top: 15rem;
 
   ${mediaBetween('mobile', 'desktop1024', 1)`
     flex-direction: row;
@@ -30,10 +32,21 @@ export const ContainerSocial = styled.div`
 
 export const ContainerPong = styled.div`
   flex: 1;
+  position: relative;
+  overflow: hidden;
 
   ${mediaMaxWidth('desktop1024')`
     margin-bottom: 10rem;
   `}
+`;
+
+export const PongBackground = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: ${({ theme }) => theme.background};
 `;
 
 export const GetInTouchText = styled.p`
