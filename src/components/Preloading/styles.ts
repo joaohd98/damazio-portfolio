@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import { mediaMaxWidth } from '@/utils/media-query';
 
 export const Preloading = styled.div`
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
   left: 0;
   top: 0;
   height: 100%;
@@ -25,8 +25,8 @@ export const IndicatorText = styled.p`
 
 export const RainZone = styled.div`
   position: absolute;
-  height: 60rem;
-  width: 60rem;
+  height: 30rem;
+  width: 70rem;
   border-radius: 100%;
 
   ${mediaMaxWidth('mobile')`
@@ -37,12 +37,15 @@ export const RainZone = styled.div`
 
 export const RainContainer = styled.div<{ deg: number }>`
   position: absolute;
-  top: 50%;
-  left: 50%;
-  border-radius: 100%;
-  background-color: yellow;
-  margin: -2rem;
-  transform: rotate(${({ deg }) => deg}deg) translate(30rem) rotate(-${({ deg }) => deg}deg);
+  top: 40%;
+  left: 40%;
+  width: 10rem;
+  height: 10rem;
+  transform: rotate(${({ deg }) => deg}deg) translate(35rem) rotate(-${({ deg }) => deg}deg);
+
+  ${({ deg }) => mediaMaxWidth('mobile')`
+    transform: rotate(${deg}deg) translate(25rem) rotate(-${deg}deg);
+  `}
 `;
 
 export const RainDrop = styled.span`
@@ -72,7 +75,7 @@ export const RainPuddle = styled.div`
   width: 2rem;
   height: 2rem;
   visibility: hidden;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) rotate(-30deg) skew(50deg) scale(0.8);
   border: 0.3rem solid ${({ theme }) => theme.primary};
   border-radius: 100%;
 `;

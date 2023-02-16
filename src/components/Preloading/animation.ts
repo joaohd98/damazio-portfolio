@@ -29,7 +29,7 @@ export default function (size: number) {
     );
 
     tl.set(rainsPaddle, { visibility: 'visible' }, '>-0.3');
-    tl.to(rainsPaddle, { width: '50rem', height: '50rem', duration: 2 }, '<');
+    tl.to(rainsPaddle, { width: '40rem', height: '40rem', duration: 2 }, '<');
     tl.to(rainsPaddle, { opacity: 0, duration: 1.5 }, '>-0.5');
 
     tl.call(() => {
