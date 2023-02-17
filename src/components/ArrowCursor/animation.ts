@@ -41,7 +41,8 @@ export default function (setCursorLeft: (b: boolean) => void, setOverLink: (b: b
       const tl = gsap.timeline();
       tl.to(arrowRef.current, { left: event.clientX, top: event.clientY, duration: 0.05 });
 
-      if (arrowRef.current?.style.display === 'none') {
+      const display = arrowRef.current?.style.display;
+      if (!display || display === 'none') {
         tl.set(arrowRef.current, { display: 'block' });
       }
 
@@ -71,7 +72,16 @@ export default function (setCursorLeft: (b: boolean) => void, setOverLink: (b: b
   const isCursorOverLink = (event: MouseEvent) => {
     const target = document.elementFromPoint(event.clientX, event.clientY) as HTMLAnchorElement;
 
-    return target && target.href !== undefined && target.onclick !== undefined;
+    if (!target) {
+      return false;
+    }
+
+    if (target.href !== undefined && target.onclick !== undefined) {
+      return true;
+    }
+
+    const parentTarget = target.parentElement as HTMLAnchorElement;
+    return parentTarget && parentTarget.href !== undefined && parentTarget.onclick !== undefined;
   };
 
   return {

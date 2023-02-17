@@ -17,26 +17,28 @@ export default function Menu() {
   }, [isOpen]);
 
   return (
-    <S.Menu>
+    <>
       <S.IconLink ref={iconLinkRef} onClick={() => setOpen(!isOpen)}>
         <S.IconMenu isOpen={isOpen} />
       </S.IconLink>
-      <S.MenuItemsContainer ref={menuItemContainerRef}>
-        <S.DropdownContainer>
-          <Dropdown
-            items={languages}
-            getText={({ name }) => name}
-            getHref={({ href }) => href}
-            isCurrent={({ isCurrent }) => isCurrent}
-          />
-        </S.DropdownContainer>
-        {Object.values(sections).map(item => (
-          <S.MenuItem key={item.text} href={item.href} onClick={() => setOpen(false)}>
-            {item.text}
-          </S.MenuItem>
-        ))}
-      </S.MenuItemsContainer>
-      <S.MenuBackground ref={menuBackgroundRef} />
-    </S.Menu>
+      <S.Menu>
+        <S.MenuItemsContainer ref={menuItemContainerRef}>
+          <S.DropdownContainer>
+            <Dropdown
+              items={languages}
+              getText={({ name }) => name}
+              getHref={({ href }) => href}
+              isCurrent={({ isCurrent }) => isCurrent}
+            />
+          </S.DropdownContainer>
+          {Object.values(sections).map(item => (
+            <S.MenuItem key={item.text} href={item.href} onClick={() => setOpen(false)}>
+              {item.text}
+            </S.MenuItem>
+          ))}
+        </S.MenuItemsContainer>
+        <S.MenuBackground ref={menuBackgroundRef} />
+      </S.Menu>
+    </>
   );
 }

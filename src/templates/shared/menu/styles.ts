@@ -1,22 +1,17 @@
 import styled, { css } from 'styled-components';
 
-export const Menu = styled.nav`
-  position: fixed;
-  z-index: 2;
-`;
-
 export const IconLink = styled.a`
-  display: block;
-  position: relative;
+  position: fixed;
   height: 5rem;
   width: 5rem;
-  margin-top: 5rem;
-  margin-left: 5rem;
+  top: 5rem;
+  left: 5rem;
   cursor: pointer;
   z-index: 3;
 `;
 
-export const IconMenu = styled.div<{ isOpen: boolean }>`
+export const IconMenu = styled.span<{ isOpen: boolean }>`
+  display: block;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -25,6 +20,7 @@ export const IconMenu = styled.div<{ isOpen: boolean }>`
   width: 100%;
   background-color: ${({ theme }) => theme.primary};
   transition: background-color 0.2s ease-in;
+  z-index: 2;
 
   :before,
   :after {
@@ -65,6 +61,12 @@ export const IconMenu = styled.div<{ isOpen: boolean }>`
         rotate: 140deg;
       }
     `}
+`;
+
+export const Menu = styled.menu`
+  display: block;
+  position: fixed;
+  z-index: 2;
 `;
 
 export const DropdownContainer = styled.div`

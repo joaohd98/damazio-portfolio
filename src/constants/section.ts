@@ -19,9 +19,9 @@ export default function useSections() {
         href: '#projects'
       },
       contactSection: {
-        text: 'contacts',
-        id: 'contacts',
-        href: '#contacts'
+        text: 'contact',
+        id: 'contact',
+        href: '#contact'
       }
     },
     'pt-BR': {

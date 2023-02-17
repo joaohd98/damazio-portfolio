@@ -70,6 +70,7 @@ export default function ({ initialPosition, size }: { initialPosition: number; s
 
     Draggable.create(currentCardRef.current, {
       type: 'x',
+      zIndexBoost: false,
       dragResistance: 0.3,
       onDrag() {
         if (!this.x) {

@@ -8,8 +8,8 @@ export default function () {
       emails: ['joaohd98@gmail.com', 'joaodamazio98@hotmail.com'],
       social: [
         {
-          name: 'facebook',
-          url: 'https://www.facebook.com/joaodamazio98'
+          name: 'github',
+          url: 'https://github.com/joaohd98'
         },
         {
           name: 'instagram',

@@ -1,4 +1,4 @@
-import IconFacebook from '@/components/IconFacebook';
+import IconGithub from '@/components/IconGithub';
 import IconInstagram from '@/components/IconInstagram';
 import IconLinkedin from '@/components/IconLinkedin';
 import Pong from '@/components/Pong';
@@ -15,8 +15,8 @@ export default function Contact() {
 
   const renderSocialIcon = (name: string) => {
     switch (name) {
-      case 'facebook':
-        return <IconFacebook />;
+      case 'github':
+        return <IconGithub />;
       case 'instagram':
         return <IconInstagram />;
       case 'linkedin':

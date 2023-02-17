@@ -10,7 +10,7 @@ const GlobalStyles = createGlobalStyle`
   
   html,
   body {
-    background: ${({ theme }) => theme.background};
+    background-color: ${({ theme }) => theme.background};
     max-width: 100vw;
     overflow-x: hidden;
     color: ${({ theme }) => theme.primary};
