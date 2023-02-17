@@ -13,20 +13,19 @@ export default function (size: number) {
     if (isVisible) {
       tl.set(containerRef.current, { display: 'flex' });
       tl.to(containerRef.current, { opacity: 1 });
-    } else {
-      tl.to(containerRef.current, { opacity: 0 });
-      tl.set(containerRef.current, { display: 'none' });
+      tl.call(() => rainAnimated());
+      tl.set(['body', 'html'], { overflow: 'hidden' });
+      return;
     }
 
-    tl.call(() => {
-      if (isVisible) {
-        rainAnimated();
-        return;
-      }
+    tl.to(containerRef.current, { opacity: 0 });
+    tl.set(containerRef.current, { display: 'none' });
+    tl.set(['body', 'html'], { clearProps: true });
 
-      tlRain.current.kill();
-    });
+    tlRain.current.progress(100);
+    tlRain.current.kill();
   };
+
   const rainAnimated = (index = 0) => {
     tlRain.current = gsap.timeline();
 
