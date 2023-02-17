@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { mediaMaxWidth } from '@/utils/media-query';
+import { mediaMaxWidth, mediaMinWidth } from '@/utils/media-query';
 
 export const Preloading = styled.div`
   position: fixed;
@@ -11,9 +11,10 @@ export const Preloading = styled.div`
   height: 100%;
   width: 100%;
   background-color: ${({ theme }) => theme.background};
+  z-index: 4;
 `;
 
-export const IndicatorText = styled.p`
+const IndicatorText = styled.p`
   font-size: 12rem;
   font-weight: 400;
   font-family: Roboto;
@@ -21,6 +22,18 @@ export const IndicatorText = styled.p`
   -webkit-text-stroke: 0.2rem ${({ theme }) => theme.primary};
   text-stroke: 0.2rem ${({ theme }) => theme.primary};
   z-index: 1;
+`;
+
+export const IndicatorTextDesktop = styled(IndicatorText)`
+  ${mediaMaxWidth('mobile')`
+    display: none;
+  `}
+`;
+
+export const IndicatorTextMobile = styled(IndicatorText)`
+  ${mediaMinWidth('mobile', 1)`
+    display: none;
+  `}
 `;
 
 export const RainZone = styled.div`

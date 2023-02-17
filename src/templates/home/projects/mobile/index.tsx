@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import * as S from './styles';
 import useConst from '../const';
 import useAnimation from './animation';
@@ -21,16 +20,6 @@ export default function ProjectsMobile() {
     initialPosition: 0,
     size: projects.length
   });
-
-  // workaround while there is no load
-  useEffect(() => {
-    projects.forEach(project => {
-      const { src } = project.imgMobile || project.img;
-
-      const downloadingImage = new Image();
-      downloadingImage.src = `/imgs/projects/${src}`;
-    });
-  }, []);
 
   const renderContent = (position: number) => {
     const project = projects[position];
