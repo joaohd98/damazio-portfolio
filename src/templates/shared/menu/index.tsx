@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import useEffectOnlyChanges from '@/hooks/useEffectOnlyChanges';
 import Dropdown from '@/components/Dropdown';
+import useSections from '@/constants/section';
 import * as S from './styles';
 import useConst from './const';
 import useAnimation from './animation';
 
 export default function Menu() {
-  const { items, languages } = useConst();
+  const sections = useSections();
+  const { languages } = useConst();
   const { iconLinkRef, menuBackgroundRef, menuItemContainerRef, onChangeVisibility } = useAnimation();
   const [isOpen, setOpen] = useState(false);
 
@@ -28,8 +30,10 @@ export default function Menu() {
             isCurrent={({ isCurrent }) => isCurrent}
           />
         </S.DropdownContainer>
-        {items.map(item => (
-          <S.MenuItem key={item.text}>{item.text}</S.MenuItem>
+        {Object.values(sections).map(item => (
+          <S.MenuItem key={item.text} href={item.href} onClick={() => setOpen(false)}>
+            {item.text}
+          </S.MenuItem>
         ))}
       </S.MenuItemsContainer>
       <S.MenuBackground ref={menuBackgroundRef} />

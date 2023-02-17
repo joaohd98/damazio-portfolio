@@ -1,9 +1,11 @@
 import { useMemo } from 'react';
+import useSections from '@/constants/section';
 import * as S from './styles';
 import useConst from './const';
 import useAnimation from './animation';
 
 export default function Header() {
+  const { homeSection } = useSections();
   const { setTextsRef, setCursorsRef, setHighlightsRef } = useAnimation();
   const { greetings, job, highlights } = useConst();
 
@@ -26,7 +28,7 @@ export default function Header() {
   }, []);
 
   return (
-    <S.Header>
+    <S.Header id={homeSection.id}>
       {renderNameJob}
       <S.HightlightsRow>
         {highlights.map((highlight, index) => (

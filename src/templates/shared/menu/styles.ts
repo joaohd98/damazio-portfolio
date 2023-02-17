@@ -103,10 +103,35 @@ export const MenuItemsContainer = styled.div`
 `;
 
 export const MenuItem = styled.a`
+  position: relative;
   display: block;
   font-size: 8rem;
   font-family: 'Gotham HTF';
+  letter-spacing: -0.25rem;
   font-weight: 600;
   color: ${({ theme }) => theme.primary};
   text-transform: uppercase;
+  transition: color 0.2s ease-in;
+  cursor: pointer;
+
+  :after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 1.5rem;
+    background-color: ${({ theme }) => theme.backgroundMenu};
+    opacity: 0.5;
+    width: 0;
+    transition: width 0.2s ease-in;
+  }
+
+  :hover {
+    color: ${({ theme }) => theme.secondary};
+
+    :after {
+      width: 100%;
+    }
+  }
 `;

@@ -2,11 +2,14 @@ import IconFacebook from '@/components/IconFacebook';
 import IconInstagram from '@/components/IconInstagram';
 import IconLinkedin from '@/components/IconLinkedin';
 import Pong from '@/components/Pong';
+import useSections from '@/constants/section';
 import * as S from './styles';
 import useConst from './const';
 import useAnimation from './animation';
 
 export default function Contact() {
+  const { contactSection } = useSections();
+
   const { containerContactRef, backgroundPongRef } = useAnimation();
   const { getInTouch, emailLabel, emails, social } = useConst();
 
@@ -24,7 +27,7 @@ export default function Contact() {
   };
 
   return (
-    <S.Contact>
+    <S.Contact id={contactSection.id}>
       <S.ContainerSocial ref={containerContactRef}>
         <S.GetInTouchText>{getInTouch}</S.GetInTouchText>
         <S.LinkContainer>

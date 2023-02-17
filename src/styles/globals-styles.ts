@@ -45,6 +45,10 @@ const GlobalStyles = createGlobalStyle`
     background: none;
     border: none;
   }
+
+   html {
+     scroll-padding-top: 6rem;
+   }
   
   .only-mobile {
     display: none;

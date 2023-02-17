@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { mediaMaxWidth } from '@/utils/media-query';
 
-export const Marquee = styled.div`
+export const Marquee = styled.section`
   overflow: hidden;
   position: relative;
   width: 100%;
