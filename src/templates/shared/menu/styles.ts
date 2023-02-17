@@ -8,6 +8,7 @@ export const IconLink = styled.a`
   left: 5rem;
   cursor: pointer;
   z-index: 3;
+  mix-blend-mode: difference;
 `;
 
 export const IconMenu = styled.span<{ isOpen: boolean }>`
