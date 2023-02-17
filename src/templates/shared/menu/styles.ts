@@ -67,6 +67,12 @@ export const IconMenu = styled.div<{ isOpen: boolean }>`
     `}
 `;
 
+export const DropdownContainer = styled.div`
+  position: absolute;
+  top: 0;
+  right: 5rem;
+`;
+
 export const MenuBackground = styled.div`
   position: absolute;
   left: 2.5rem;

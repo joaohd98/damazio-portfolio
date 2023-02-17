@@ -11,6 +11,8 @@ export const theme = {
   blueDark: '#445EDA',
   yellow: '#ffc107',
   green: '#28a745',
+  gray: '#F0F0F0',
+  grayDim: '#696969',
   transparent: 'rgba(0, 0, 0, 0)'
 };
 
