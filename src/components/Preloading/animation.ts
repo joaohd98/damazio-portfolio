@@ -11,9 +11,9 @@ export default function (size: number) {
     const tl = gsap.timeline();
 
     if (isVisible) {
+      tl.call(() => rainAnimated());
       tl.set(containerRef.current, { display: 'flex' });
       tl.to(containerRef.current, { opacity: 1 });
-      tl.call(() => rainAnimated());
       tl.set(['body', 'html'], { overflow: 'hidden' });
       return;
     }
