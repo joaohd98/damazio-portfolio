@@ -13,6 +13,7 @@ export const AvatarTextContainer = styled.div`
   gap: 5rem;
   margin-left: 5%;
   margin-right: 5%;
+  margin-bottom: 5rem;
 
   ${mediaMaxWidth('mobile')`
     flex-direction: column;

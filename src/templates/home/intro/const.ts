@@ -6,8 +6,9 @@ export default function () {
       profilePicture: 'profile picture',
       currentWork: "I'm tech leader working remotely from São Paulo, Brazil.",
       descriptions: [
-        "I've working the past six plus years in all development areas: front-end, mobile, back-end... I'm happy to have experienced all the differents aspect of development.",
-        'Nowadays my time is spent working on FIAP as a Teach Leader.'
+        'A front-end developer with six plus years of experience with deep knowledge of javascript and its modern features with strong focus on the React ecosystem.',
+        "I've been creating enjoyable and immersive experiences for people, using different techniques of animation and working closely with designers.",
+        'Excellent communication and collaboration skills with the ability to work effectively in a remote team.'
       ],
       jobs: [
         {
@@ -50,8 +51,9 @@ export default function () {
       profilePicture: 'Foto de perfil',
       currentWork: 'Eu sou um tech leader trabalhando remotamente de São Paulo, Brazil.',
       descriptions: [
-        'Trabalho há mais de seis anos nas diferentes áreas de desenvolvimento: front-end, mobile, back-end... Estou feliz por ter experimentado todos os diferentes aspectos do desenvolvimento.',
-        'Atualmente, estou trabalhando na FIAP como Teach Leader.'
+        'Um desenvolvedor front-end com mais de seis anos de experiência com profundo conhecimento de javascript e seus recursos modernos com forte foco no ecossistema React',
+        'Tenho criado experiências agradáveise imersivas para as pessoas, usando diferentes técnicas de animação e trabalhando em estreita colaboração com designers.',
+        'Excelentes habilidades de comunicação e colaboração com a capacidade de trabalhar em uma equipe remota.'
       ],
       jobs: [
         {
