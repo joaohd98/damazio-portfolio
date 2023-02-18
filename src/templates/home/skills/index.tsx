@@ -18,8 +18,8 @@ export default function Skills() {
   return (
     <S.Skills>
       {areas.map(({ name, technologies }, index) => (
-        <S.Accordion key={name} onClick={changeVisibility(index)}>
-          <S.AccordionClickable>
+        <S.Accordion key={name}>
+          <S.AccordionClickable onClick={changeVisibility(index)}>
             <S.AccordtionTitle>{name}</S.AccordtionTitle>
             <S.AccordionIcon isVisible={visible[index]} />
           </S.AccordionClickable>
