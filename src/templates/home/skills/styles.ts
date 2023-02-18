@@ -119,14 +119,22 @@ export const AccordionListText = styled.li<{ isVisible?: boolean }>`
     background-color: ${({ theme }) => theme.background};
     border: 0.1rem solid ${({ theme }) => theme.primary};
     z-index: 1;
+
+    ${mediaMaxWidth('mobile')`
+      border-width: 1px;
+    `}
   }
 
   :not(:last-child) {
     :after {
       left: 0.58rem;
-      height: 100%;
+      height: calc(100% + 1rem);
       width: 0.05rem;
       background-color: ${({ theme }) => theme.primary};
+
+      ${mediaMaxWidth('mobile')`
+        width: 1px;
+      `}
     }
   }
 `;
