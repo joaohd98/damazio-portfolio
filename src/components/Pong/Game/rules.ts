@@ -83,7 +83,7 @@ export default class PongModel {
       ...partial,
       current: partial.firstPlay,
       left: partial.firstPlay === 'player' ? 60 : 30,
-      inscreaseLeft: partial.firstPlay === 'player' ? 0.7 : -0.7,
+      inscreaseLeft: partial.firstPlay === 'player' ? 0.8 : -0.8,
       top: gsap.utils.random(40, 60),
       increaseTop: gsap.utils.random(-1, 1)
     };
@@ -122,8 +122,8 @@ export default class PongModel {
 
     const enemySpeed = {
       easy: 5,
-      normal: 6,
-      hard: 7
+      normal: 5.5,
+      hard: 6
     }[this.rules.dificulty];
 
     let increase = 0;
@@ -192,7 +192,7 @@ export default class PongModel {
       2.5,
       this.ballBounds.top + this.ballBounds.height / 2
     );
-    this.rules.increaseTop = gsap.utils.clamp(-2.5, 2.5, increaseTop);
+    this.rules.increaseTop = gsap.utils.clamp(-3, 3, increaseTop);
     this.rules.current = isPlayer ? 'enemy' : 'player';
 
     const increaseLeft = window.innerWidth > viewportsBase.mobile.width ? 2 : 1.5;

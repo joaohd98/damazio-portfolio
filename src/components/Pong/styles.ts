@@ -22,8 +22,8 @@ export const TableBound = styled.div`
   overflow: hidden;
 
   ${mediaMaxWidth('mobile')`
-    width: 90vw;
-    height: 40vh;
+    width: 90rem;
+    height: 55rem;
   `}
 `;
 
