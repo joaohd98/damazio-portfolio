@@ -15,6 +15,15 @@ export default function (setCursorLeft: (b: boolean) => void, setOverLink: (b: b
     body.addEventListener('mouseenter', onListenMouseMove(content));
     body.addEventListener('wheel', onListenMouseMove(content));
 
+    const sections = [...document.querySelectorAll('section, header')];
+    sections.forEach(section => {
+      if (section.contains(content)) {
+        return;
+      }
+
+      section.addEventListener('mouseenter', onListenMouseLeave);
+    });
+
     content.addEventListener('mouseenter', onListenMouseMove(content, true));
     content.addEventListener('mouseleave', onListenMouseLeave);
 
