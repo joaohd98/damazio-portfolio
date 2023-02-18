@@ -25,6 +25,8 @@ export const Accordion = styled.div`
   color: ${({ theme }) => theme.primary};
   background-color: ${({ theme }) => theme.background};
   border: 0.2rem solid ${({ theme }) => theme.primary};
+  opacity: 0;
+  transform: translateY(5rem);
 
   ${mediaMaxWidth('mobile')`
     padding: 1.5rem 2.5rem 0;
@@ -47,6 +49,7 @@ export const AccordtionTitle = styled.p`
 `;
 
 export const AccordionIcon = styled.span<{ isVisible?: boolean }>`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,7 +57,6 @@ export const AccordionIcon = styled.span<{ isVisible?: boolean }>`
   height: 3rem;
   border: 0.15rem solid ${({ theme }) => theme.primary};
   border-radius: 100%;
-  position: relative;
 
   :after,
   :before {
@@ -82,13 +84,15 @@ export const AccordionList = styled.ul`
   padding-top: 1rem;
 `;
 
-export const AccordionListText = styled.li`
+export const AccordionListText = styled.li<{ isVisible?: boolean }>`
   position: relative;
   font-family: 'Gotham HTF';
   font-size: 1.5rem;
   font-weight: 400;
   padding-left: 2rem;
   padding-bottom: 2rem;
+  transition: opacity 0.25s ease-in;
+  opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
 
   ${mediaMaxWidth('mobile')`
     font-size: 2rem;
