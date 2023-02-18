@@ -15,7 +15,9 @@ export default function (setCursorLeft: (b: boolean) => void, setOverLink: (b: b
     body.addEventListener('mouseenter', onListenMouseMove(content));
     body.addEventListener('wheel', onListenMouseMove(content));
 
+    content.addEventListener('mouseenter', onListenMouseMove(content, true));
     content.addEventListener('mouseleave', onListenMouseLeave);
+
     body.addEventListener('mouseleave', onListenMouseLeave);
 
     content.addEventListener('click', onListenClick);
@@ -26,18 +28,20 @@ export default function (setCursorLeft: (b: boolean) => void, setOverLink: (b: b
       body.removeEventListener('wheel', onListenMouseMove(content));
 
       content.removeEventListener('mouseleave', onListenMouseLeave);
+      content.removeEventListener('mouseenter', onListenMouseMove(content, true));
+
       body.removeEventListener('mouseleave', onListenMouseLeave);
 
       content.removeEventListener('click', onListenClick);
     };
   }, []);
 
-  const onListenMouseMove = (content: HTMLDivElement) => (event: MouseEvent) => {
+  const onListenMouseMove = (content: HTMLDivElement, isMouseEnter?: boolean) => (event: MouseEvent) => {
     setCursorLeft(isCursorInLeftPosition(event));
     setOverLink(isCursorOverLink(event));
 
     const isInsideContent = content.offsetTop < event.pageY && content.offsetTop + content.offsetHeight > event.pageY;
-    if (isInsideContent) {
+    if (isMouseEnter || isInsideContent) {
       const tl = gsap.timeline();
       tl.to(arrowRef.current, { left: event.clientX, top: event.clientY, duration: 0.05 });
 
