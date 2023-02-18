@@ -14,13 +14,13 @@ export default function (size: number) {
       tl.call(() => rainAnimated());
       tl.set(containerRef.current, { display: 'flex' });
       tl.to(containerRef.current, { opacity: 1 });
-      tl.set(['body', 'html'], { overflow: 'hidden' });
+      tl.set('html', { overflow: 'hidden' });
       return;
     }
 
     tl.to(containerRef.current, { opacity: 0 });
     tl.set(containerRef.current, { display: 'none' });
-    tl.set(['body', 'html'], { clearProps: true });
+    tl.set('html', { clearProps: true });
 
     tlRain.current.progress(100);
     tlRain.current.kill();
