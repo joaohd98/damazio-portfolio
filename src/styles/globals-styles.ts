@@ -12,11 +12,8 @@ const GlobalStyles = createGlobalStyle`
   body {
     background-color: ${({ theme }) => theme.background};
     max-width: 100vw;
+    overflow-x: hidden;
     color: ${({ theme }) => theme.primary};
-  }
-  
-  html {
-    overflow: scroll;
   }
   
   html {

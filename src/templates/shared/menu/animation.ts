@@ -12,14 +12,14 @@ export default function () {
         gsap.set(iconLinkRef.current, { pointerEvents: 'none' });
 
         if (isOpening) {
-          gsap.set('html', { overflow: 'hidden' });
+          gsap.set(['body', 'html'], { overflow: 'hidden' });
         }
       },
       onComplete: () => {
         gsap.set(iconLinkRef.current, { clearProps: true });
 
         if (!isOpening) {
-          gsap.set('html', { clearProps: true });
+          gsap.set(['html', 'body'], { clearProps: true });
         }
       }
     });
