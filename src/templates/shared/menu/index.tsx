@@ -2,6 +2,7 @@ import { useState } from 'react';
 import useEffectOnlyChanges from '@/hooks/useEffectOnlyChanges';
 import Dropdown from '@/components/Dropdown';
 import useSections from '@/constants/section';
+import gsap from 'gsap';
 import * as S from './styles';
 import useConst from './const';
 import useAnimation from './animation';
@@ -15,6 +16,11 @@ export default function Menu() {
   useEffectOnlyChanges(() => {
     onChangeVisibility(isOpen);
   }, [isOpen]);
+
+  const onPressMenu = (y: string) => {
+    gsap.to(window, { duration: 0, scrollTo: { y, offsetY: 50 } });
+    setOpen(false);
+  };
 
   return (
     <>
@@ -32,7 +38,7 @@ export default function Menu() {
             />
           </S.DropdownContainer>
           {Object.values(sections).map(item => (
-            <S.MenuItem key={item.text} href={item.href} onClick={() => setOpen(false)}>
+            <S.MenuItem key={item.text} onClick={() => onPressMenu(item.href)}>
               {item.text}
             </S.MenuItem>
           ))}
