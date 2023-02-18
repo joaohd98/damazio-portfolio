@@ -71,10 +71,6 @@ export default function Preloading() {
       img.onload = () => {
         changeLoaded();
       };
-
-      if (img.complete) {
-        changeLoaded();
-      }
     });
   };
 
