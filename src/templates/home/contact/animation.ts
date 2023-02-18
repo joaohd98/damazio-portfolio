@@ -9,7 +9,7 @@ export default function () {
   useEffectLoaded(() => {
     gsap.to(containerContactRef.current, {
       opacity: 1,
-      paddingTop: 0,
+      y: 0,
       scrollTrigger: {
         trigger: containerContactRef.current,
         start: 'top 90%'

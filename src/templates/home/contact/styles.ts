@@ -4,6 +4,7 @@ import { mediaBetween, mediaMaxWidth, mediaMinWidth } from '@/utils/media-query'
 export const Contact = styled.section`
   display: flex;
   margin: 20vh 10rem;
+  overflow: hidden;
 
   ${mediaMinWidth('desktop2560')`
     margin-left: 30rem;
@@ -22,7 +23,7 @@ export const ContainerSocial = styled.div`
   justify-content: center;
   flex-direction: column;
   opacity: 0;
-  padding-top: 15rem;
+  transform: translateY(10rem);
 
   ${mediaBetween('mobile', 'desktop1024', 1)`
     flex-direction: row;
