@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { ReactNode, useMemo } from 'react';
 import gsap from 'gsap';
 import Image from 'next/image';
 import useSections from '@/constants/section';
@@ -6,7 +6,7 @@ import * as S from './styles';
 import useConst from './const';
 import useAnimation from './animation';
 
-export default function Intro() {
+export default function Intro({ skills }: { skills: ReactNode }) {
   const { aboutSection } = useSections();
   const { avatarContainerRef, textContainerRef, setJobsWrapperRef } = useAnimation();
   const { profilePicture, currentWork, descriptions, jobs, formatDuration } = useConst();
@@ -61,6 +61,7 @@ export default function Intro() {
           ))}
         </S.TextContainer>
       </S.AvatarTextContainer>
+      {skills}
       {renderJobs}
     </S.Intro>
   );

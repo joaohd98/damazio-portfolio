@@ -1,10 +1,20 @@
 import styled from 'styled-components';
+import { mediaMaxWidth } from '@/utils/media-query';
 
 export const Skills = styled.section`
   display: flex;
   justify-content: space-between;
-  margin-left: 10rem;
-  margin-right: 10rem;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 10rem;
+
+  ${mediaMaxWidth('mobile')`
+    gap: 3rem;
+    margin-left: 0;
+    margin-right: 0;
+    flex-direction: column;
+    margin-bottom: 5rem;
+  `}
 `;
 
 export const Accordion = styled.div`
@@ -12,9 +22,14 @@ export const Accordion = styled.div`
   height: fit-content;
   border-radius: 1rem;
   padding: 1rem 2rem 0;
-  color: ${({ theme }) => theme.backgroundMenu};
-  background-color: ${({ theme }) => theme.primary};
-  border-left: 1.4rem solid rgba(0, 0, 0, 0.12);
+  color: ${({ theme }) => theme.primary};
+  background-color: ${({ theme }) => theme.background};
+  border: 0.2rem solid ${({ theme }) => theme.primary};
+
+  ${mediaMaxWidth('mobile')`
+    padding: 1.5rem 2.5rem 0;
+    width: 100%;
+  `}
 `;
 
 export const AccordionClickable = styled.a`
@@ -26,7 +41,7 @@ export const AccordionClickable = styled.a`
 
 export const AccordtionTitle = styled.p`
   font-family: 'Gotham HTF';
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 400;
   text-transform: uppercase;
 `;
@@ -37,7 +52,7 @@ export const AccordionIcon = styled.span<{ isVisible?: boolean }>`
   align-items: center;
   width: 3rem;
   height: 3rem;
-  border: 0.15rem solid ${({ theme }) => theme.backgroundMenu};
+  border: 0.15rem solid ${({ theme }) => theme.primary};
   border-radius: 100%;
   position: relative;
 
@@ -48,7 +63,7 @@ export const AccordionIcon = styled.span<{ isVisible?: boolean }>`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: ${({ theme }) => theme.backgroundMenu};
+    background-color: ${({ theme }) => theme.primary};
   }
 
   :before {
@@ -75,6 +90,12 @@ export const AccordionListText = styled.li`
   padding-left: 2rem;
   padding-bottom: 2rem;
 
+  ${mediaMaxWidth('mobile')`
+    font-size: 2rem;
+    padding-left: 2.5rem;
+    padding-bottom: 2.5rem;
+  `}
+
   :first-child {
     margin-top: 1rem;
   }
@@ -91,17 +112,17 @@ export const AccordionListText = styled.li`
     width: 1rem;
     height: 1rem;
     border-radius: 100%;
-    background-color: ${({ theme }) => theme.primary};
-    border: 0.1rem solid ${({ theme }) => theme.backgroundMenu};
+    background-color: ${({ theme }) => theme.background};
+    border: 0.1rem solid ${({ theme }) => theme.primary};
     z-index: 1;
   }
 
   :not(:last-child) {
     :after {
-      left: 0.59rem;
+      left: 0.58rem;
       height: 100%;
       width: 0.05rem;
-      background-color: ${({ theme }) => theme.backgroundMenu};
+      background-color: ${({ theme }) => theme.primary};
     }
   }
 `;

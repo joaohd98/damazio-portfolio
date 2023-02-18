@@ -11,8 +11,7 @@ export default function HomeTemplate() {
     <main>
       <Menu />
       <Header />
-      <Intro />
-      <Skills />
+      <Intro skills={<Skills />} />
       <Marquee />
       <Projects />
       <Contact />
