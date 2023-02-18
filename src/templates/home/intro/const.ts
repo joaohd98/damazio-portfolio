@@ -6,8 +6,8 @@ export default function () {
       profilePicture: 'profile picture',
       currentWork: "I'm tech leader working remotely from São Paulo, Brazil.",
       descriptions: [
-        'A front-end developer with six plus years of experience with deep knowledge of javascript and its modern features with strong focus on the React ecosystem.',
-        "I've been creating enjoyable and immersive experiences for people, using different techniques of animation and working closely with designers.",
+        'A front-end developer for over six years, with deep experience of javascript and its modern features with strong knowledge on the React ecosystem.',
+        "I've been creating enjoyable and immersive experiences, using different techniques of animation and working closely with designers.",
         'Excellent communication and collaboration skills with the ability to work effectively in a remote team.'
       ],
       jobs: [
@@ -51,9 +51,9 @@ export default function () {
       profilePicture: 'Foto de perfil',
       currentWork: 'Eu sou um tech leader trabalhando remotamente de São Paulo, Brazil.',
       descriptions: [
-        'Um desenvolvedor front-end com mais de seis anos de experiência com profundo conhecimento de javascript e seus recursos modernos com forte foco no ecossistema React',
-        'Tenho criado experiências agradáveise imersivas para as pessoas, usando diferentes técnicas de animação e trabalhando em estreita colaboração com designers.',
-        'Excelentes habilidades de comunicação e colaboração com a capacidade de trabalhar em uma equipe remota.'
+        'Desenvolvedor front-end há mais de seis anos, profunda experiência em javascript, forte conhecimento em ReactJS e ecossistema React.',
+        'Tenho criado experiências agradáveis e imersivas, usando diferentes técnicas de animação e trabalhando em estreita colaboração com designers.',
+        'Excelentes habilidades de comunicação e colaboração com a capacidade de trabalhar em uma equipe remota fácilmente.'
       ],
       jobs: [
         {

@@ -17,7 +17,7 @@ export default function () {
       job: splitText('Um Desevolvedor'),
       highlights: [
         'Que ama criar UI agradáveis, acessíveis, performáticas',
-        'e atraentes que transforma ideias em realidade'
+        'e atraentes que transformam ideias em realidade'
       ]
     }
   });
