@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { mediaMaxWidth, mediaMinWidth } from '@/utils/media-query';
 
 export const IconLink = styled.a`
   position: fixed;
@@ -103,6 +104,10 @@ export const MenuItemsContainer = styled.div`
   opacity: 0;
   transform: translateY(5rem);
   z-index: 1;
+
+  ${mediaMaxWidth('mobile')`
+    gap: 6rem;
+  `}
 `;
 
 export const MenuItem = styled.a`
@@ -114,7 +119,7 @@ export const MenuItem = styled.a`
   font-weight: 600;
   color: ${({ theme }) => theme.primary};
   text-transform: uppercase;
-  transition: color 0.2s ease-in;
+  transition: color 0.2s ease-in, scale 0.2s ease-in;
   cursor: pointer;
 
   :after {
@@ -130,11 +135,21 @@ export const MenuItem = styled.a`
     transition: width 0.2s ease-in;
   }
 
-  :hover {
-    color: ${({ theme }) => theme.secondary};
-
-    :after {
-      width: 100%;
-    }
+  :active {
+    scale: 1.2;
   }
+
+  ${mediaMaxWidth('mobile')`
+    font-size: 7rem;
+  `}
+
+  ${mediaMinWidth('mobile', 1)`
+    :hover {
+      color: ${({ theme }) => theme.secondary};
+  
+      :after {
+        width: 100%;
+      }
+    }  
+  `}
 `;
