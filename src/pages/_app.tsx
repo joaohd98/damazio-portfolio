@@ -9,6 +9,7 @@ import { theme } from '@/styles/theme';
 
 import GlobalStyles from '@/styles/globals-styles';
 import GSAPInitilize from '@/components/GSAPInitilize';
+import { PreloadingContextProvider } from '@/context/pre-loading';
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -21,8 +22,10 @@ function App({ Component, pageProps }: AppProps) {
       <ThemeProvider theme={theme}>
         <GSAPInitilize />
         <GlobalStyles />
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        <Component {...pageProps} />
+        <PreloadingContextProvider>
+          {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+          <Component {...pageProps} />
+        </PreloadingContextProvider>
       </ThemeProvider>
     </>
   );

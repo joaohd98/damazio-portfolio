@@ -1,12 +1,13 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import gsap, { Back } from 'gsap';
 import useRefElements from '@/hooks/useRefElements';
+import useEffectLoaded from '@/hooks/useEffectLoaded';
 
 export default function (quantity: number) {
   const [cardsRef, setCardsRef] = useRefElements<HTMLDivElement>();
   const pinRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useEffectLoaded(() => {
     const tl = getTimeline();
     initSrollTrigger(tl);
   }, []);

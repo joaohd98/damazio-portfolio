@@ -1,13 +1,14 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import gsap from 'gsap';
 import useRequestAnimationFrameLoop from '@/hooks/useRequestFrameAnimationLoop';
 import { viewportsBase } from '@/styles/viewport-base';
+import useEffectLoaded from '@/hooks/useEffectLoaded';
 
 export default () => {
   const { startLoop } = useRequestAnimationFrameLoop();
   const marqueeRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useEffectLoaded(() => {
     let position = 0;
 
     startLoop(() => {

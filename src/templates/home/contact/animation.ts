@@ -1,11 +1,12 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import gsap from 'gsap';
+import useEffectLoaded from '@/hooks/useEffectLoaded';
 
 export default function () {
   const containerContactRef = useRef<HTMLDivElement>(null);
   const backgroundPongRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useEffectLoaded(() => {
     gsap.to(containerContactRef.current, {
       opacity: 1,
       paddingTop: 0,

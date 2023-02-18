@@ -1,13 +1,14 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import useRefElements from '@/hooks/useRefElements';
 import gsap from 'gsap';
+import useEffectLoaded from '@/hooks/useEffectLoaded';
 
 export default function () {
   const avatarContainerRef = useRef(null);
   const textContainerRef = useRef(null);
   const [jobsWrapperRef, setJobsWrapperRef] = useRefElements<HTMLDivElement>();
 
-  useEffect(() => {
+  useEffectLoaded(() => {
     avatarAnimation();
     paragraphsAnimation();
     jobsAnimation();

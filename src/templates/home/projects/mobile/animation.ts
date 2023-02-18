@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import Draggable from 'gsap/dist/Draggable';
 import gsap from 'gsap';
 import useStateRef from '@/hooks/useStateRef';
+import useEffectLoaded from '@/hooks/useEffectLoaded';
 
 export default function ({ initialPosition, size }: { initialPosition: number; size: number }) {
   const [state, setState, stateRef] = useStateRef({
@@ -19,12 +20,12 @@ export default function ({ initialPosition, size }: { initialPosition: number; s
   const previousLabelRef = useRef<HTMLDivElement>(null);
   const anchorTryRef = useRef<HTMLAnchorElement>(null);
 
-  useEffect(() => {
+  useEffectLoaded(() => {
     initDraggable();
     initScrollTrigger();
   }, []);
 
-  useEffect(() => {
+  useEffectLoaded(() => {
     if (state.next !== state.current && state.previous !== state.current) {
       return;
     }

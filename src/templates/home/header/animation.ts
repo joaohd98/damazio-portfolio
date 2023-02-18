@@ -1,13 +1,13 @@
 import useRefElements from '@/hooks/useRefElements';
-import { useEffect } from 'react';
 import gsap from 'gsap';
+import useEffectLoaded from '@/hooks/useEffectLoaded';
 
 export default function () {
   const [textsRef, setTextsRef] = useRefElements<HTMLHeadingElement>();
   const [cursorsRef, setCursorsRef] = useRefElements<HTMLHeadingElement>();
   const [highlightsRef, setHighlightsRef] = useRefElements<HTMLSpanElement>();
 
-  useEffect(() => {
+  useEffectLoaded(() => {
     const tl = gsap.timeline();
 
     textsRef.current.forEach((currentText, index) => {

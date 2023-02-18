@@ -7,8 +7,10 @@ export default function (size: number) {
   const [rainsRef, setRainsRef] = useRefElements<HTMLDivElement>();
   const tlRain = useRef(gsap.timeline());
 
-  const changeVisibility = (isVisible: boolean) => {
-    const tl = gsap.timeline();
+  const changeVisibility = (isVisible: boolean, onComplete?: () => void) => {
+    const tl = gsap.timeline({
+      onComplete
+    });
 
     if (isVisible) {
       tl.call(() => rainAnimated());

@@ -3,14 +3,15 @@ import useEffectResizeScreen from '@/hooks/useEffectResizeScreen';
 import { viewportsBase } from '@/styles/viewport-base';
 import gsap from 'gsap';
 import useEffectOnlyChanges from '@/hooks/useEffectOnlyChanges';
-import * as S from './styles';
-import useAnimation from './animation';
-import drops from './drops';
-import assets from './assets';
+import * as S from 'src/context/pre-loading/layout/styles';
+import useAnimation from 'src/context/pre-loading/layout/animation';
+import drops from 'src/context/pre-loading/layout/drops';
+import assets from 'src/context/pre-loading/layout/assets';
+import PreloadingProps from './props';
 
 type Status = 'none' | 'loading' | 'success';
 
-export default function Preloading() {
+export default function Preloading({ setLoaded }: PreloadingProps) {
   const { changeVisibility, containerRef, setRainsRef } = useAnimation(drops.length);
 
   const [percentageMobile, setPercentageMobile] = useState('0');
@@ -25,7 +26,7 @@ export default function Preloading() {
       return;
     }
 
-    changeVisibility(false);
+    changeVisibility(false, setLoaded);
   }, [desktopStatus, mobileStatus]);
 
   useEffectResizeScreen(
