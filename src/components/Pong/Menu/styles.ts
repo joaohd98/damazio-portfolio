@@ -44,6 +44,7 @@ export const TextButton = styled.button`
   color: ${({ theme }) => theme.primary};
   transition: scale 0.1s ease-in;
   text-transform: uppercase;
+  cursor: pointer;
 
   :active {
     scale: 0.95;
