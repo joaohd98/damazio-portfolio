@@ -57,20 +57,27 @@ export default function Preloading() {
     const assetsSize = mixAsseets.length + 1;
 
     let quantity = 0;
-    const changeLoaded = () => {
+    const hasLoaded = (image?: HTMLImageElement) => {
       quantity += 1;
       const percentage = gsap.utils.mapRange(0, assetsSize, 0, 100, quantity).toFixed(0);
       setPercentage(percentage);
+
+      if (image) {
+        document.body.removeChild(image);
+      }
     };
 
-    document.fonts.ready.then(changeLoaded);
+    document.fonts.ready.then(() => hasLoaded());
     mixAsseets.forEach(asset => {
-      const img = new Image();
-      img.src = asset;
-
-      img.onload = () => {
-        changeLoaded();
+      const image = new Image();
+      image.onload = () => {
+        hasLoaded(image);
       };
+
+      image.src = asset;
+      image.hidden = true;
+
+      document.body.appendChild(image);
     });
   };
 

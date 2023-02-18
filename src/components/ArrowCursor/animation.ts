@@ -5,7 +5,7 @@ export default function (setCursorLeft: (b: boolean) => void, setOverLink: (b: b
   const arrowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const body = document.querySelector<HTMLBodyElement>('body');
+    const { body } = document;
     const content = arrowRef.current?.parentElement as HTMLDivElement;
     if (!content || !body) {
       return undefined;
