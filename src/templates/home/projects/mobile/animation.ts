@@ -29,13 +29,17 @@ export default function ({ initialPosition, size }: { initialPosition: number; s
       return;
     }
 
-    reverseTimeline(gsap.timeline());
+    reverseTimeline(
+      gsap.timeline({
+        onComplete: () => {
+          const next = state.current >= size - 1 ? 0 : state.current + 1;
+          const previous = state.current <= 2 ? size - 1 : state.current - 1;
+          setState({ current: state.current, next, previous });
 
-    const next = state.current >= size - 1 ? 0 : state.current + 1;
-    const previous = state.current <= 2 ? size - 1 : state.current - 1;
-
-    setState({ current: state.current, next, previous });
-    setMakingAnimation(false);
+          setMakingAnimation(false);
+        }
+      })
+    );
   }, [state]);
 
   const initScrollTrigger = () => {
@@ -49,12 +53,12 @@ export default function ({ initialPosition, size }: { initialPosition: number; s
 
     const duration = 0.4;
 
-    tl.to(currentCardRef.current, { x: 50, rotate: '5deg', duration });
+    tl.to(currentCardRef.current, { x: 75, rotate: '5deg', duration });
     tl.to(nextLabelRef.current, { opacity: 1, duration }, '<');
     tl.to(nextCardRef.current, { x: '-65vw', opacity: 1, duration }, '<');
     reverseTimeline(tl, duration);
 
-    tl.to(currentCardRef.current, { x: -50, rotate: '-5deg', duration });
+    tl.to(currentCardRef.current, { x: -75, rotate: '-5deg', duration });
     tl.to(previousLabelRef.current, { opacity: 1, duration }, '<');
     tl.to(previousCardRef.current, { x: '65vw', opacity: 1, duration }, '<');
     reverseTimeline(tl, duration);
@@ -101,7 +105,6 @@ export default function ({ initialPosition, size }: { initialPosition: number; s
     const tl = gsap.timeline({
       paused: !isFinished,
       onStart: () => {
-        gsap.to(anchorTryRef.current, { opacity: 0, duration: 0.2 });
         setMakingAnimation(true);
       },
       onComplete: () => {
@@ -114,12 +117,14 @@ export default function ({ initialPosition, size }: { initialPosition: number; s
       }
     });
 
+    tl.to(anchorTryRef.current, { opacity: 0, duration: 0.2 });
+
     if (isRight) {
-      tl.to(previousLabelRef.current, { opacity: 0 });
+      tl.to(previousLabelRef.current, { opacity: 0 }, '<');
       tl.to(nextLabelRef.current, { opacity: 1 }, '<');
       tl.to(currentCardRef.current, { rotate: '5deg' }, '<');
     } else {
-      tl.to(nextLabelRef.current, { opacity: 0 });
+      tl.to(nextLabelRef.current, { opacity: 0 }, '<');
       tl.to(previousLabelRef.current, { opacity: 1 }, '<');
       tl.to(currentCardRef.current, { rotate: '-5deg' }, '<');
     }
@@ -141,12 +146,12 @@ export default function ({ initialPosition, size }: { initialPosition: number; s
     }
   };
 
-  const reverseTimeline = (tl: gsap.core.Timeline, duration = 0) => {
+  const reverseTimeline = (tl = gsap.timeline(), duration = 0) => {
     tl.to(currentCardRef.current, { x: 0, rotate: 0, duration });
     tl.to([nextLabelRef.current, previousLabelRef.current], { opacity: 0, duration }, '<');
     tl.to(nextCardRef.current, { x: '-100vw', opacity: 0.5, scale: 0.9, duration }, '<');
     tl.to(previousCardRef.current, { x: '100vw', opacity: 0.5, scale: 0.9, duration }, '<');
-    tl.to(anchorTryRef.current, { opacity: 1 }, '<');
+    tl.to(anchorTryRef.current, { opacity: 1, duration }, '<');
   };
 
   return {
