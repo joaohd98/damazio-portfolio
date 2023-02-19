@@ -6,7 +6,7 @@ export default function () {
       profilePicture: 'profile picture',
       currentWork: "I'm a tech leader working remotely from São Paulo, Brazil.",
       descriptions: [
-        'A front-end developer for over six years, with deep javascript experience and its modern features with a strong understaing of the React ecosystem.',
+        'A front-end developer for over six years, with a deep JavaScript experience and its modern features along with a strong understanding of the React ecosystem.',
         'I have created pleasurable and immersive experiences, using various animation techniques and working in close collaboration with the designers.',
         'Strong communication and collaboration skills, capable of working effectively in a remote team environment.'
       ],
