@@ -4,7 +4,7 @@ export default function () {
   const i18 = useI18const({
     'en-US': {
       profilePicture: 'profile picture',
-      currentWork: "I'm tech leader working remotely from São Paulo, Brazil.",
+      currentWork: "I'm a tech leader working remotely from São Paulo, Brazil.",
       descriptions: [
         'A front-end developer for over six years, with deep experience of javascript and its modern features with strong knowledge on the React ecosystem.',
         "I've been creating enjoyable and immersive experiences, using different techniques of animation and working closely with designers.",
