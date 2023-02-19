@@ -8,8 +8,8 @@ export default function () {
       greetings: splitText("Hey, I'm João!"),
       job: splitText('A Developer'),
       highlights: [
-        'Who loves to create pleasent, accessible, performatic',
-        'and attractive UI that transform ideias into reality'
+        'Who loves to create pleasant, accessible, performative',
+        'and attractive UI that transform ideas into reality'
       ]
     },
     'pt-BR': {
