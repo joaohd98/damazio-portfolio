@@ -3,7 +3,7 @@ import useI18const from '@/hooks/useI18const';
 export default function () {
   return useI18const({
     'en-US': {
-      getInTouch: "If you have anything you'd like to discuss, get in touch...",
+      getInTouch: 'If there is something you would like to discuss, please contact me.',
       emailLabel: 'EMAIL',
       emails: ['joaohd98@gmail.com', 'joaodamazio98@hotmail.com'],
       social: [
