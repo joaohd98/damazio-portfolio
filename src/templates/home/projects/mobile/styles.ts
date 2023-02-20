@@ -9,6 +9,7 @@ export const ProjectsMobile = styled.div<{ isMakingAnimation: boolean }>`
 
 export const ProjectTitle = styled(SectionText)`
   text-align: center;
+  margin-bottom: 5rem;
 `;
 
 export const ProjectList = styled.ul`
@@ -27,6 +28,8 @@ export const ProjectCard = styled.li`
   width: 100%;
   height: 100%;
 `;
+
+export const CardClickable = styled.a``;
 
 export const PreviousCard = styled(ProjectCard)`
   opacity: 0.5;
@@ -99,7 +102,7 @@ export const ProjectTechnologies = styled.p`
   color: ${({ theme }) => theme.primary};
 `;
 
-export const AnchorTryOut = styled.a`
+export const AnchorTryOut = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

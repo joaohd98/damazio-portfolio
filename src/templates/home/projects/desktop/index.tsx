@@ -30,7 +30,7 @@ export default function ProjectsDesktop() {
             <S.ProjectContainer key={project.link} position={position}>
               <S.ProjectCard ref={setCardsRef(index)}>
                 <S.ProjectName>{project.name}</S.ProjectName>
-                <S.ProjectContent isVertical={isVertical}>
+                <S.ProjectContent href={project.link} target="_blank" isVertical={isVertical}>
                   <S.ProjectImage
                     src={`/imgs/projects/${project.img.src}`}
                     alt={project.name}
@@ -38,9 +38,7 @@ export default function ProjectsDesktop() {
                     height={project.img.height}
                   />
                   <S.ProjectTechnologies>{project.technologies.join(' • ')}</S.ProjectTechnologies>
-                  <S.ProjectTryOutButton href={project.link} target="_blank">
-                    {tryOut}
-                  </S.ProjectTryOutButton>
+                  <S.ProjectTryOutButton>{tryOut}</S.ProjectTryOutButton>
                 </S.ProjectContent>
               </S.ProjectCard>
             </S.ProjectContainer>

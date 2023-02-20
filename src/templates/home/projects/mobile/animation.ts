@@ -18,7 +18,7 @@ export default function ({ initialPosition, size }: { initialPosition: number; s
   const previousCardRef = useRef<HTMLLIElement>(null);
   const nextLabelRef = useRef<HTMLDivElement>(null);
   const previousLabelRef = useRef<HTMLDivElement>(null);
-  const anchorTryRef = useRef<HTMLAnchorElement>(null);
+  const anchorTryRef = useRef<HTMLDivElement>(null);
 
   useEffectLoaded(() => {
     initDraggable();

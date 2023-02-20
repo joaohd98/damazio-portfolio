@@ -71,7 +71,7 @@ export const DescriptionsText = styled.p`
     margin-bottom: 0;
 
     ${mediaMaxWidth('mobile')`
-      margin-bottom: 6rem;
+      margin-bottom: 3rem;
     `}
   }
 `;

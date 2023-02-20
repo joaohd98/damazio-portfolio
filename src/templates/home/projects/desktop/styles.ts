@@ -60,8 +60,10 @@ export const ProjectName = styled.p`
   margin-bottom: 1rem;
 `;
 
-export const ProjectContent = styled.div<{ isVertical: boolean }>`
+export const ProjectContent = styled.a<{ isVertical: boolean }>`
+  display: block;
   position: relative;
+  cursor: none;
 
   ${({ isVertical }) =>
     isVertical
@@ -113,7 +115,7 @@ export const ProjectTechnologies = styled.p`
   transform: translateX(-50%);
 `;
 
-export const ProjectTryOutButton = styled.a`
+export const ProjectTryOutButton = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -129,5 +131,4 @@ export const ProjectTryOutButton = styled.a`
   font-weight: 800;
   background-color: ${({ theme }) => theme.secondary};
   color: ${({ theme }) => theme.background};
-  cursor: none;
 `;
