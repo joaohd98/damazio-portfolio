@@ -101,8 +101,4 @@ export const ScrollButtonContainer = styled.div`
   bottom: 10%;
   opacity: 0;
   visibility: hidden;
-
-  ${mediaMaxWidth('mobile')`
-    bottom: 15%;
-  `}
 `;

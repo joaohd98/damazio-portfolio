@@ -1,19 +1,14 @@
 import styled from 'styled-components';
 import Image from 'next/image';
+import SectionText from '@/components/SectionText';
 
 export const ProjectsMobile = styled.div<{ isMakingAnimation: boolean }>`
   margin: 5rem 5vh 10rem;
   pointer-events: ${({ isMakingAnimation }) => (isMakingAnimation ? 'none' : 'auto')};
 `;
 
-export const ProjectTitle = styled.div`
-  font-size: 6rem;
-  font-family: 'LD Mono Line Solid';
-  color: transparent;
-  text-stroke: 0.1rem ${({ theme }) => theme.primary};
-  -webkit-text-stroke: 0.1rem ${({ theme }) => theme.primary};
+export const ProjectTitle = styled(SectionText)`
   text-align: center;
-  margin-bottom: 5rem;
 `;
 
 export const ProjectList = styled.ul`

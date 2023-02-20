@@ -1,19 +1,33 @@
 import styled from 'styled-components';
 import { mediaMaxWidth } from '@/utils/media-query';
+import SectionText from '@/components/SectionText';
 
 export const Skills = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  margin-bottom: 10rem;
+
+  ${mediaMaxWidth('mobile')`
+    margin-bottom: 5rem;
+  `}
+`;
+
+export const Title = styled(SectionText)`
+  opacity: 0;
+`;
+
+export const AccordionsContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin-left: 5%;
   margin-right: 5%;
-  margin-bottom: 10rem;
 
   ${mediaMaxWidth('mobile')`
     gap: 3rem;
     margin-left: 0;
     margin-right: 0;
     flex-direction: column;
-    margin-bottom: 5rem;
   `}
 `;
 
@@ -91,8 +105,6 @@ export const AccordionListText = styled.li<{ isVisible?: boolean }>`
   font-weight: 400;
   padding-left: 2rem;
   padding-bottom: 2rem;
-  transition: opacity 0.25s ease-in;
-  opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
 
   ${mediaMaxWidth('mobile')`
     font-size: 2rem;

@@ -10,6 +10,12 @@ export const ScrollButton = styled.button`
   border-radius: 100%;
   background-color: ${({ theme }) => theme.backgroundMenu};
   margin-top: 10rem;
+  cursor: pointer;
+  transition: scale 0.2s ease-in;
+
+  :active {
+    scale: 0.85;
+  }
 `;
 
 export const ArrowIcon = styled.span`

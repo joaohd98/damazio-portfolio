@@ -20,7 +20,8 @@ export default function () {
           name: 'tools 🛠️',
           technologies: ['Jest', 'Cypress', 'Storybook', 'Google Analytics', 'Webpack', 'CI/CD', 'i18n', 'a11y']
         }
-      ]
+      ],
+      skills: 'SKILLS'
     },
     'pt-BR': {
       areas: [
@@ -30,7 +31,8 @@ export default function () {
         {
           name: 'Outros 🛠'
         }
-      ]
+      ],
+      skills: 'HABILIDADES'
     }
   });
 }

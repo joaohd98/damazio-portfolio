@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { mediaMaxWidth } from '@/utils/media-query';
+import SectionText from '@/components/SectionText';
 
 export const Intro = styled.section`
   width: 90%;
@@ -83,6 +84,10 @@ export const JobList = styled.ul`
   ${mediaMaxWidth('mobile')`
     gap: 4rem;
   `}
+`;
+
+export const JobTitle = styled(SectionText)`
+  opacity: 0;
 `;
 
 export const JobItem = styled.li<{ startPosition: number }>`

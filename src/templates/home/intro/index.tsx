@@ -8,8 +8,8 @@ import useAnimation from './animation';
 
 export default function Intro({ skills }: { skills: ReactNode }) {
   const { aboutSection } = useSections();
-  const { avatarContainerRef, textContainerRef, setJobsWrapperRef } = useAnimation();
-  const { profilePicture, currentWork, descriptions, jobs, formatDuration } = useConst();
+  const { avatarContainerRef, textContainerRef, sectionTextRef, setJobsWrapperRef } = useAnimation();
+  const { profilePicture, currentWork, descriptions, works, jobs, formatDuration } = useConst();
 
   const renderJobs = useMemo(() => {
     const startYear = jobs.reduce((acc, current) => {
@@ -24,6 +24,7 @@ export default function Intro({ skills }: { skills: ReactNode }) {
 
     return (
       <S.JobList>
+        <S.JobTitle ref={sectionTextRef}>{works}</S.JobTitle>
         {jobs.map((job, index) => {
           const startPosition = gsap.utils.mapRange(startYear, endYear, 2.5, 97.5, job.start);
           const years = job.end ? job.end - job.start : endYear - job.start;
@@ -52,7 +53,7 @@ export default function Intro({ skills }: { skills: ReactNode }) {
     <S.Intro id={aboutSection.id}>
       <S.AvatarTextContainer>
         <S.AvatarContainer ref={avatarContainerRef}>
-          <Image src="/imgs/hang-lose.jpg" alt={profilePicture} width={348} height={375} priority />
+          <Image src="/imgs/hang-lose.jpg" alt={profilePicture} width={348} height={375} />
         </S.AvatarContainer>
         <S.TextContainer ref={textContainerRef}>
           <S.CurrentWorkText>{currentWork}</S.CurrentWorkText>

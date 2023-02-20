@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import Image from 'next/image';
 import { mediaMaxWidth, mediaMinAspectRatio, mediaMinWidth } from '@/utils/media-query';
+import SectionText from '@/components/SectionText';
 
 export const ProjectsDesktop = styled.div`
   margin-top: 10rem;
@@ -12,16 +13,11 @@ export const PinContainer = styled.div`
   overflow: visible;
 `;
 
-export const ProjectTitle = styled.p`
+export const ProjectTitle = styled(SectionText)`
   display: flex;
   justify-content: center;
   align-items: center;
   min-width: 50vw;
-  font-size: 10rem;
-  font-family: 'LD Mono Line Solid';
-  color: transparent;
-  text-stroke: 0.1rem ${({ theme }) => theme.primary};
-  -webkit-text-stroke: 0.1rem ${({ theme }) => theme.primary};
 `;
 
 export const ProjectContainer = styled.div<{ position: { type: string; value: number } }>`

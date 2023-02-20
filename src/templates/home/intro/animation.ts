@@ -6,11 +6,13 @@ import useEffectLoaded from '@/hooks/useEffectLoaded';
 export default function () {
   const avatarContainerRef = useRef(null);
   const textContainerRef = useRef(null);
+  const sectionTextRef = useRef(null);
   const [jobsWrapperRef, setJobsWrapperRef] = useRefElements<HTMLDivElement>();
 
   useEffectLoaded(() => {
     avatarAnimation();
     paragraphsAnimation();
+    jobTitleAnimation();
     jobsAnimation();
   }, []);
 
@@ -40,6 +42,16 @@ export default function () {
     });
   };
 
+  const jobTitleAnimation = () => {
+    gsap.to(sectionTextRef.current, {
+      opacity: 1,
+      scrollTrigger: {
+        trigger: sectionTextRef.current,
+        start: 'top 90%'
+      }
+    });
+  };
+
   const jobsAnimation = () => {
     jobsWrapperRef.current.forEach(current => {
       gsap.to(current, {
@@ -58,6 +70,7 @@ export default function () {
   return {
     avatarContainerRef,
     textContainerRef,
+    sectionTextRef,
     setJobsWrapperRef
   };
 }

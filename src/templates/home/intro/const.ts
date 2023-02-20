@@ -5,6 +5,7 @@ export default function () {
     'en-US': {
       profilePicture: 'profile picture',
       currentWork: "I'm a tech leader working remotely from São Paulo, Brazil.",
+      works: 'WORKS',
       descriptions: [
         'A front-end developer for over six years, with a deep JavaScript experience and its modern features along with a strong understanding of the React ecosystem.',
         'I have created pleasurable and immersive experiences, using various animation techniques and working in close collaboration with the designers.',
@@ -50,6 +51,7 @@ export default function () {
     'pt-BR': {
       profilePicture: 'Foto de perfil',
       currentWork: 'Eu sou um tech leader trabalhando remotamente de São Paulo, Brazil.',
+      works: 'TRABALHOS',
       descriptions: [
         'Desenvolvedor front-end há mais de seis anos, profunda experiência em javascript, forte conhecimento em ReactJS e ecossistema React.',
         'Tenho criado experiências agradáveis e imersivas, usando diferentes técnicas de animação e trabalhando em estreita colaboração com designers.',
