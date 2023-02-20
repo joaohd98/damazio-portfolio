@@ -42,7 +42,7 @@ export default function () {
     });
 
     tl.to(highlightsRef.current, { autoAlpha: 1, y: 0, stagger: 0.15 });
-    tl.to(scrollButtonRef.current, { autoAlpha: 1, duration: 0.2 });
+    tl.to(scrollButtonRef.current, { autoAlpha: 1, duration: 0.4 });
   }, []);
 
   return {
