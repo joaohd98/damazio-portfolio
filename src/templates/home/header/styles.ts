@@ -53,7 +53,7 @@ export const LetterSpan = styled.span<{ isEmpty: boolean }>`
       min-width: 4rem;
 
       ${mediaMaxWidth('mobile')`
-          min-width: 1rem;
+          min-width: 1.5rem;
       `}
     `}
 `;
@@ -87,8 +87,22 @@ export const HightlightText = styled.span`
   visibility: hidden;
   opacity: 0;
   transform: translateY(1rem);
+  margin-left: 2rem;
+  margin-right: 2rem;
 
   ${mediaMaxWidth('mobile')`
-    font-size: 2.2rem;
+    font-size: 2rem;
+    font-weight: 400;
+  `}
+`;
+
+export const ScrollButtonContainer = styled.div`
+  position: absolute;
+  bottom: 10%;
+  opacity: 0;
+  visibility: hidden;
+
+  ${mediaMaxWidth('mobile')`
+    bottom: 20%;
   `}
 `;

@@ -1,12 +1,13 @@
 import { useMemo } from 'react';
 import useSections from '@/constants/section';
+import ScrollButton from '@/components/ScrollButton';
 import * as S from './styles';
 import useConst from './const';
 import useAnimation from './animation';
 
 export default function Header() {
-  const { homeSection } = useSections();
-  const { setTextsRef, setCursorsRef, setHighlightsRef } = useAnimation();
+  const { homeSection, aboutSection } = useSections();
+  const { setTextsRef, setCursorsRef, setHighlightsRef, scrollButtonRef } = useAnimation();
   const { greetings, job, highlights } = useConst();
 
   const renderNameJob = useMemo(() => {
@@ -37,6 +38,9 @@ export default function Header() {
           </S.HightlightText>
         ))}
       </S.HightlightsRow>
+      <S.ScrollButtonContainer ref={scrollButtonRef}>
+        <ScrollButton target={aboutSection.href} />
+      </S.ScrollButtonContainer>
     </S.Header>
   );
 }
