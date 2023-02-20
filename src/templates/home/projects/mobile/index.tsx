@@ -27,7 +27,7 @@ export default function ProjectsMobile() {
 
     return (
       <>
-        <S.ProjectImage src={`/imgs/projects/${src}`} width={width} height={height} alt={project.name} priority />
+        <S.ProjectImage src={`/imgs/projects/${src}`} width={width} height={height} alt={project.name} />
         <S.ProjectTextBackground>
           <S.ProjectName>{project.name}</S.ProjectName>
           <S.ProjectTechnologies>{project.technologies.join(', ')}</S.ProjectTechnologies>

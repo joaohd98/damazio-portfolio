@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Image from 'next/image';
 import SectionText from '@/components/SectionText';
 
 export const ProjectsMobile = styled.div<{ isMakingAnimation: boolean }>`
@@ -67,7 +66,7 @@ export const NextLabel = styled(Label)`
   color: ${({ theme }) => theme.green};
 `;
 
-export const ProjectImage = styled(Image)`
+export const ProjectImage = styled.img`
   width: 100%;
   height: 100%;
   border-radius: 1rem;
