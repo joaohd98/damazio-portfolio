@@ -35,10 +35,10 @@ export default function () {
         return;
       }
 
-      const tlCursor = gsap.timeline({ repeat: -1, duration: 0.5 });
+      const tlCursor = gsap.timeline({ repeat: -1, duration: 1 });
 
       tlCursor.set(currentCursor, { display: 'none' }, 0);
-      tlCursor.set(currentCursor, { display: 'block' }, 0.25);
+      tlCursor.set(currentCursor, { display: 'block' }, 0.5);
     });
 
     tl.to(highlightsRef.current, { autoAlpha: 1, y: 0, stagger: 0.15 });
