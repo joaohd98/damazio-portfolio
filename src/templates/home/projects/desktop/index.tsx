@@ -30,15 +30,18 @@ export default function ProjectsDesktop() {
             <S.ProjectContainer key={project.link} position={position}>
               <S.ProjectCard ref={setCardsRef(index)}>
                 <S.ProjectName>{project.name}</S.ProjectName>
-                <S.ProjectContent href={project.link} target="_blank" isVertical={isVertical}>
-                  <S.ProjectImage
-                    src={`/imgs/projects/${project.img.src}`}
-                    alt={project.name}
-                    width={project.img.width}
-                    height={project.img.height}
-                  />
+                <S.ProjectContent isVertical={isVertical}>
+                  <S.ProjectImageContainer href={project.link} target="_blank">
+                    <S.ProjectImage
+                      src={`/imgs/projects/${project.img.src}`}
+                      alt={project.name}
+                      width={project.img.width}
+                      height={project.img.height}
+                    />
+                    <S.ProjectTryOutButton>{tryOut}</S.ProjectTryOutButton>
+                  </S.ProjectImageContainer>
                   <S.ProjectTechnologies>{project.technologies.join(' • ')}</S.ProjectTechnologies>
-                  <S.ProjectTryOutButton>{tryOut}</S.ProjectTryOutButton>
+                  <S.ProjectRole isVertical={isVertical}>{project.role}</S.ProjectRole>
                 </S.ProjectContent>
               </S.ProjectCard>
             </S.ProjectContainer>

@@ -83,7 +83,7 @@ export const ProjectTextBackground = styled.div`
   bottom: 0;
   left: 0;
   padding-top: 2.5rem;
-  padding-bottom: 3rem;
+  padding-bottom: 4rem;
   padding-left: 2.5rem;
 `;
 
@@ -96,6 +96,14 @@ export const ProjectName = styled.p`
 `;
 
 export const ProjectTechnologies = styled.p`
+  font-size: 2rem;
+  font-family: 'Gotham HTF';
+  font-weight: 400;
+  margin-bottom: 2rem;
+  color: ${({ theme }) => theme.primary};
+`;
+
+export const ProjectRole = styled.p`
   font-size: 2rem;
   font-family: 'Gotham HTF';
   font-weight: 400;

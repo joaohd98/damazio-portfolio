@@ -31,6 +31,7 @@ export default function ProjectsMobile() {
         <S.ProjectTextBackground>
           <S.ProjectName>{project.name}</S.ProjectName>
           <S.ProjectTechnologies>{project.technologies.join(', ')}</S.ProjectTechnologies>
+          <S.ProjectRole>{project.role}</S.ProjectRole>
         </S.ProjectTextBackground>
       </>
     );

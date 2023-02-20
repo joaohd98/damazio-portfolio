@@ -14,7 +14,7 @@ export default function (quantity: number) {
 
   const getTimeline = () => {
     const tl = gsap.timeline({ paused: true });
-    tl.to(cardsRef.current, { opacity: 1, marginLeft: 0, ease: Back.easeOut, stagger: 0.5 });
+    tl.to(cardsRef.current, { opacity: 1, x: '-50%', ease: Back.easeOut, stagger: 0.5 });
 
     return tl;
   };

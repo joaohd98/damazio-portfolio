@@ -1,6 +1,17 @@
 import useI18const from '@/hooks/useI18const';
 
 export default function () {
+  const { roleTeamFiap, roleMyself } = useI18const({
+    'en-US': {
+      roleTeamFiap: 'Built with a team at FIAP',
+      roleMyself: 'Built by myself'
+    },
+    'pt-BR': {
+      roleTeamFiap: 'Criado com uma equipe na FIAP',
+      roleMyself: 'Criado por mim'
+    }
+  });
+
   return useI18const({
     'en-US': {
       projects: [
@@ -17,7 +28,8 @@ export default function () {
             height: 1398
           },
           technologies: ['NextJS', 'Locomotive Scroll', 'GSAP'],
-          link: 'https://www.fiap.com.br/corporate/'
+          link: 'https://www.fiap.com.br/corporate/',
+          role: roleTeamFiap
         },
         {
           name: 'FIAP ON',
@@ -27,7 +39,8 @@ export default function () {
             height: 2311
           },
           technologies: ['React Native'],
-          link: 'https://apps.apple.com/br/app/fiap-on/id1270235539'
+          link: 'https://apps.apple.com/br/app/fiap-on/id1270235539',
+          role: roleTeamFiap
         },
         {
           name: 'LGPD Shield',
@@ -42,7 +55,8 @@ export default function () {
             height: 1398
           },
           technologies: ['NextJS', 'Locomotive Scroll'],
-          link: 'https://www.fiap.com.br/lgpdshield/'
+          link: 'https://www.fiap.com.br/lgpdshield/',
+          role: roleTeamFiap
         },
         {
           name: 'NEXT',
@@ -57,7 +71,8 @@ export default function () {
             height: 1398
           },
           technologies: ['PHP', 'Wordpress'],
-          link: 'https://www.fiap.com.br/next/'
+          link: 'https://www.fiap.com.br/next/',
+          role: roleTeamFiap
         },
         {
           name: 'Pós Tech',
@@ -72,7 +87,8 @@ export default function () {
             height: 1398
           },
           technologies: ['NextJS', 'Locomotive Scroll', 'GSAP'],
-          link: 'https://postech.fiap.com.br'
+          link: 'https://postech.fiap.com.br',
+          role: roleTeamFiap
         },
         {
           name: 'Rock New Ventures',
@@ -87,7 +103,8 @@ export default function () {
             height: 1398
           },
           technologies: ['NextJS', 'GSAP'],
-          link: 'https://www.fiap.com.br/rock-new-ventures/'
+          link: 'https://www.fiap.com.br/rock-new-ventures/',
+          role: roleTeamFiap
         },
         {
           name: 'Sims School',
@@ -97,7 +114,8 @@ export default function () {
             height: 1646
           },
           technologies: ['Android', 'Kotlin', 'SwiftUI'],
-          link: 'https://github.com/joaohd98?tab=repositories&q=sims'
+          link: 'https://github.com/joaohd98?tab=repositories&q=sims',
+          role: roleMyself
         },
         {
           name: 'SHIFT',
@@ -112,7 +130,8 @@ export default function () {
             height: 2531
           },
           technologies: ['NextJS', 'Locomotive Scroll', 'GSAP'],
-          link: 'https://www.fiap.com.br/shift/'
+          link: 'https://www.fiap.com.br/shift/',
+          role: roleTeamFiap
         },
         {
           name: 'Smart Mobility',
@@ -127,7 +146,8 @@ export default function () {
             height: 1398
           },
           technologies: ['NextJS', 'GSAP'],
-          link: 'https://www.fiap.com.br/graduacao/smart-mobility/'
+          link: 'https://www.fiap.com.br/graduacao/smart-mobility/',
+          role: roleTeamFiap
         }
       ],
       name: 'PROJECTS',

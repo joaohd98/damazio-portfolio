@@ -38,7 +38,8 @@ export default function ({ initialPosition, size }: { initialPosition: number; s
           setState({ current: state.current, next, previous });
 
           setMakingAnimation(false);
-        }
+        },
+        delay: 0.1
       })
     );
   }, [state]);

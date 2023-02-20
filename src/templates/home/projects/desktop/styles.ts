@@ -30,7 +30,7 @@ export const ProjectContainer = styled.div<{ position: { type: string; value: nu
       ? css`
           ${ProjectCard} {
             top: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(calc(-50% + 15rem), -50%);
           }
         `
       : css`
@@ -46,9 +46,8 @@ export const ProjectCard = styled.div`
   align-items: center;
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(calc(-50% + 15rem));
   opacity: 0.2;
-  margin-left: 15rem;
 `;
 
 export const ProjectName = styled.p`
@@ -60,10 +59,9 @@ export const ProjectName = styled.p`
   margin-bottom: 1rem;
 `;
 
-export const ProjectContent = styled.a<{ isVertical: boolean }>`
+export const ProjectContent = styled.div<{ isVertical: boolean }>`
   display: block;
   position: relative;
-  cursor: none;
 
   ${({ isVertical }) =>
     isVertical
@@ -96,6 +94,12 @@ export const ProjectContent = styled.a<{ isVertical: boolean }>`
         `}
 `;
 
+export const ProjectImageContainer = styled.a`
+  display: block;
+  position: relative;
+  cursor: none;
+`;
+
 export const ProjectImage = styled(Image)`
   height: 100%;
   width: 100%;
@@ -120,8 +124,8 @@ export const ProjectTryOutButton = styled.span`
   justify-content: center;
   align-items: center;
   position: absolute;
-  right: -2.5rem;
-  bottom: -2.5rem;
+  right: -4rem;
+  bottom: -4rem;
   width: 10rem;
   height: 10rem;
   border-radius: 100%;
@@ -131,4 +135,16 @@ export const ProjectTryOutButton = styled.span`
   font-weight: 800;
   background-color: ${({ theme }) => theme.secondary};
   color: ${({ theme }) => theme.background};
+`;
+
+export const ProjectRole = styled.p<{ isVertical: boolean }>`
+  font-size: 1.6rem;
+  font-family: 'Gotham HTF';
+  color: transparent;
+  text-stroke: 0.1rem ${({ theme }) => theme.primary};
+  -webkit-text-stroke: 0.1rem ${({ theme }) => theme.primary};
+  margin-top: 1.5rem;
+  margin-left: ${({ isVertical }) => (isVertical ? '2' : '0')}rem;
+  margin-right: ${({ isVertical }) => (isVertical ? '4' : '0')}rem;
+  text-align: ${({ isVertical }) => (isVertical ? 'left' : 'center')};
 `;
