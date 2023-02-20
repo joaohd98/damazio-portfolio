@@ -50,7 +50,7 @@ export default function () {
     },
     'pt-BR': {
       profilePicture: 'Foto de perfil',
-      currentWork: 'Eu sou um tech leader trabalhando remotamente de São Paulo, Brazil.',
+      currentWork: 'Eu sou um tech leader que trabalha remotamente de São Paulo, Brazil.',
       works: 'TRABALHOS',
       descriptions: [
         'Desenvolvedor front-end há mais de seis anos, profunda experiência em javascript, forte conhecimento em ReactJS e ecossistema React.',
