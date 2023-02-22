@@ -13,8 +13,8 @@ export const ScrollButton = styled.button`
   cursor: pointer;
   transition: scale 0.2s ease-in;
 
-  :active {
-    scale: 0.85;
+  :hover {
+    scale: 0.8;
   }
 `;
 

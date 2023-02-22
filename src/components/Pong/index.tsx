@@ -15,7 +15,8 @@ export default function Pong() {
     hasStartedPlayed: false,
     firstPlaying: 'player',
     scorePlayer: 0,
-    scoreEnemy: 0
+    scoreEnemy: 0,
+    scoreToWin: 4
   });
 
   const { wrapperRef, onChangeOption } = useAnimation(setOptions);
@@ -33,7 +34,7 @@ export default function Pong() {
 
     newOptions.firstPlaying = options.firstPlaying === 'enemy' ? 'player' : 'enemy';
 
-    const isWinner = (value: number) => value > 9;
+    const isWinner = (value: number) => value > options.scoreToWin;
     if (who === 'player') {
       newOptions.scorePlayer += 1;
       newOptions.winner = isWinner(newOptions.scorePlayer) ? 'player' : undefined;
