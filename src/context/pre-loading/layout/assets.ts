@@ -1,7 +1,9 @@
 export default {
   commmon: ['imgs/hang-lose.jpg', 'imgs/projects/fiapon.jpeg', 'imgs/projects/school.png'],
   desktop: [
-    'imgs/projects/corporate.png',
+    'imgs/projects/colegio.png',
+    'imgs/projects/fiap-mba.png',
+    'imgs/projects/para-empresas.png',
     'imgs/projects/lgpd-shield.png',
     'imgs/projects/next.png',
     'imgs/projects/pos-tech.png',
@@ -10,7 +12,9 @@ export default {
     'imgs/projects/smart-mobility.png'
   ],
   mobile: [
-    'imgs/projects/corporate-mobile.png',
+    'imgs/projects/colegio-mobile.png',
+    'imgs/projects/fiap-mba-mobile.png',
+    'imgs/projects/para-empresas-mobile.png',
     'imgs/projects/lgpd-shield-mobile.png',
     'imgs/projects/next-mobile.png',
     'imgs/projects/pos-tech-mobile.png',

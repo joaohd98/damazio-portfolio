@@ -16,19 +16,51 @@ export default function () {
     'en-US': {
       projects: [
         {
-          name: 'Corporate',
+          name: 'FIAP para empresas',
           img: {
-            src: 'corporate.png',
+            src: 'para-empresas.png',
             width: 2280,
             height: 1646
           },
           imgMobile: {
-            src: 'corporate-mobile.png',
+            src: 'para-empresas-mobile.png',
             width: 644,
             height: 1398
           },
-          technologies: ['NextJS', 'Locomotive Scroll', 'GSAP'],
-          link: 'https://www.fiap.com.br/corporate/',
+          technologies: ['NextJS', 'GSAP'],
+          link: 'https://www.fiap.com.br/fiap-empresas/',
+          role: roleTeamFiap
+        },
+        {
+          name: 'FIAP School',
+          img: {
+            src: 'colegio.png',
+            width: 2280,
+            height: 1646
+          },
+          imgMobile: {
+            src: 'colegio-mobile.png',
+            width: 644,
+            height: 1398
+          },
+          technologies: ['NextJS', 'GSAP'],
+          link: 'https://www.fiap.com.br/colegio/',
+          role: roleTeamFiap
+        },
+        {
+          name: 'FIAP MBA',
+          img: {
+            src: 'fiap-mba.png',
+            width: 2280,
+            height: 1646
+          },
+          imgMobile: {
+            src: 'fiap-mba-mobile.png',
+            width: 644,
+            height: 1398
+          },
+          technologies: ['NextJS', 'GSAP'],
+          link: 'https://www.fiap.com.br/mba/',
           role: roleTeamFiap
         },
         {

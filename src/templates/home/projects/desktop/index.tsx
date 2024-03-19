@@ -15,7 +15,9 @@ export default function ProjectsDesktop() {
     { type: 'bottom', value: 10 },
     { type: 'top', value: 50 },
     { type: 'top', value: 12 },
-    { type: 'bottom', value: 10 }
+    { type: 'bottom', value: 10 },
+    { type: 'top', value: 15 },
+    { type: 'bottom', value: 8 }
   ];
 
   return (

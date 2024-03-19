@@ -14,7 +14,7 @@ export default function () {
         },
         {
           name: 'mobile 📱',
-          technologies: ['React Native', 'Swift', 'SwiftUI', 'Android']
+          technologies: ['React Native', 'Expo', 'Swift', 'SwiftUI', 'Android']
         },
         {
           name: 'tools 🛠️',
