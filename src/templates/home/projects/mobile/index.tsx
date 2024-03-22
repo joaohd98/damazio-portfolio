@@ -45,8 +45,8 @@ export default function ProjectsMobile() {
         <S.NextCard ref={nextCardRef}>{renderContent(next)}</S.NextCard>
         <S.ProjectCard ref={currentCardRef}>
           <S.CardClickable href={projects[current].link} target="_blank">
-            <S.PreviousLabel ref={previousLabelRef}>{previousCard}</S.PreviousLabel>
-            <S.NextLabel ref={nextLabelRef}>{nextCard}</S.NextLabel>
+            <S.PreviousLabel ref={previousLabelRef}>{nextCard}</S.PreviousLabel>
+            <S.NextLabel ref={nextLabelRef}>{previousCard}</S.NextLabel>
             <S.AnchorTryOut ref={anchorTryRef}>{tryOut}</S.AnchorTryOut>
             {renderContent(current)}
           </S.CardClickable>

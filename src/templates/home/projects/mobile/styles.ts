@@ -56,14 +56,14 @@ const Label = styled.div`
 `;
 export const PreviousLabel = styled(Label)`
   right: 2rem;
-  border-color: ${({ theme }) => theme.yellow};
-  color: ${({ theme }) => theme.yellow};
+  border-color: ${({ theme }) => theme.green};
+  color: ${({ theme }) => theme.green};
 `;
 
 export const NextLabel = styled(Label)`
   left: 2rem;
-  border-color: ${({ theme }) => theme.green};
-  color: ${({ theme }) => theme.green};
+  border-color: ${({ theme }) => theme.yellow};
+  color: ${({ theme }) => theme.yellow};
 `;
 
 export const ProjectImage = styled.img`

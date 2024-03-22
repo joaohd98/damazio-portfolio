@@ -33,8 +33,9 @@ export default function ({ initialPosition, size }: { initialPosition: number; s
     reverseTimeline(
       gsap.timeline({
         onComplete: () => {
-          const next = state.current >= size - 1 ? 0 : state.current + 1;
-          const previous = state.current <= 2 ? size - 1 : state.current - 1;
+          const next = state.current === size - 1 ? 0 : state.current + 1;
+          const previous = state.current === 0 ? size - 1 : state.current - 1;
+
           setState({ current: state.current, next, previous });
 
           setMakingAnimation(false);
