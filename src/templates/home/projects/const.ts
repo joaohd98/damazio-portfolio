@@ -1,13 +1,15 @@
 import useI18const from '@/hooks/useI18const';
 
 export default function () {
-  const { roleTeamFiap, roleMyself } = useI18const({
+  const { roleTeamFiap, roleMyself, roleTeamOnto } = useI18const({
     'en-US': {
       roleTeamFiap: 'Built with a team at FIAP',
+      roleTeamOnto: 'Built with a team at Onto',
       roleMyself: 'Built by myself'
     },
     'pt-BR': {
       roleTeamFiap: 'Criado com uma equipe na FIAP',
+      roleTeamOnto: 'Criado com uma equipe na Onto',
       roleMyself: 'Criado por mim'
     }
   });
@@ -29,7 +31,8 @@ export default function () {
           },
           technologies: ['NextJS', 'GSAP'],
           link: 'https://www.fiap.com.br/fiap-empresas/',
-          role: roleTeamFiap
+          role: roleTeamFiap,
+          position: { type: 'top', value: 6 }
         },
         {
           name: 'FIAP School',
@@ -45,7 +48,8 @@ export default function () {
           },
           technologies: ['NextJS', 'GSAP'],
           link: 'https://www.fiap.com.br/colegio/',
-          role: roleTeamFiap
+          role: roleTeamFiap,
+          position: { type: 'top', value: 50 }
         },
         {
           name: 'FIAP MBA',
@@ -61,7 +65,8 @@ export default function () {
           },
           technologies: ['NextJS', 'GSAP'],
           link: 'https://www.fiap.com.br/mba/',
-          role: roleTeamFiap
+          role: roleTeamFiap,
+          position: { type: 'bottom', value: 10 }
         },
         {
           name: 'FIAP ON',
@@ -72,7 +77,8 @@ export default function () {
           },
           technologies: ['React Native'],
           link: 'https://apps.apple.com/br/app/fiap-on/id1270235539',
-          role: roleTeamFiap
+          role: roleTeamFiap,
+          position: { type: 'top', value: 30 }
         },
         {
           name: 'LGPD Shield',
@@ -88,7 +94,8 @@ export default function () {
           },
           technologies: ['NextJS', 'Locomotive Scroll'],
           link: 'https://www.fiap.com.br/lgpdshield/',
-          role: roleTeamFiap
+          role: roleTeamFiap,
+          position: { type: 'top', value: 5 }
         },
         {
           name: 'NEXT',
@@ -104,7 +111,8 @@ export default function () {
           },
           technologies: ['PHP', 'Wordpress'],
           link: 'https://www.fiap.com.br/next/',
-          role: roleTeamFiap
+          role: roleTeamFiap,
+          position: { type: 'bottom', value: 10 }
         },
         {
           name: 'Pós Tech',
@@ -120,7 +128,20 @@ export default function () {
           },
           technologies: ['NextJS', 'Locomotive Scroll', 'GSAP'],
           link: 'https://postech.fiap.com.br',
-          role: roleTeamFiap
+          role: roleTeamFiap,
+          position: { type: 'top', value: 50 }
+        },
+        {
+          name: 'CROWD',
+          img: {
+            src: 'crowd.png',
+            width: 764,
+            height: 1646
+          },
+          technologies: ['SwiftUI'],
+          link: 'https://apps.apple.com/us/app/crowd-social-shopping/id6467926771',
+          role: roleTeamOnto,
+          position: { type: 'top', value: 20 }
         },
         {
           name: 'Rock New Ventures',
@@ -136,7 +157,8 @@ export default function () {
           },
           technologies: ['NextJS', 'GSAP'],
           link: 'https://www.fiap.com.br/rock-new-ventures/',
-          role: roleTeamFiap
+          role: roleTeamFiap,
+          position: { type: 'top', value: 10 }
         },
         {
           name: 'Sims School',
@@ -147,7 +169,8 @@ export default function () {
           },
           technologies: ['Android', 'Kotlin', 'SwiftUI'],
           link: 'https://github.com/joaohd98?tab=repositories&q=sims',
-          role: roleMyself
+          role: roleMyself,
+          position: { type: 'top', value: 12 }
         },
         {
           name: 'SHIFT',
@@ -163,7 +186,20 @@ export default function () {
           },
           technologies: ['NextJS', 'Locomotive Scroll', 'GSAP'],
           link: 'https://www.fiap.com.br/shift/',
-          role: roleTeamFiap
+          role: roleTeamFiap,
+          position: { type: 'bottom', value: 10 }
+        },
+        {
+          name: 'FIAP School',
+          img: {
+            src: 'fiap-school-app.png',
+            width: 764,
+            height: 1646
+          },
+          technologies: ['React Native'],
+          link: 'https://apps.apple.com/br/app/fiap-school/id1502491617',
+          role: roleTeamFiap,
+          position: { type: 'top', value: 15 }
         },
         {
           name: 'Smart Mobility',
@@ -179,7 +215,8 @@ export default function () {
           },
           technologies: ['NextJS', 'GSAP'],
           link: 'https://www.fiap.com.br/graduacao/smart-mobility/',
-          role: roleTeamFiap
+          role: roleTeamFiap,
+          position: { type: 'bottom', value: 8 }
         }
       ],
       name: 'PROJECTS',
