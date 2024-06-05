@@ -144,6 +144,24 @@ export default function () {
           position: { type: 'top', value: 20 }
         },
         {
+          name: 'WILD Gallery',
+          img: {
+            src: 'wild-gallery.png',
+            width: 1920,
+            height: 1080
+          },
+          imgMobile: {
+            src: 'wild-gallery.png',
+            width: 764,
+            height: 1646
+          },
+          onlyDesktop: true,
+          technologies: ['NextJS', 'GSAP'],
+          link: 'https://wild-gallery.vercel.app',
+          role: roleMyself,
+          position: { type: 'top', value: 20 }
+        },
+        {
           name: 'Rock New Ventures',
           img: {
             src: 'rock-new-ventures.png',
